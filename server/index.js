@@ -1,8 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
+const authRoute = require("./routes/AuthRoute")
 const app = express();
-app.use(express.json());
 dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL)
@@ -16,6 +18,18 @@ mongoose.connect(process.env.MONGO_URL)
     console.log(error);
 })
 
-app.get('/', (req,res)=>{
-    res.send("API is running properly.")
-})
+
+app.use(
+    cors({
+        origin: ["http://localhost:3000"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
+    })
+)
+
+app.use(cookieParser());
+
+
+app.use(express.json());
+
+app.use("/", authRoute)
