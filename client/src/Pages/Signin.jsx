@@ -13,8 +13,8 @@ export default function Signin() {
                         src={Logo}
                         alt="Convoz"
                     />
-                    <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
-                        Sign in to your account
+                    <h2 className="mt-10 text-center text-xl font-bold leading-9 tracking-tight text-white">
+                        Log In
                     </h2>
                 </div>
 
@@ -31,6 +31,7 @@ export default function Signin() {
                                     name="email"
                                     type="email"
                                     autoComplete="email"
+                                    placeholder='example@gmail.com'
                                     required
                                     className="block w-full rounded-md border-0 py-2.5 px-2.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6"
                                 />
@@ -40,7 +41,7 @@ export default function Signin() {
                         <div>
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
-                                    Password*
+                                    Password
                                 </label>
                             </div>
                             <div className="mt-2">
@@ -50,6 +51,7 @@ export default function Signin() {
                                     type="password"
                                     autoComplete="current-password"
                                     required
+                                    placeholder='Required'
                                     className="block w-full rounded-md border-0 py-2.5 px-2.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6"
                                 />
                             </div>

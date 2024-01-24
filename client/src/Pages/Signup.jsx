@@ -23,21 +23,22 @@ export default function Signup() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/signup', formData);
-            console.log(response.data); // Handle the response as needed
+            const response = await axios.post('http://localhost:3000/signup', formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
 
-            // Optionally, you can redirect the user after successful signup
             navigate('/home');
         } catch (error) {
             console.error('Signup failed:', error.message);
-            // Handle error and display a message to the user
-            toast('Signup failed. Please try again.', {
+            toast.error('Signup failed. Please try again.', {
                 position: "top-right",
-                autoClose: 4000,
-                hideProgressBar: true,
+                autoClose: 5000,
+                hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
-                draggable: false,
+                draggable: true,
                 progress: undefined,
                 theme: "dark",
             });
@@ -71,6 +72,7 @@ export default function Signup() {
                                 type="username"
                                 autoComplete="username"
                                 required
+                                placeholder='JohnAppleseed'
                                 className="block w-full rounded-md border-0 py-2.5 px-2.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6 bg-white text-black"
                             />
                         </div>
@@ -86,6 +88,7 @@ export default function Signup() {
                                 type="email"
                                 autoComplete="email"
                                 required
+                                placeholder='example@gmail.com'
                                 className="block w-full rounded-md border-0 py-2.5 px-2.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6 bg-white text-black"
                             />
                         </div>
@@ -94,7 +97,7 @@ export default function Signup() {
                     <div>
                         <div className="flex items-center justify-between">
                             <label htmlFor="password" className="block text-sm font-medium leading-6">
-                                Password*
+                                Password
                             </label>
                         </div>
                         <div className="mt-2">
@@ -104,6 +107,7 @@ export default function Signup() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
+                                placeholder='Required'
                                 className="block w-full rounded-md border-0 py-2.5 px-2.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6 bg-white text-black"
                             />
                         </div>
@@ -129,12 +133,12 @@ export default function Signup() {
                     draggable
                     pauseOnHover
                     theme="dark"
-                    transition="Bounce"
+                    transition:Bounce
                 />
                 <p className="mt-10 text-center text-sm">
                     Already have an account?{' '}
                     <a className="font-semibold leading-6 hover:text-indigo-500">
-                        <Link to='/' className="text-[#1976D2]">Sign in.</Link>
+                        <Link to='/login' className="text-[#1976D2]">Sign in.</Link>
                     </a>
                 </p>
             </div>
