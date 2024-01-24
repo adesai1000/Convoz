@@ -1,9 +1,38 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../assets/Logo.png'
+import Axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 export default function Signin() {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        try {
+            const response = await Axios.post('http://localhost:3000/login', {
+                email,
+                password,
+            }, { withCredentials: true })
+            if (response.data.success) {
+                toast.success(response.data.message)
+                setTimeout(() => {
+                    navigate("/home");
+                }, 2000);
+            }
+            else {
+                toast.error(response.data.message)
+            }
+        }
+        catch (error) {
+            toast.error(error)
+        }
+    }
     return (
         <>
             <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-black text-white">
@@ -20,7 +49,7 @@ export default function Signin() {
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                                 Email*
@@ -66,11 +95,23 @@ export default function Signin() {
                             </button>
                         </div>
                     </form>
-
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        transition:Bounce
+                    />
                     <p className="mt-10 text-center text-sm text-white">
                         Don't have an account yet?{' '}
                         <a href="#" className="font-semibold leading-6 text-[#1976D2]">
-                            <Link to='/signup'>Create One.</Link>
+                            <Link to='/'>Create One.</Link>
                         </a>
                     </p>
                 </div>

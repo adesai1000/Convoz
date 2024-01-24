@@ -5,10 +5,19 @@ const bcrpyt = require("bcryptjs")
 module.exports.Signup = async(req,res,next) =>{
     try{
         const {email, password, username, createdAt} = req.body;
+        const both = await User.findOne({username, email});
+        if(both){
+            return res.json({message: "Username and Email already exist."})
+        }
         const existingUser = await User.findOne({email});
         if(existingUser){
-            return res.json({message: "User already exists."});
+            return res.json({message: "Email already exists."});
         }
+        const existingUsername = await User.findOne({username});
+        if(existingUsername){
+            return res.json({message: "This username is taken."})
+        }
+        
         const user = await User.create({email,password,username,createdAt});
         const token = createSecretToken(user._id);
         res.cookie("token", token,{ 
