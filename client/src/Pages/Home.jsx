@@ -29,7 +29,7 @@ const Home = () => {
     return (
         <>
             <Navbar username={username} />
-            <div className="bg-black">
+            <div className=" min-h-screen bg-black">
                 <h1 className="text-white">
                     Welcome {username}
                 </h1>
