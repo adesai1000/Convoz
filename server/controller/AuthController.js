@@ -26,7 +26,7 @@ module.exports.Signup = async(req,res,next) =>{
         })
         res
         .status(201)
-        .json({message: "User created successfully.", success:true, user})
+        .json({message: "User created successfully.", success:true, user, token})
         next();
     }
     catch(error){

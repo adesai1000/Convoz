@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -25,17 +26,13 @@ const Home = () => {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-    const Logout = () => {
-        removeCookie("token");
-        navigate("/login");
-    };
     return (
         <>
-            <div>
-                <h1>
+            <Navbar username={username} />
+            <div className="bg-black">
+                <h1 className="text-white">
                     Welcome {username}
                 </h1>
-                <button onClick={Logout}>LOGOUT</button>
             </div>
         </>
     );
