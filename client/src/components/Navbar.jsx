@@ -4,18 +4,19 @@
 import { Fragment } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiHome7Line, RiMessageLine } from "react-icons/ri";
-import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useUser } from '../context/UserContext';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({ username }) {
+export default function Navbar() {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
+    const { user } = useUser();
     const Logout = () => {
         removeCookie("token");
         navigate("/login");
@@ -49,8 +50,8 @@ export default function Navbar({ username }) {
                                 <span className="sr-only">Open user menu</span>
                                 <img
                                     className="h-7 w-7 rounded-full"
-                                    src={`https://robohash.org/${username}`}
-                                    alt={username}
+                                    src={`https://robohash.org/${user}`}
+                                    alt={user}
                                 />
                             </Menu.Button>
                             <Transition
@@ -69,7 +70,7 @@ export default function Navbar({ username }) {
                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-black')}
                                             >
                                                 View Profile
-                                                <a>  ({username})</a>
+                                                <a>  ({user})</a>
                                             </a>
                                         )}
                                     </Menu.Item>

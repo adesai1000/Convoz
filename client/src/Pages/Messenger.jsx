@@ -1,40 +1,16 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import axios from "axios";
+import Fetch from '../components/Fetch';
 import Navbar from '../components/Navbar'
-
+import { useUser } from '../context/UserContext';
 export default function Messenger() {
-    const navigate = useNavigate();
-    const [cookies, removeCookie] = useCookies([]);
-    const [username, setUsername] = useState("");
-    useEffect(() => {
-        const verifyCookie = async () => {
-            if (!cookies.token) {
-                navigate("/login");
-            }
-            const { data } = await axios.post(
-                "http://localhost:3000",
-                {},
-                { withCredentials: true }
-            );
-            const { status, user } = data;
-            setUsername(user);
-            return status
-                ? console.log("Logged in")
-                : (removeCookie("token"), navigate("/login"));
-        };
-        verifyCookie();
-    }, [cookies, navigate, removeCookie]);
+    const { user } = useUser();
+
     return (
         <>
-            <Navbar username={username} />
+            <Fetch />
+            <Navbar />
             <div className=" min-h-screen bg-black">
                 <h1 className="text-white">
-                    Messenger {username}
+                    Messenger {user}
                 </h1>
             </div>
         </>
