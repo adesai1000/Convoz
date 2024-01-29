@@ -29,7 +29,7 @@ export default function Navbar() {
     }
     return (
         <header className='bg-black border-b-2 border-slate-600'>
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+            <div className="flex justify-between items-center max-w-4xl mx-auto p-3">
                 <h1 className='font-bold text-2xl sm:text-4xl flex-wrap'>
                     <span className='text-[#1976D2]'>Convoz</span>
                 </h1>

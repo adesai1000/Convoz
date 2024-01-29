@@ -1,0 +1,41 @@
+.messenger {
+    height: calc(100vh - 70px);
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    text-align: center;   
+}
+
+.chatMenu {
+    flex: 2;
+    border-left: 2px solid #47515f;
+    border-right: 2px solid #47515f;
+    border-bottom: 2px solid #47515f;
+}
+.chatMenuInput{
+    width: 100%;
+    padding: 10px 0;
+    border: 2px solid #47515f;
+    border-radius: 4px;
+    color: black;
+    &:focus {
+        outline: none; 
+    }
+    
+}
+
+
+.chatBox {
+    flex: 5.5;
+    border-right: 2px solid #47515f;
+}
+
+.onlineBox{
+    flex: 2;
+}
+.chatMenuWrapper, .chatBoxWrapper, .onlineBoxWrapper{
+    padding: 10px;
+    background-color: black;
+    color: white;
+    height: 100%;
+}

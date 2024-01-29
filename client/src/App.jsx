@@ -5,7 +5,7 @@ import Signin from './Pages/Signin';
 import Singup from './Pages/Signup';
 import Home from './Pages/Home';
 import Notfound from './Pages/Notfound';
-import Messenger from './Pages/Messenger';
+import Messenger from './Pages/messenger/Messenger';
 import { UserProvider } from './context/UserContext';
 export default function App() {
   return (
