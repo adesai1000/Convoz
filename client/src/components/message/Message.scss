@@ -25,3 +25,10 @@
     margin-top: 5px;
     margin-left: 55px;
 }
+.message.own{
+    align-items: flex-end;
+}
+
+.message.own .messageText{
+    background-color: #34D15C;
+}

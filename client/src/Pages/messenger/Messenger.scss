@@ -3,39 +3,88 @@
     background-color: black;
     display: flex;
     justify-content: center;
-    text-align: center;   
+    text-align: center;
+    padding: 25px;
 }
 
 .chatMenu {
     flex: 2;
-    border-left: 2px solid #47515f;
-    border-right: 2px solid #47515f;
-    border-bottom: 2px solid #47515f;
+    border: 2px solid #47515f;
+    overflow: scroll;
 }
 .chatMenuInput{
     width: 100%;
-    padding: 10px 0;
+    padding: 10px ;
     border: 2px solid #47515f;
     border-radius: 4px;
-    color: black;
+    background-color: black;
+    color: white;
     &:focus {
-        outline: none; 
+        outline: none;
+        padding: 10px;
     }
-    
 }
-
 
 .chatBox {
     flex: 5.5;
     border-right: 2px solid #47515f;
+    border-bottom:2px solid #47515f ;
+    border-top: 2px solid #47515f;
+}
+
+.chatBoxWrapper{
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+.chatBoxTop{
+    height: 100%;
+    overflow: scroll;
+    padding-right: 10px;
+}
+
+.chatBoxBottom{
+    margin-top:5px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chatMessageInput{
+    width: 91%;
+    height: 70px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: 2px solid #47515f;
+    border-radius: 4px;
+    &:focus {
+        outline: none;
+    }
+}
+
+.chatSubmitButton{
+    width: 70px;
+    height: 70px;
+    border: 2px solid #47515f;
+    border-radius: 4px;
+    color: #1976D2;
+    cursor: pointer;
 }
 
 .onlineBox{
     flex: 2;
+    border-right: 2px solid #47515f;
+    border-bottom:2px solid #47515f;
+    border-top: 2px solid #47515f;
 }
 .chatMenuWrapper, .chatBoxWrapper, .onlineBoxWrapper{
     padding: 10px;
     background-color: black;
     color: white;
     height: 100%;
+}
+
+.onlineBoxWrapper{
+    overflow: scroll;
 }
