@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
+const ConvRoute = require("./routes/ConvRoute");
+const MsgRoute = require("./routes/MsgRoute");
 
 const app = express();
 dotenv.config();
@@ -32,6 +34,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 app.use("/", authRoute);
+app.use("/conversations", ConvRoute);
+app.use("/msg", MsgRoute)
 
 
 app.use((err, req, res, next) => {

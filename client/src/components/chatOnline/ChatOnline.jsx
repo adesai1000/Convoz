@@ -7,10 +7,10 @@ const ChatOnline = () => {
         <div className='chatOnline'>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://t4.ftcdn.net/jpg/03/83/25/83/360_F_383258331_D8imaEMl8Q3lf7EKU2Pi78Cn0R7KkW9o.jpg' alt='' />
+                    <img className="chatOnlineImg" src='https://robohash.org/emma' alt='' />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                <span className="chatOnlineName">ayush</span>
+                <span className="chatOnlineName">emma</span>
             </div>
         </div>
     )
