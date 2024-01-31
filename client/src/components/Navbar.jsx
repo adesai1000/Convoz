@@ -73,6 +73,7 @@ export default function Navbar({ username }) {
                                             </a>
                                         )}
                                     </Menu.Item>
+                                    {/*
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a
@@ -82,6 +83,7 @@ export default function Navbar({ username }) {
                                             </a>
                                         )}
                                     </Menu.Item>
+                                     */}
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a
