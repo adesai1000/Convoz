@@ -13,7 +13,7 @@ export default function Notfound() {
                         <a
                             className="rounded-md bg-[#1976D2] px-3.5 py-2.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            <Link to="/login">Go back home</Link>
+                            <Link to="/home">Go back home</Link>
                         </a>
                     </div>
                 </div>
