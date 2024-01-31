@@ -5,20 +5,15 @@ import Signin from './Pages/Signin';
 import Singup from './Pages/Signup';
 import Home from './Pages/Home';
 import Notfound from './Pages/Notfound';
-import Messenger from './Pages/messenger/Messenger';
-import { UserProvider } from './context/UserContext';
 export default function App() {
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Singup />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Signin />} />
-          <Route path='/messenger' element={<Messenger />} />
-          <Route path='*' element={<Notfound />} />
-        </Routes >
-      </BrowserRouter >
-    </UserProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Singup />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Signin />} />
+        <Route path='*' element={<Notfound />} />
+      </Routes >
+    </BrowserRouter >
   )
 }
