@@ -50,6 +50,7 @@ body{
     border: 2px solid #47515f;
     border-radius: 4px;
     background-color: black;
+    position: sticky;
     color: white;
     &:focus {
         outline: none;
@@ -59,7 +60,7 @@ body{
 
 .chatBox {
     flex: 2;
-    height: 100%; // Add this line
+    height: 100%;
     border-right: 2px solid #47515f;
     border-bottom:2px solid #47515f ;
     border-top: 2px solid #47515f;
@@ -84,7 +85,7 @@ body{
 }
 
 .chatMessageInput{
-    width: 91%;
+    width: 86%;
     height: 50px;
     padding: 10px;
     background-color: black;

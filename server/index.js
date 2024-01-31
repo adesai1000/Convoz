@@ -35,7 +35,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use("/", authRoute);
 app.use("/conversations", ConvRoute);
-app.use("/msg", MsgRoute)
+app.use("/messages", MsgRoute)
 
 
 app.use((err, req, res, next) => {

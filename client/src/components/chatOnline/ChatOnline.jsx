@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ChatOnline.scss'
+import { Axios } from 'axios';
 
-const ChatOnline = () => {
+const ChatOnline = ({ conversation, currentUser }) => {
     return (
         <div className='chatOnline'>
             <div className="chatOnlineFriend">
