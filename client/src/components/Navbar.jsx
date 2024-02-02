@@ -28,9 +28,9 @@ export default function Navbar({ username }) {
     }
     return (
         <header className='bg-black border-b-2 border-slate-600'>
-            <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+            <div className="flex justify-between items-center max-w-4xl mx-auto p-3">
                 <h1 className='font-bold text-2xl sm:text-4xl flex-wrap'>
-                    <span className='text-[#1976D2] cursor-pointer' onClick={handleHome}  >Convoz</span>
+                    <span className='text-[#1976D2] cursor-pointer' onClick={handleHome}>Convoz</span>
                 </h1>
                 <form className='border-2 border-slate-600 p-2 rounded flex items-center text-white focus:border-[#1976D2]'>
                     <input type='text' placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-60' />
