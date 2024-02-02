@@ -11,6 +11,7 @@ import { BsBorder, BsGraphUpArrow } from "react-icons/bs";
 import ad from '../assets/ad.png'
 import Post from "../components/Post";
 import { SlReload } from "react-icons/sl";
+import TopPost from "../components/TopPost";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -61,8 +62,6 @@ const Home = () => {
 
                     </div>
                     <Post />
-                    <Post />
-                    <Post />
                 </div>
                 {/* RIGHT SIDE OF THE PAGE */}
                 <div className="hidden md:block w-1/4 p-4">
@@ -76,7 +75,7 @@ const Home = () => {
                         <BsGraphUpArrow className="mt-2 text-lg text-white max-h-90%" />
                         <div className="text-lg text-white font-semibold">Top Posts</div>
                     </div>
-                    <Post />
+                    <TopPost />
                     <div className="mb-3 border-2 border-slate-600 p-3 rounded ">
                         <div className="border-b-2 border-slate-600 flex justify-between">
                             <div className="text-lg  p-3 rounded text-white font-semibold">Find Others</div>
