@@ -25,10 +25,7 @@ export default function Signup() {
             }, { withCredentials: true });
 
             if (response.data.success) {
-                toast.success(response.data.message)
-                setTimeout(() => {
-                    navigate("/home");
-                }, 2000);
+                navigate("/login");
             } else {
                 toast.error(response.data.message);
 
