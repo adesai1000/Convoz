@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
+import { markdown } from "markdown"; // Import the markdown library
 
 const Create = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Create = () => {
     const [username, setUsername] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [markdownContent, setMarkdownContent] = useState(""); // New state variable for HTML content
 
     const handleBack = () => {
         navigate('/home');
@@ -24,6 +26,15 @@ const Create = () => {
         console.log("Title:", title);
         console.log("Content:", content);
     }
+
+    const convertMarkdownToHTML = (markdownText) => {
+        return markdown.toHTML(markdownText);
+    };
+
+    const renderMarkdownContent = () => {
+        const htmlContent = convertMarkdownToHTML(content);
+        setMarkdownContent(htmlContent);
+    };
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -43,6 +54,10 @@ const Create = () => {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
+
+    useEffect(() => {
+        renderMarkdownContent();
+    }, [content]);
 
     return (
         <div>
@@ -80,6 +95,11 @@ const Create = () => {
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
+                            {/*  <div
+                                className="markdown-content"
+                                dangerouslySetInnerHTML={{ __html: markdownContent }}
+                            ></div>
+                            */}
                             <button
                                 className="bg-[#1976D2] text-white p-2 rounded"
                                 onClick={handleSubmit}
