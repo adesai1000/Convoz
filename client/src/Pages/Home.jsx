@@ -40,9 +40,6 @@ const Home = () => {
             <Navbar username={username} />
 
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <div className="hidden md:block w-1/4 p-4 h-550px">
-                    <img src={ad} />
-                </div>
                 {/* MIDDLE OF THE PAGE */}
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
