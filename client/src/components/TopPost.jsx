@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { FaThumbsUp, FaComment } from 'react-icons/fa'; // Replace with your icon library
+import { FaThumbsUp, FaComment } from 'react-icons/fa';
 
 const TopPost = () => {
     const [postText, setPostText] = useState("");
@@ -29,16 +29,15 @@ const TopPost = () => {
     };
 
     return (
-        <div className="mt-4">
-            {/* Dummy posts */}
+        <div className="mt-4 cursor-pointer">
             {posts.map((post) => (
-                <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4">
+                <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                     <div className="flex items-center mb-2 cursor-pointer">
                         <div className="rounded-full h-8 w-8 bg-white mr-2">
                             <img src="https://robohash.org/ayush" alt="User Avatar" />
                         </div>
                         <span className="text-blue-500 font-semibold">{post.user}</span>
-                        <span className="text-gray-500 mx-1">•</span> {/* Centered dot */}
+                        <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500"> 7 days ago (edited)</span>
                     </div>
                     <div className="text-white mb-2 font-bold">{post.title}</div>

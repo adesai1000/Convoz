@@ -13,7 +13,6 @@ const Home = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    const dummyUsers = ["User1", "User2", "User3", "User4"];
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -37,9 +36,7 @@ const Home = () => {
     return (
         <>
             <Navbar username={username} />
-
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                {/* MIDDLE OF THE PAGE */}
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0">+ New Post</button>
@@ -52,7 +49,6 @@ const Home = () => {
                                 <option value="oldest">Oldest</option>
                             </select>
                         </div>
-
                     </div>
                     <Post />
                 </div>
