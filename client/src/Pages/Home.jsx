@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import ad from '../assets/ad.png'
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import RightSide from "../components/RightSide";
