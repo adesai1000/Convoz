@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import RightSide from "../components/RightSide";
 
-const Home = () => {
+const Create = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
@@ -41,23 +41,17 @@ const Home = () => {
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 p-4">
-                    <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
-                        <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
-                        <div className="flex items-center space-x-2">
-                            <p className="text-lg">Sort:</p>
-                            <select className="text-white bg-black border-2 border-slate-600 rounded p-2">
-                                <option value="latest">Latest</option>
-                                <option value="likes">Likes</option>
-                                <option value="comments">Comments</option>
-                                <option value="oldest">Oldest</option>
-                            </select>
-                        </div>
+                    <div className="border-2 border-slate-600 p-4 rounded md:flex-row items-center justify-between text-white">
+                        <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0" onClick={handlePost}>Back</button>
+                        <img className=""
+                            src={`https://robohash.org/${username}`}
+                            alt={username}
+                        />
                     </div>
-                    <Post />
                 </div>
                 <RightSide />
             </div>
         </>
     );
 };
-export default Home;
+export default Create;

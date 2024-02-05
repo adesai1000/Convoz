@@ -5,6 +5,7 @@ import Signin from './Pages/Signin';
 import Singup from './Pages/Signup';
 import Home from './Pages/Home';
 import Notfound from './Pages/Notfound';
+import Create from './Pages/Create';
 export default function App() {
   return (
     <BrowserRouter>
@@ -12,6 +13,7 @@ export default function App() {
         <Route path="/" element={<Singup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Signin />} />
+        <Route path='/create' element={< Create />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
