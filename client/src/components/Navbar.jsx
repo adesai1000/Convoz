@@ -26,6 +26,10 @@ export default function Navbar({ username }) {
     const handleMessenger = () => {
         navigate("/messenger");
     }
+
+    const handleProfile = () => {
+        navigate("/profile")
+    }
     return (
         <header className='bg-black border-b-2 border-slate-600'>
             <div className="flex justify-between items-center max-w-4xl mx-auto p-3">
@@ -62,12 +66,12 @@ export default function Navbar({ username }) {
                                 leaveFrom="transform opacity-100 scale-100"
                                 leaveTo="transform opacity-0 scale-95"
                             >
-                                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <Menu.Items className="absolute right-0 z-10  w-48 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 border-2 border-slate-600 ring-black ring-opacity-5 focus:outline-none">
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a
-                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-black')}
-                                            >
+                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-sm text-white cursor-pointer')}
+                                                onClick={handleProfile}>
                                                 View Profile
                                                 <a>  ({username})</a>
                                             </a>
@@ -88,7 +92,7 @@ export default function Navbar({ username }) {
                                         {({ active }) => (
                                             <a
                                                 onClick={Logout}
-                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-black')}
+                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-sm text-white cursor-pointer')}
                                             >
                                                 Sign out
                                             </a>
@@ -100,6 +104,6 @@ export default function Navbar({ username }) {
                     </div>
                 </div>
             </div>
-        </header>
+        </header >
     )
 }

@@ -7,15 +7,17 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
-import RightSide from "../components/RightSide";
+import ProfRight from "../components/ProfRight";
 
-const Home = () => {
+const Profile = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
+    const [activeTab, setActiveTab] = useState("Posts");
     const handlePost = () => {
         navigate('/create');
     }
+
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -35,12 +37,20 @@ const Home = () => {
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
 
-
     return (
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
+                <ProfRight />
                 <div className="w-full md:w-1/2 p-4">
+                    <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
+                        <div className="flex items-center space-x-4 text-lg">
+                            <button className={`tab-btn ${activeTab === "Posts" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Posts")}>Posts</button>
+                            <button className={`tab-btn  ${activeTab === "Liked" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Liked")}>Liked</button>
+                            <button className={`tab-btn ${activeTab === "Comments" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Comments")}>Comments</button>
+                        </div>
+                    </div>
+
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
                         <div className="flex items-center space-x-2">
@@ -53,11 +63,13 @@ const Home = () => {
                             </select>
                         </div>
                     </div>
-                    <Post />
+                    {activeTab === "Posts" && <Post />}
+                    {activeTab === "Liked" && <Post />}
+                    {activeTab === "Comments" && <Post />}
                 </div>
-                <RightSide />
+
             </div>
         </>
     );
 };
-export default Home;
+export default Profile;

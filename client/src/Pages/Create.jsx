@@ -18,7 +18,7 @@ const Create = () => {
     const [markdownContent, setMarkdownContent] = useState(""); // New state variable for HTML content
 
     const handleBack = () => {
-        navigate('/home');
+        history.go(-1)
     }
 
     const handleSubmit = () => {
@@ -42,7 +42,7 @@ const Create = () => {
                 navigate("/login");
             }
             const { data } = await axios.post(
-                "http://localhost:3000",
+                "http://localhost:5000",
                 {},
                 { withCredentials: true }
             );
