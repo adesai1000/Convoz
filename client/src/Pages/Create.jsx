@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
-import { markdown } from "markdown"; // Import the markdown library
+import { markdown } from "markdown";
 
 const Create = () => {
     const navigate = useNavigate();
@@ -15,16 +15,15 @@ const Create = () => {
     const [username, setUsername] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [markdownContent, setMarkdownContent] = useState(""); // New state variable for HTML content
+    const [markdownContent, setMarkdownContent] = useState("");
 
     const handleBack = () => {
         history.go(-1)
     }
 
     const handleSubmit = () => {
-        // Add logic to handle form submission
-        console.log("Title:", title);
-        console.log("Content:", content);
+        //console.log("Title:", title);
+        //console.log("Content:", content);
     }
 
     const convertMarkdownToHTML = (markdownText) => {

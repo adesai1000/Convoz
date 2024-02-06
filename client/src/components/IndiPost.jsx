@@ -3,12 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
 
-const Post = () => {
+const IndiPost = () => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([
         { id: 1, user: "ayush", title: "My thoughts on iPhone 15 Pro", text: "Commentary: Remarkable CPU and battery test scores show the power of the iPhone 15 Pro and Pro Max. Plus, get the whole scoop on overheating. ", likes: 500, comments: 25 },
-        { id: 2, user: "emma", title: "M3 Pro Macbook Pro", text: "Laptop upgrade adds M3 chips, more power, longer battery life, brighter screen, lower price and darker colour.", likes: 100, comments: 30 },
-        { id: 3, user: "jack", title: "Apple watch banned in US?", text: "The Apple Watch Series 9 and Watch Ultra 2 were both banned in the US late last year as the result of a patent dispute with medical device maker Masimo.", likes: 10, comments: 5 },
     ]);
 
     const handlePost = () => {
@@ -51,4 +49,4 @@ const Post = () => {
     );
 };
 
-export default Post;
+export default IndiPost;

@@ -8,6 +8,8 @@ import Notfound from './Pages/Notfound';
 import Create from './Pages/Create';
 import Profile from './Pages/Profile';
 import Messenger from './Pages/Messenger';
+import PostView from './Pages/PostView';
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ export default function App() {
         <Route path='/create' element={< Create />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/messenger' element={<Messenger />} />
+        <Route path='/posts' element={<PostView />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
