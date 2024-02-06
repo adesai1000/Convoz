@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import Notfound from './Pages/Notfound';
 import Create from './Pages/Create';
 import Profile from './Pages/Profile';
+import Messenger from './Pages/Messenger';
 export default function App() {
   return (
     <BrowserRouter>
@@ -15,7 +16,8 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Signin />} />
         <Route path='/create' element={< Create />} />
-        <Route path='profile' element={<Profile />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/messenger' element={<Messenger />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
