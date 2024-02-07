@@ -35,7 +35,7 @@ const ProfRight = () => {
                             <textarea
                                 value={editedBio}
                                 onChange={(e) => setEditedBio(e.target.value)}
-                                className="border-2 border-slate-600 p-2 rounded resize-none"
+                                className="bg-black text-white border-2 border-slate-600 p-2 rounded resize-none"
                             />
                             <button
                                 onClick={handleEditBio}
