@@ -7,7 +7,7 @@ import Home from './Pages/Home';
 import Notfound from './Pages/Notfound';
 import Create from './Pages/Create';
 import Profile from './Pages/Profile';
-import Messenger from './Pages/Messenger';
+import Messenger from './Pages/Messenger/Messenger';
 import PostView from './Pages/PostView';
 
 export default function App() {
