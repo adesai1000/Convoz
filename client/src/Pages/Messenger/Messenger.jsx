@@ -1,13 +1,41 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 import Navbar from '../../components/Navbar';
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
 import './Messenger.scss'
 import { Message } from '../../components/message/message';
 
 export default function Messenger() {
+    const navigate = useNavigate();
+    const [cookies, removeCookie] = useCookies([]);
+    const [username, setUsername] = useState("");
+    useEffect(() => {
+        const verifyCookie = async () => {
+            if (!cookies.token) {
+                navigate("/login");
+            }
+            const { data } = await axios.post(
+                "http://localhost:5000",
+                {},
+                { withCredentials: true }
+            );
+            const { status, user } = data;
+            setUsername(user);
+            return status
+                ? console.log("Logged in")
+                : (removeCookie("token"), navigate("/login"));
+        };
+        verifyCookie();
+    }, [cookies, navigate, removeCookie]);
 
     return (
         <>
-            <Navbar />
+            <Navbar username={username} />
             <div className="messenger">
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
