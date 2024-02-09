@@ -2,9 +2,14 @@
 import TopPost from './TopPost'
 import { FaRegStar } from "react-icons/fa";
 import { BsGraphUpArrow } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 import { SlReload } from "react-icons/sl";
 
 const RightSide = () => {
+    const navigate = useNavigate();
+    const handProfile = () => {
+        navigate("/profile");
+    };
     return (
         <div className="hidden md:block w-1/4 p-4">
 
@@ -27,21 +32,21 @@ const RightSide = () => {
                         <img src="https://robohash.org/ayush" />
                         <p className="ml-4 text-white justify-center">ayush</p>
                     </div>
-                    <p className="text-[#1976D2] mt-3 justify-center underline">View</p>
+                    <p className="text-[#1976D2] mt-3 justify-center underline cursor-pointer" onClick={handProfile}>View</p>
                 </div>
                 <div className="flex justify-between">
                     <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-3">
                         <img src="https://robohash.org/emma" />
                         <p className="ml-4 text-white justify-center">emma</p>
                     </div>
-                    <p className="text-[#1976D2] mt-3 justify-center underline">View</p>
+                    <p className="text-[#1976D2] mt-3 justify-center underline cursor-pointer" onClick={handProfile}>View</p>
                 </div>
                 <div className="flex justify-between">
                     <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-3">
                         <img src="https://robohash.org/jack" />
                         <p className="ml-4 text-white justify-center">jack</p>
                     </div>
-                    <p className="text-[#1976D2] mt-3 justify-center underline">View</p>
+                    <p className="text-[#1976D2] mt-3 justify-center underline cursor-pointer" onClick={handProfile}>View</p>
                 </div>
             </div>
 

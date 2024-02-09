@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaThumbsUp, FaComment } from 'react-icons/fa';
 
 const TopPost = () => {
+    const navigate = useNavigate();
     const [postText, setPostText] = useState("");
     const [posts, setPosts] = useState([
         { id: 1, user: "ayush", title: "My thoughts on iPhone 15 Pro", text: "Commentary: Remarkable CPU and battery test scores... ", likes: 500, comments: 25 },
@@ -10,7 +12,9 @@ const TopPost = () => {
 
     ]);
     const dummyUsers = ["User1", "User2", "User3", "User4"];
-
+    const handlePost = () => {
+        navigate("/posts");
+    };
     const handlePostSubmit = async () => {
         setPostText("");
     };
@@ -29,7 +33,7 @@ const TopPost = () => {
     };
 
     return (
-        <div className="mt-4 cursor-pointer">
+        <div className="mt-4 cursor-pointer" onClick={handlePost}>
             {posts.map((post) => (
                 <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                     <div className="flex items-center mb-2 cursor-pointer">
