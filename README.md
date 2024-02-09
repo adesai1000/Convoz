@@ -6,11 +6,11 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 - Like and Unlike Posts
 - Create, Reply, Read, Update, and delete nested comments
 - Auth using JWT (Done)
-- Realtime Messages using Socket.io
+- Realtime Messages using Socket.io (in progress)
 - View Profiles and browse their Posts, liked posts, and liked comments. Also, show account age.
 - Random Avatar for each user (Done)
 - Infinite Scrolling / Pagination
-- Sort Posts on the basis of attributes such as Most liked, Most comments, Date Created (Oldest or Newest)
+- Sort Posts based on attributes such as Most liked, Most comments, Date Created (Oldest or Newest)
 - Profanity Filtering in posts and comments
 - Client Side Rate Limiting using use-cooldown
 - Search Posts by title
