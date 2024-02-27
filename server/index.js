@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
-const ChatRoute = require("./routes/ChatRoute");
-const MessageRoute = require("./routes/MessageRoute");
 const app = express();
 dotenv.config();
 
@@ -31,9 +29,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
-app.use("/chat", ChatRoute);
 app.use("/", authRoute);
-app.use("/message", MessageRoute);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
