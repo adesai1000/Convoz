@@ -14,24 +14,40 @@ export default function Messenger() {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    useEffect(() => {
-        const verifyCookie = async () => {
-            if (!cookies.token) {
-                navigate("/login");
+    const [chats, setChats] = useState("");
+    useEffect(()=>{
+        const getChats = async()=>{
+            try{
+                const {data} = await userChats(user._id)
             }
+            catch(error){
+                console.log(error)
+            }
+        }
+    })
+useEffect(() => {
+    const verifyCookie = async () => {
+        if (!cookies.token) {   
+            navigate("/login");
+        }
+        try {
             const { data } = await axios.post(
                 "http://localhost:5000",
                 {},
                 { withCredentials: true }
             );
-            const { status, user } = data;
-            setUsername(user);
-            return status
-                ? console.log("Logged in")
-                : (removeCookie("token"), navigate("/login"));
-        };
-        verifyCookie();
-    }, [cookies, navigate, removeCookie]);
+            console.log("User data:", data.user);
+            const { user } = data;
+            setUsername(user.username);
+            console.log(user._id)
+        } catch (error) {
+            console.error(error);
+            removeCookie("token");
+            navigate("/login");
+        }
+    };
+    verifyCookie();
+}, [cookies, navigate, removeCookie]);
 
     return (
         <>
@@ -40,7 +56,6 @@ export default function Messenger() {
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Your Conversations</div>
-                        <input placeholder='Search...' className='chatMenuInput' />
                         <ActiveConv />
                         <ActiveConv />
                         <ActiveConv />

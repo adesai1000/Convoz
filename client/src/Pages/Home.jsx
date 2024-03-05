@@ -27,7 +27,7 @@ const Home = () => {
                 { withCredentials: true }
             );
             const { status, user } = data;
-            setUsername(user);
+            setUsername(user.username);
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));

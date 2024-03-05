@@ -1,4 +1,4 @@
-const chatModel = require('../model/chatModel'); // Import the chatModel
+const chatModel = require('../model/chatModel');
 
 module.exports.createChat = async (req, res) => {
     const newChat = new chatModel({
