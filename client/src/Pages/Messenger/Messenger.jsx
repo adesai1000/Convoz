@@ -14,41 +14,51 @@ export default function Messenger() {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    const [chats, setChats] = useState("");
-    useEffect(()=>{
-        const getChats = async()=>{
-            try{
-                const {data} = await userChats(user._id)
-            }
-            catch(error){
-                console.log(error)
-            }
-        }
-    })
-useEffect(() => {
-    const verifyCookie = async () => {
-        if (!cookies.token) {   
-            navigate("/login");
-        }
-        try {
-            const { data } = await axios.post(
-                "http://localhost:5000",
-                {},
-                { withCredentials: true }
-            );
-            console.log("User data:", data.user);
-            const { user } = data;
-            setUsername(user.username);
-            console.log(user._id)
-        } catch (error) {
-            console.error(error);
-            removeCookie("token");
-            navigate("/login");
-        }
-    };
-    verifyCookie();
-}, [cookies, navigate, removeCookie]);
+    const [id, setId] = useState("")
+    const [converstations, setConversations] = useState([]);
 
+    useEffect(() => {
+        const verifyCookie = async () => {
+            if (!cookies.token) {   
+                navigate("/login");
+            }
+            try {
+                const { data } = await axios.post(
+                    "http://localhost:5000",
+                    {},
+                    { withCredentials: true }
+                );
+                const { user } = data;
+                setUsername(user.username);
+                setId(user._id)
+            } catch (error) {
+                console.error(error);
+                removeCookie("token");
+                navigate("/login");
+            }
+        };
+        verifyCookie();
+    }, [cookies, navigate, removeCookie]);
+
+    useEffect(() => {
+        const getChats = async () => {
+            try {
+                const { data } = await userChats(username);
+                setConversations(data);
+                console.log(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if (username) {
+            getChats();
+        }
+    }, [username]);
+
+    const userChats = async () => {
+        const API = axios.create({ baseURL: 'http://localhost:5000' });
+        return API.get(`/chat/${id}`);
+    };
     return (
         <>
             <Navbar username={username} />
@@ -56,15 +66,11 @@ useEffect(() => {
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Your Conversations</div>
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
-                        <ActiveConv />
+                        {converstations.map((c)=>(
+                            <ActiveConv  converstation ={c} />
+                        ))}
                     </div>
+                    
                 </div>
                 <div className='chatBox'>
                     <div className="chatBoxWrapper">

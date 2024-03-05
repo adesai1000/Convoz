@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ActiveConv.scss'
 
 export const ActiveConv = () => {
+
     return (
         <div className='chatOnline'>
             <div className="chatOnlineFriend">
