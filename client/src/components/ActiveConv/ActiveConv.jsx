@@ -1,18 +1,21 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
-import './ActiveConv.scss'
+import React, { useEffect, useState } from 'react';
+import './ActiveConv.scss';
 
-export const ActiveConv = () => {
-
+export const ActiveConv = ({ conversation, currentUser }) => {
+    // Extracting the name of the receiver (last element of the members array)
+    //const receiverName = conversation.members.find(member => member !== currentUser);
+    const receiverName = conversation.members[conversation.members.length - 1];
     return (
         <div className='chatOnline'>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    <img className="chatOnlineImg" src='https://robohash.org/emma' alt='' />
+                    {/* Here you can use the receiverName to display the receiver's image */}
+                    <img className="chatOnlineImg" src={`https://robohash.org/${receiverName}`} alt={receiverName} />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                <span className="chatOnlineName">emma</span>
+                {/* Displaying the receiver's name */}
+                <span className="chatOnlineName">{receiverName}</span>
             </div>
         </div>
-    )
-}
+    );
+};

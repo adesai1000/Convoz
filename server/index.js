@@ -34,7 +34,6 @@ app.use(express.urlencoded({extended: false}))
 app.use("/chat", ChatRoute);
 app.use("/", authRoute);
 app.use("/message", MessageRoute);
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');

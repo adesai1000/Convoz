@@ -2,7 +2,7 @@ const chatModel = require('../model/chatModel');
 
 module.exports.createChat = async (req, res) => {
     const newChat = new chatModel({
-        members: [req.body.senderId, req.body.receiverId],
+        members: [req.body.senderId, req.body.receiverId, req.body.sender, req.body.receiver],
     });
     try {
         const result = await newChat.save();

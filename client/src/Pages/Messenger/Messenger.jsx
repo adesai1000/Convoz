@@ -65,10 +65,11 @@ export default function Messenger() {
             <div className="messenger">
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
-                        <div className='convoHeading'>Your Conversations</div>
-                        {converstations.map((c)=>(
-                            <ActiveConv  converstation ={c} />
-                        ))}
+                        <div className='convoHeading'>Conversations</div>
+                        {converstations.map((conversation) => (
+    <ActiveConv key={conversation._id} conversation={conversation} currentUser={id} />
+))}
+
                     </div>
                     
                 </div>
