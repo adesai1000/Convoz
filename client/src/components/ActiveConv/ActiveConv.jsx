@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './ActiveConv.scss';
 
 export const ActiveConv = ({ conversation, currentUser }) => {
-    // Extracting the name of the receiver (last element of the members array)
-    //const receiverName = conversation.members.find(member => member !== currentUser);
-    const receiverName = conversation.members[conversation.members.length - 1];
+    // Get the index of the current user in the members array
+    const userIndex = conversation.members.indexOf(currentUser);
+
+    // Determine the index of the other user
+    const otherUserIndex = userIndex === 0 ? 3 : 2;
+
+    // Get the name of the other user
+    const otherUserName = conversation.members[otherUserIndex];
+
     return (
         <div className='chatOnline'>
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
-                    {/* Here you can use the receiverName to display the receiver's image */}
-                    <img className="chatOnlineImg" src={`https://robohash.org/${receiverName}`} alt={receiverName} />
+                    <img className="chatOnlineImg" src={`https://robohash.org/${otherUserName}`} alt={otherUserName} />
                     <div className="chatOnlineBadge"></div>
                 </div>
-                {/* Displaying the receiver's name */}
-                <span className="chatOnlineName">{receiverName}</span>
+                <span className="chatOnlineName">{otherUserName}</span>
             </div>
         </div>
     );
