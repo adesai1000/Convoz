@@ -4,6 +4,7 @@
 import { Fragment } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiHome7Line, RiMessageLine } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
