@@ -6,6 +6,7 @@ import axios from "axios";
 import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
 import './Messenger.scss'
 import { Message } from '../../components/message/message';
+import { RiMessageLine } from "react-icons/ri";
 
 export default function Messenger() {
     const navigate = useNavigate();
@@ -72,6 +73,9 @@ export default function Messenger() {
                 </div>
                 <div className='chatBox'>
                     <div className="chatBoxWrapper">
+                        {
+                            currentChat ? 
+                        <>
                         <div className='messageHeading'>ayush</div>
                         <div className="chatBoxTop">
                             <Message />
@@ -86,7 +90,13 @@ export default function Messenger() {
                         <div className="chatBoxBottom">
                             <textarea className='chatMessageInput' placeholder='Message'></textarea>
                             <button className='chatSubmitButton'>Send</button>
+                        </div> </>: <>
+                        <div className='defaultDisplay'>
+                        <RiMessageLine size="5rem" />
+                        <div className="defaultDisplayHeading">Convoz Messenger</div>
+                            <div className='defaultDisplayText'>Message any user securely!</div>
                         </div>
+                        </>}
                     </div>
                 </div>
             </div>

@@ -93,6 +93,9 @@ body{
     display: none;
     padding: 0px;
 }
+.defaultDisplayHeading {
+    font-size: 20px !important;
+}
 }
 .chatBoxWrapper{
     display: flex;
@@ -156,4 +159,22 @@ body{
     background-color: black;
     color: white;
     height: 100%;
+}
+.defaultDisplay{
+  display: flex;
+  flex-direction: column;
+  -moz-box-pack: center;
+  justify-content: center;
+  -moz-box-align: center;
+  align-items: center;
+  height: 100%;
+}
+.defaultDisplayHeading{
+    font-weight: bold;
+    font-size: 30px;
+}
+.defaultDisplayText{
+    padding-top: 5px;
+    font-size:15px ;
+    font-weight: bold;
 }
