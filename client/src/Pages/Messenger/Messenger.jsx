@@ -16,6 +16,7 @@ export default function Messenger() {
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([])
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -39,6 +40,9 @@ export default function Messenger() {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
+    const handleBack = () =>{
+        navigate("/home")
+    }
     useEffect(() => {
         const getChats = async () => {
             try {
@@ -54,6 +58,23 @@ export default function Messenger() {
         }
     }, [username]);
 
+    useEffect(() => {
+        const isPhone = () => window.innerWidth <= 768;
+        if (isPhone()) {
+            setShowPopup(true);
+        }
+        window.addEventListener('resize', () => {
+            if (isPhone()) {
+                setShowPopup(true);
+            } else {
+                setShowPopup(false);
+            }
+        });
+        return () => {
+            window.removeEventListener('resize', () => {});
+        };
+    }, []);
+
     const userChats = async () => {
         const API = axios.create({ baseURL: 'http://localhost:5000' });
         return API.get(`/chat/${id}`);
@@ -63,6 +84,15 @@ export default function Messenger() {
         <>
             <Navbar username={username} />
             <div className="messenger">
+                {showPopup && (
+                    <>
+                    <div className="phone-overlay" />
+                    <div className="phone-popup">
+                        <p>This feature is exlusive to bigger screens for an optimal experience.</p>
+                        <a className="back"onClick={handleBack}>Go Back</a>
+                    </div>
+                </>
+                )}
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Convoz</div>
