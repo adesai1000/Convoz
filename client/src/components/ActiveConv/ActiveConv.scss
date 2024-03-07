@@ -42,6 +42,8 @@ position: relative;
     .chatOnlineImg{
         width: 40px;
         height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
     }
     .chatOnlineName{
         margin-left: none;
@@ -55,7 +57,6 @@ position: relative;
         margin: none;
     }
     .chatOnlineFriend{
-    margin-top: 10px;
     border: 2px solid #47515f;
     }
 }

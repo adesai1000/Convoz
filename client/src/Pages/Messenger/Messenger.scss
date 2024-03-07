@@ -82,11 +82,12 @@ body{
 }
 .messenger{
     width: 90%;
-    padding: 0px;
-    padding-top: 10px;
+    padding: 20px;
 }
 .chatMenu{
     flex: 0.6;
+    align-items: center;
+    justify-content: center;
 }
 .convoHeading{
     display: none;
