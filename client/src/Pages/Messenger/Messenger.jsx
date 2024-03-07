@@ -16,7 +16,7 @@ export default function Messenger() {
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([])
-    const [showPopup, setShowPopup] = useState(false);
+    const [newMessage, setNewMessage] = useState("")
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -58,23 +58,6 @@ export default function Messenger() {
         }
     }, [username]);
 
-    useEffect(() => {
-        const isPhone = () => window.innerWidth <= 768;
-        if (isPhone()) {
-            setShowPopup(true);
-        }
-        window.addEventListener('resize', () => {
-            if (isPhone()) {
-                setShowPopup(true);
-            } else {
-                setShowPopup(false);
-            }
-        });
-        return () => {
-            window.removeEventListener('resize', () => {});
-        };
-    }, []);
-
     const userChats = async () => {
         const API = axios.create({ baseURL: 'http://localhost:5000' });
         return API.get(`/chat/${id}`);
@@ -93,6 +76,24 @@ export default function Messenger() {
             getMessages();
         }
     },[currentChat])
+
+    const handleSubmit = async (e)=>{
+    e.preventDefault();
+    const message = {
+        chatId: currentChat._id,
+        senderId: id,
+        text: newMessage
+    };
+    try{
+        const res = await axios.post(`http://localhost:5000/message`, message)
+        setMessages([...messages, res.data])
+        setNewMessage("")
+    }
+    catch(error){
+        console.log(error)
+    }
+  }
+
     return (
         <>
             <Navbar username={username} />
@@ -115,12 +116,15 @@ export default function Messenger() {
                         <div className='messageHeading'>{id === currentChat.members[0] ? currentChat.members[3] : currentChat.members[2]}</div>
                         <div className="chatBoxTop">
                             {messages.map(m=>(
-                                <Message message={m} own={m.senderId === id} />
+                                <Message message={m} own={m.senderId === id}  />
                             ))}
                         </div>
                         <div className="chatBoxBottom">
-                            <textarea className='chatMessageInput' placeholder='Message'></textarea>
-                            <button className='chatSubmitButton'>Send</button>
+                            <textarea className='chatMessageInput' placeholder='Message'
+                            onChange={(e)=>setNewMessage(e.target.value)}
+                            value={newMessage}
+                            ></textarea>
+                            <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
                         </div> </>: <>
                         <div className='defaultDisplay'>
                         <RiMessageLine size="5rem" />
