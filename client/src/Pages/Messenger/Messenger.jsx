@@ -13,6 +13,8 @@ export default function Messenger() {
     const [username, setUsername] = useState("");
     const [id, setId] = useState("")
     const [conversations, setConversations] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState([])
     const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
@@ -92,7 +94,7 @@ export default function Messenger() {
                 )}
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
-                        <div className='convoHeading'>Conversations</div>
+                        <div className='convoHeading'>Convoz</div>
                         {conversations.map((conversation) => (
                             <ActiveConv key={conversation._id} conversation={conversation} currentUser={id} />
                         ))}

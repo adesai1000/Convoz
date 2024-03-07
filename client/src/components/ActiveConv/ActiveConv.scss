@@ -25,8 +25,8 @@ position: relative;
 }
 
 .chatOnlineBadge{
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background-color: limegreen;
     position: absolute;
@@ -36,4 +36,26 @@ position: relative;
 
 .chatOnlineName{
     margin-left: 20px;
+    
+}
+@media only screen and (max-width: 768px) {
+    .chatOnlineImg{
+        width: 40px;
+        height: 40px;
+    }
+    .chatOnlineName{
+        margin-left: none;
+    }
+    .chatOnlineImgContainer{
+        padding: 0px;
+    }
+    .chatOnlineName{
+        visibility: hidden;
+        display: none;
+        margin: none;
+    }
+    .chatOnlineFriend{
+    margin-top: 10px;
+    border: 2px solid #47515f;
+    }
 }

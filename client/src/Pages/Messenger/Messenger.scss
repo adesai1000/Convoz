@@ -1,18 +1,6 @@
 body{
     background-color: black;
 }
-.phone-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black; /* semi-transparent black overlay */
-    z-index: 9998; /* lower z-index than the popup */
-
-    
-}
 
 .phone-popup {
     display: none;
@@ -28,26 +16,20 @@ body{
     z-index: 9999;
     border:3px solid #47515f ;
     font-weight: 525;
-    width: 1500px; /* Adjust width as needed */
-    max-width: 80%; /* Add max-width to prevent it from getting too wide */
-    height: auto; /* Adjust height as needed */
-    max-height: 100%; /* Add max-height to prevent it from getting too tall */
-    overflow-y: auto; /* Add overflow-y to enable scrolling if content exceeds height */
+    width: 1500px;
+    max-width: 80%;
+    height: auto;
+    max-height: 100%;
+    overflow-y: auto; 
     .back{
         font-size: 20px;
         color: #1770C8;
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .phone-overlay,
-    .phone-popup {
-        display: block;
-    }
-}
 .messenger {
     height: calc(100vh - 75px);
-    width: calc(100vw - 780px);
+    width: calc(100vw - 600px);
     background-color: black;
     display: flex;
     justify-content: center;
@@ -87,27 +69,30 @@ body{
     border: 2px solid #47515f;
     overflow: scroll;
 }
-// .chatMenuInput{
-//     width: 100%;
-//     padding: 10px ;
-//     border: 2px solid #47515f;
-//     border-radius: 4px;
-//     background-color: black;
-//     color: white;
-//     &:focus {
-//         outline: none;
-//         padding: 10px;
-//     }
-// }
-
 .chatBox {
     flex: 2;
-    height: 100%; // Add this line
+    height: 100%;
     border-right: 2px solid #47515f;
     border-bottom:2px solid #47515f ;
     border-top: 2px solid #47515f;
 }
-
+@media only screen and (max-width: 768px) {
+.chatBox{
+    display: flex;
+}
+.messenger{
+    width: 90%;
+    padding: 0px;
+    padding-top: 10px;
+}
+.chatMenu{
+    flex: 0.6;
+}
+.convoHeading{
+    display: none;
+    padding: 0px;
+}
+}
 .chatBoxWrapper{
     display: flex;
     flex-direction: column;
@@ -139,6 +124,19 @@ body{
     }
 }
 
+@media only screen and (max-width: 1024px){
+    .chatBox{
+        display: flex;
+    }
+    .messenger{
+        height: calc(100vh - 80px);
+    width: calc(100vw);
+    }
+    .chatMenuWrapper, .chatBoxWrapper{
+    width: 100%;
+        height: 100%;
+    }
+}
 .chatSubmitButton{
     width: 70px;
     height: 50px;
