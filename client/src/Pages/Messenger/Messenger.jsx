@@ -79,7 +79,20 @@ export default function Messenger() {
         const API = axios.create({ baseURL: 'http://localhost:5000' });
         return API.get(`/chat/${id}`);
     };
-
+    useEffect(()=>{
+        const getMessages = async ()=>{
+            try{
+                 const res = await axios.get(`http://localhost:5000/message/${currentChat?._id}`);
+                setMessages(res.data)
+            }
+           catch(error){
+            console.log(error)
+           }
+        }
+        if (currentChat) {
+            getMessages();
+        }
+    },[currentChat])
     return (
         <>
             <Navbar username={username} />
@@ -97,7 +110,9 @@ export default function Messenger() {
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Convoz</div>
                         {conversations.map((conversation) => (
-                            <ActiveConv key={conversation._id} conversation={conversation} currentUser={id} />
+                            <div onClick={()=>setCurrentChat(conversation)}>
+                                 <ActiveConv key={conversation._id} conversation={conversation} currentUser={id} />
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -108,14 +123,9 @@ export default function Messenger() {
                         <>
                         <div className='messageHeading'>ayush</div>
                         <div className="chatBoxTop">
-                            <Message />
-                            <Message own={true} />
-                            <Message />
-                            <Message own={true} />
-                            <Message />
-                            <Message own={true} />
-                            <Message />
-                            <Message own={true} />
+                            {messages.map(m=>(
+                                <Message message={m} own={m.senderId === id} />
+                            ))}
                         </div>
                         <div className="chatBoxBottom">
                             <textarea className='chatMessageInput' placeholder='Message'></textarea>

@@ -38,6 +38,9 @@ dependencies:
   sass:
     specifier: ^1.70.0
     version: 1.70.0
+  timeago.js:
+    specifier: 4.0.0-beta.3
+    version: 4.0.0-beta.3
 
 devDependencies:
   '@types/react':
@@ -2916,6 +2919,10 @@ packages:
     dependencies:
       any-promise: 1.3.0
     dev: true
+
+  /timeago.js@4.0.0-beta.3:
+    resolution: {integrity: sha512-98KoI4axalqyrlZMEavKfBBtJOJugHtpC1n/TPLx3edS0GFSUg9YkvtqFKAaOHjbaz5729b2U0MczMr39TM65A==}
+    dev: false
 
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
