@@ -112,7 +112,7 @@ export default function Messenger() {
                         {
                             currentChat ? 
                         <>
-                        <div className='messageHeading'>ayush</div>
+                        <div className='messageHeading'>{id === currentChat.members[0] ? currentChat.members[3] : currentChat.members[2]}</div>
                         <div className="chatBoxTop">
                             {messages.map(m=>(
                                 <Message message={m} own={m.senderId === id} />
