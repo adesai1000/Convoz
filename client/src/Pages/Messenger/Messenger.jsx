@@ -97,15 +97,6 @@ export default function Messenger() {
         <>
             <Navbar username={username} />
             <div className="messenger">
-                {showPopup && (
-                    <>
-                    <div className="phone-overlay" />
-                    <div className="phone-popup">
-                        <p>This feature is exlusive to bigger screens for an optimal experience.</p>
-                        <a className="back"onClick={handleBack}>Go Back</a>
-                    </div>
-                </>
-                )}
                 <div className='chatMenu'>
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Convoz</div>

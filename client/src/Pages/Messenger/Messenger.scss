@@ -2,31 +2,6 @@ body{
     background-color: black;
 }
 
-.phone-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: black;
-    padding: 10px;
-    color: white;
-    border: 2px solid black;
-    font-size: 25px;
-    z-index: 9999;
-    border:3px solid #47515f ;
-    font-weight: 525;
-    width: 1500px;
-    max-width: 80%;
-    height: auto;
-    max-height: 100%;
-    overflow-y: auto; 
-    .back{
-        font-size: 20px;
-        color: #1770C8;
-    }
-}
-
 .messenger {
     height: calc(100vh - 75px);
     width: calc(100vw - 600px);
