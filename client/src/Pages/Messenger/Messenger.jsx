@@ -7,17 +7,19 @@ import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
 import './Messenger.scss'
 import { Message } from '../../components/message/message';
 import { RiMessageLine } from "react-icons/ri";
+import {io} from 'socket.io-client'
 
 export default function Messenger() {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    const [id, setId] = useState("")
+    const [id, setId] = useState("");
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
-    const [messages, setMessages] = useState([])
-    const [newMessage, setNewMessage] = useState("")
-    const scrollRef = useRef()
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+    const [socket, setSocket] = useState(null);
+    const scrollRef = useRef();
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -97,6 +99,10 @@ export default function Messenger() {
   useEffect(()=>{
     scrollRef.current?.scrollIntoView({behavior: "smooth"})
   },[messages])
+
+  useEffect(()=>{
+    setSocket(io("ws://localhost:8900"))
+  },[])
     return (
         <>
             <Navbar username={username} />
