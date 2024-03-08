@@ -29,7 +29,7 @@ const Home = () => {
             const { status, user } = data;
             setUsername(user.username);
             return status
-                ? console.log("Logged in")
+                ? console.log()
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();

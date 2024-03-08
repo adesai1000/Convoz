@@ -18,7 +18,7 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const [socket, setSocket] = useState(null);
+    const socket = useRef()
     const scrollRef = useRef();
 
     useEffect(() => {
@@ -43,15 +43,13 @@ export default function Messenger() {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-    const handleBack = () =>{
-        navigate("/home")
-    }
+
     useEffect(() => {
         const getChats = async () => {
             try {
                 const { data } = await userChats(username);
                 setConversations(data);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -101,8 +99,15 @@ export default function Messenger() {
   },[messages])
 
   useEffect(()=>{
-    setSocket(io("ws://localhost:8900"))
-  },[])
+    socket.current = io("ws://localhost:8900");
+  })
+
+  useEffect(()=>{
+    socket.current.emit("addUser", id);
+    socket.current.on("getUsers",users=>{
+        console.log(users)
+    })
+  },[username]) 
     return (
         <>
             <Navbar username={username} />
