@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +17,7 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState("")
+    const scrollRef = useRef()
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -93,7 +94,9 @@ export default function Messenger() {
         console.log(error)
     }
   }
-
+  useEffect(()=>{
+    scrollRef.current?.scrollIntoView({behavior: "smooth"})
+  },[messages])
     return (
         <>
             <Navbar username={username} />
@@ -116,7 +119,10 @@ export default function Messenger() {
                         <div className='messageHeading'>{id === currentChat.members[0] ? currentChat.members[3] : currentChat.members[2]}</div>
                         <div className="chatBoxTop">
                             {messages.map(m=>(
+                                <div ref={scrollRef}>
+                                
                                 <Message message={m} own={m.senderId === id}  />
+                                </div>
                             ))}
                         </div>
                         <div className="chatBoxBottom">

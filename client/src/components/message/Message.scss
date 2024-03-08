@@ -25,9 +25,11 @@
 }
 .messageBottom{
     display: flex;
-    font-size: 12px;
+    font-size: 10px;
     margin-top: 5px;
     margin-left: 10px;
+    font-weight: bold;
+    color: gray;
 }
 .message.own{
     align-items: flex-end;
