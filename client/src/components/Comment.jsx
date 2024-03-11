@@ -41,7 +41,7 @@ const Comment = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="data w-full mt-7 mb-3">
+                        <div className="data w-full mt-7 mb-3 text-lg">
                             <textarea
                                 placeholder="Content*"
                                 rows="8"

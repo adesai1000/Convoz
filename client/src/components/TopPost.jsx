@@ -44,8 +44,8 @@ const TopPost = () => {
                         <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500"> 7 days ago (edited)</span>
                     </div>
-                    <div className="text-white mb-2 font-bold">{post.title}</div>
-                    <div className="text-white mb-2">{post.text}</div>
+                    <div className="text-white mb-2 font-bold text-2xl">{post.title}</div>
+                    {/* <div className="text-white mb-2">{post.text}</div> */}
                     <div className="flex gap-4 items-center text-white mb-2">
                         <button onClick={() => handleLike(post.id)} className="flex items-center text-[#1976D2]">
                             <FaThumbsUp className="mr-1" /> {post.likes}
