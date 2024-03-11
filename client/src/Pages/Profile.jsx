@@ -67,7 +67,6 @@ const Profile = () => {
                     {activeTab === "Liked" && <Post />}
                     {activeTab === "Comments" && <Post />}
                 </div>
-
             </div>
         </>
     );

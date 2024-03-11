@@ -10,7 +10,7 @@ const ProfRight = () => {
         username: "ayush",
         bio: "This is the user's bio.",
         totalLikes: 42,
-        totalPosts: 10,
+        totalPosts: 10, 
     };
 
     const [isEditingBio, setIsEditingBio] = useState(false);
@@ -21,7 +21,7 @@ const ProfRight = () => {
     };
 
     return (
-        <div className="w-full md:w-1/4 md:top-0 md:p-4 md:items-center md:justify-center">
+        <div className="w-full px-4 pt-5 md:w-1/4 md:top-0 md:p-4 md:items-center md:justify-center">
             <div className="border-2 border-slate-600 rounded mb-4 justify-center">
                 <div className="justify-center items-center text-center">
                     <img
@@ -58,17 +58,17 @@ const ProfRight = () => {
                         </div>
                     )}
                     <div className="mt-2 mb-2 text-white">
-                        Likes: {user.totalLikes} | Posts: {user.totalPosts}
+                        Total Likes: {user.totalLikes} | Posts: {user.totalPosts}
                     </div>
                 </div>
             </div>
-            <div className="hidden md:block">
-                <div className="mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
+            <div className=" md:block">
+                <div className="border-2 border-slate-600 p-4 rounded flex gap-4">
                     <FaRegStar className="mt-1 text-xl text-yellow-500 max-h-90%" />
-                    <div className="text-lg text-white font-semibold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target="_blank" rel="noopener noreferrer" className="text-[#1976D2] underline font-semibold"> Repo!</a>
+                    <div className="text-xl text-white font-semibold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target="_blank" rel="noopener noreferrer" className="text-[#1976D2] underline font-semibold"> Repo!</a>
                     </div>
                 </div>
-                <div className="mb-3 border-2 border-slate-600 p-3 rounded ">
+                <div className=" hidden mb-3 border-2 border-slate-600 p-3 rounded md:block">
                     <div className="border-b-2 border-slate-600 flex justify-between">
                         <div className="text-lg  p-2 mb-1 rounded text-white font-semibold">Find Others</div>
                         <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600" /></div>
