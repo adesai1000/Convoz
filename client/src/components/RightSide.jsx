@@ -25,8 +25,8 @@ const RightSide = () => {
             <TopPost />
             <div className="mb-3 border-2 border-slate-600 p-3 rounded ">
                 <div className="border-b-2 border-slate-600 flex justify-between">
-                    <div className="text-lg  p-2 mb-1 rounded text-white font-semibold">Find Others</div>
-                    <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600" /></div>
+                    <div className="text-lg  p-2 mb-1 rounded text-white font-semibold ">Find Others</div>
+                    <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600 hover:animate-spin"  /></div>
                 <div className="flex justify-between">
                     <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-3">
                         <img src="https://robohash.org/ayush" />

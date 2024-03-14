@@ -16,7 +16,7 @@ export const ActiveConv = ({ conversation, currentUser }) => {
             <div className="chatOnlineFriend">
                 <div className="chatOnlineImgContainer">
                     <img className="chatOnlineImg" src={`https://robohash.org/${otherUserName}`} alt={otherUserName} />
-                    <div className="chatOnlineBadge"></div>
+                    {/* <div className="chatOnlineBadge"></div> */}
                 </div>
                 <div className="chatOnlineName">{otherUserName}</div>
             </div>

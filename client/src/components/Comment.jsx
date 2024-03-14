@@ -41,10 +41,10 @@ const Comment = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="data w-full mt-7 mb-3 text-lg">
+                        <div className="data w-full mt-3 mb-3 text-lg">
                             <textarea
                                 placeholder="Content*"
-                                rows="8"
+                                rows="5"
                                 className="bg-black w-full p-2 mb-4 rounded border-2 border-slate-600 focus:outline-none"
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}

@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 import RightSide from "../components/RightSide";
 import IndiPost from "../components/IndiPost";
 import Comment from "../components/Comment";
+import CommentView from "../components/CommentView";
 const PostView = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
