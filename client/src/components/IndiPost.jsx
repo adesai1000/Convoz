@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
+import { MdDeleteOutline } from "react-icons/md";
 
 const IndiPost = () => {
     const navigate = useNavigate();
@@ -41,6 +42,7 @@ const IndiPost = () => {
                         <a href='/profile'><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.user}</span></a>
                         <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500 text-lg font-bold">7 days ago</span>
+                        <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500'/>
                     </div>
                     <div className="text-white text-2xl mb-2 font-bold">{post.title}</div>
                     <div className="text-white mb-2 text-lg font-semibold">{post.text}</div>
