@@ -41,10 +41,10 @@ const Profile = () => {
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight />
+                <ProfRight username={username}/>
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
-                        <div className="flex items-center space-x-4 text-lg">
+                        <div className="flex items-center space-x-4 text-xl font-bold">
                             <button className={`tab-btn ${activeTab === "Posts" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Posts")}>Posts</button>
                             <button className={`tab-btn  ${activeTab === "Liked" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Liked")}>Liked</button>
                             <button className={`tab-btn ${activeTab === "Comments" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Comments")}>Comments</button>
@@ -52,10 +52,10 @@ const Profile = () => {
                     </div>
 
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
-                        <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
+                        <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0 text-xl font-bold" onClick={handlePost}>+ New Post</button>
                         <div className="flex items-center space-x-2">
-                            <p className="text-lg">Sort:</p>
-                            <select className="text-white bg-black border-2 border-slate-600 rounded p-2">
+                            <p className="text-xl font-bold">Sort:</p>
+                            <select className="text-white bg-black border-2 text-xl font-bold border-slate-600 rounded p-2">
                                 <option value="latest">Latest</option>
                                 <option value="likes">Likes</option>
                                 <option value="comments">Comments</option>

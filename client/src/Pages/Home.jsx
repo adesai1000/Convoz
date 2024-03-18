@@ -43,10 +43,10 @@ const Home = () => {
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white mb-4">
-                        <button className="bg-[#1976D2] text-white text-xl p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
+                        <button className="bg-[#1976D2] text-white text-xl font-bold p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
                         <div className="flex items-center space-x-2">
-                            <p className="text-xl">Sort:</p>
-                            <select className="text-white text-xl bg-black border-2 border-slate-600 rounded p-2">
+                            <p className="text-xl font-bold">Sort:</p>
+                            <select className="text-white font-bold text-xl bg-black border-2 border-slate-600 rounded p-2">
                                 <option value="latest">Latest</option>
                                 <option value="likes">Likes</option>
                                 <option value="comments">Comments</option>

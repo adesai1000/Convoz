@@ -40,10 +40,11 @@ const PostView = () => {
     return (
         <>
             <Navbar username={username} />
-            <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
+            <div className=" bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 ">
                     <IndiPost />
                     <Comment />
+                    <CommentView />
                 </div>
                 <RightSide />
             </div>

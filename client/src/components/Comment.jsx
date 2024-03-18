@@ -30,10 +30,10 @@ const Comment = () => {
 
     return (
         <div>
-            <div className="min-h-screen bg-black flex flex-col justify-start sm:flex-row items-start sm:justify-center border-slate-600">
+            <div className=" bg-black flex flex-col justify-start sm:flex-row items-start sm:justify-center border-slate-600">
                 <div className="w-full item-start md:w-full">
                     <div className="border-2 border-slate-600 pl-4 pr-4 pt-2 rounded md:flex-row items-center justify-between   text-white">
-                        <h1 className="text-3xl">Comment</h1>
+                        <h1 className="text-4xl md:text-3xl font-bold">New Comment</h1>
                         <div className="flex">
                             <div>
                                 <p className=" text-[#1976D2] cursor-pointer underline">
@@ -50,10 +50,10 @@ const Comment = () => {
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
                             <button
-                                className="bg-[#1976D2] text-white p-2 rounded w-full"
+                                className="bg-[#1976D2] text-white p-2 rounded w-full text-xl font-bold"
                                 onClick={handleSubmit}
                             >
-                                Submit
+                                Post
                             </button>
                         </div>
                     </div>

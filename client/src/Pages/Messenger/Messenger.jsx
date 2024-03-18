@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
 import './Messenger.scss'
-import { Message } from '../../components/message/message';
+import { Message } from '../../components/message/Message';
 import { RiMessageLine } from "react-icons/ri";
 import {io} from 'socket.io-client'
+import { FaRegStar } from 'react-icons/fa';
 
 export default function Messenger() {
     const navigate = useNavigate();
@@ -146,7 +147,7 @@ export default function Messenger() {
                         <div className='defaultDisplay'>
                         <RiMessageLine size="5rem" />
                         <div className="defaultDisplayHeading">Convoz Messenger</div>
-                            <div className='defaultDisplayText'>Message any user securely!</div>
+                            <div className='defaultDisplayText flex items-center gap-1'><FaRegStar className='mr-1 text-yellow-500'/>Don't forget to star the  <a href="https://github.com/adesai1000/Convoz" target=" _blank" className="text-[#1976D2] underline font-semibold"> Repo!</a></div>
                         </div>
                         </>}
                     </div>

@@ -70,10 +70,9 @@ export default function Navbar({ username }) {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a
-                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-sm text-white cursor-pointer')}
+                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-xl border-b-2 border-slate-600 font-bold text-white cursor-pointer')}
                                                 onClick={handleProfile}>
                                                 View Profile
-                                                <a>  ({username})</a>
                                             </a>
                                         )}
                                     </Menu.Item>
@@ -92,7 +91,7 @@ export default function Navbar({ username }) {
                                         {({ active }) => (
                                             <a
                                                 onClick={Logout}
-                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-sm text-white cursor-pointer')}
+                                                className={classNames(active ? 'bg-[#1976D2]' : 'bg-black', 'block px-4 py-2 text-xl font-bold text-white cursor-pointer')}
                                             >
                                                 Sign out
                                             </a>
