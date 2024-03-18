@@ -15,7 +15,6 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 - Client Side Rate Limiting using use-cooldown
 - Search Posts by title
 - Search Users by username
-- See the list of users who liked the post.
 - Find Others area on the home screen which features random users
 - Page not found page (Done)
 ## Installation and usage
