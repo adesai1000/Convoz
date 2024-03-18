@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -15,6 +12,7 @@ const Create = () => {
     const [username, setUsername] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [markdownTitle, setMarkdownTitle] = useState("");
     const [markdownContent, setMarkdownContent] = useState("");
 
     const handleBack = () => {
@@ -28,6 +26,11 @@ const Create = () => {
 
     const convertMarkdownToHTML = (markdownText) => {
         return markdown.toHTML(markdownText);
+    };
+
+    const renderMarkdownTitle = () => {
+        const htmlTitle = convertMarkdownToHTML(title);
+        setMarkdownTitle(htmlTitle);
     };
 
     const renderMarkdownContent = () => {
@@ -55,8 +58,9 @@ const Create = () => {
     }, [cookies, navigate, removeCookie]);
 
     useEffect(() => {
+        renderMarkdownTitle();
         renderMarkdownContent();
-    }, [content]);
+    }, [title, content]);
 
     return (
         <div>
@@ -71,34 +75,29 @@ const Create = () => {
                                 alt={username}
                             />
                             <div>
-                                <p className="flex ml-5 mt-3 text-white text-lg justify-center items-center">
+                                <p className="flex ml-5 mt-2 md:mt-3 text-white text-2xl md:text-lg justify-center items-center">
                                     What would you like to post today, {username}?
                                 </p>
-                                <p className="ml-5 text-[#1976D2] cursor-pointer underline">
+                                <p className="ml-5 text-[#1976D2] cursor-pointer underline text-lg md:none">
                                     <a href="https://commonmark.org/help/" target="_blank">Markdown Help</a>
                                 </p>
                             </div>
                         </div>
-                        <div className="data w-full mt-7">
-                            <input
-                                type="text"
+                        <div className="data w-full mt-5">
+                            <textarea
                                 placeholder="Title*"
-                                className="bg-black w-full p-4 mb-4 rounded border-2 border-slate-600 focus:outline-none"
+                                rows="1"
+                                className="bg-black w-full p-4 mb-4 rounded border-2 border-slate-600 focus:outline-none text-xl resize-none"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                            />
+                            ></textarea>
                             <textarea
                                 placeholder="Content*"
                                 rows="10"
-                                className="bg-black w-full p-2 mb-4 rounded border-2 border-slate-600 focus:outline-none"
+                                className="bg-black w-full p-2 mb-4 rounded border-2 border-slate-600 focus:outline-none text-xl"
                                 value={content}
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
-                            {/*  <div
-                                className="markdown-content"
-                                dangerouslySetInnerHTML={{ __html: markdownContent }}
-                            ></div>
-                            */}
                             <button
                                 className="bg-[#1976D2] text-white p-2 rounded"
                                 onClick={handleSubmit}

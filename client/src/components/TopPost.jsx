@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaThumbsUp, FaComment } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
+import { BiCommentMinus } from "react-icons/bi";
 
 const TopPost = () => {
     const navigate = useNavigate();
@@ -40,18 +40,21 @@ const TopPost = () => {
                         <div className="rounded-full h-8 w-8 bg-white mr-2">
                         <a href='/profile'><img src="https://robohash.org/ayush" alt="User Avatar" /></a>
                         </div>
-                        <a href='/profile'><span className="text-blue-500 font-semibold">{post.user}</span></a>
+                        <a href='/profile'><span className="text-blue-500  text-xl font-bold md:text-lg">{post.user}</span></a>
                         <span className="text-gray-500 mx-1">•</span>
-                        <span className="text-gray-500"> 7 days ago (edited)</span>
+                        <span className="text-gray-500"> 7 days ago</span>
                     </div>
                     <div className="text-white mb-2 font-bold text-2xl">{post.title}</div>
                     {/* <div className="text-white mb-2">{post.text}</div> */}
-                    <div className="flex gap-4 items-center text-white mb-2">
-                        <button onClick={() => handleLike(post.id)} className="flex items-center text-[#1976D2]">
-                            <FaThumbsUp className="mr-1" /> {post.likes}
+                    <div className="flex items-center text-white mb-2 mt-5 text-2xl md:text-xl">
+                        <button className="flex items-center text-[#1976D2]">
+                            <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> {post.likes}
                         </button>
-                        <button onClick={() => handleComment(post.id)} className="flex items-center text-[#1976D2]">
-                            <FaComment className="mr-1" /> {post.comments}
+                        <button className=" text-[#1976D2]">
+                            <FaRegArrowAltCircleDown className="ml-2.5" />
+                        </button>
+                        <button onClick={() => handleComment(post.id)} className="flex ml-10 items-center text-[#1976D2]">
+                            <BiCommentMinus  className="mr-2 mt-1" /> {post.comments}
                         </button>
                     </div>
                 </div>

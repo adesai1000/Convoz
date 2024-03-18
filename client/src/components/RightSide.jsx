@@ -11,8 +11,8 @@ const RightSide = () => {
         navigate("/profile");
     };
     return (
+        <>
         <div className="hidden md:block w-1/4 p-4">
-
             <div className="mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
                 <FaRegStar className="mt-1 text-xl text-yellow-500 max-h-90%" />
                 <div className="text-lg text-white font-semibold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target=" _blank" className="text-[#1976D2] underline font-semibold"> Repo!</a>
@@ -51,6 +51,7 @@ const RightSide = () => {
             </div>
 
         </div >
+        </>
     )
 }
 

@@ -33,7 +33,7 @@ const CommentView = () => {
                         <div>
                             <a href='/profile'><span className="text-blue-500 font-semibold">{post.user}</span></a>
                             <span className="text-gray-500 mx-1">•</span>
-                            <span className="text-gray-500">7 days ago (edited)</span>
+                            <span className="text-gray-500">7 days ago</span>
                         </div>
                     </div>
                     <div className="text-white text-lg mb-2 font-semibold">{post.title}</div>
