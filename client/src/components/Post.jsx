@@ -35,9 +35,11 @@ const Post = () => {
                     <div className="text-white text-2xl mb-2 font-bold" >{post.title}</div>
                     <div className="text-white mb-2 text-xl">{post.text}</div>
                     <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
+                        
                         <button className="flex items-center text-[#1976D2]">
-                            <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> {post.likes}
+                            <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> 
                         </button>
+                        <a>{post.likes}</a>
                         <button className=" text-[#1976D2]">
                             <FaRegArrowAltCircleDown className="ml-2.5" />
                         </button>
