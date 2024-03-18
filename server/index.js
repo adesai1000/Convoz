@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/AuthRoute");
 const ChatRoute = require("./routes/ChatRoute");
 const MessageRoute = require("./routes/MessageRoute");
+const PostRoute = require("./routes/PostRoute")
 const app = express();
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(express.urlencoded({extended: false}))
 app.use("/chat", ChatRoute);
 app.use("/", authRoute);
 app.use("/message", MessageRoute);
+app.use("/post", PostRoute);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
