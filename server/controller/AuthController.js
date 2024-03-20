@@ -59,3 +59,13 @@ module.exports.Login = async (req, res, next) => {
         console.log(error);
     }
 };
+module.exports.randomUsers = async (req, res) => {
+    try {
+      const users = await User.aggregate([{ $sample: { size: 3 } }]);
+      const usernames = users.map(user => user.username);
+      res.json({ usernames });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
