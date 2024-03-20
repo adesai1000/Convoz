@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
@@ -6,33 +6,46 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import RightSide from "../components/RightSide";
 import RightMobile from "../components/RightMobile";
+import SyncLoader from "react-spinners/SyncLoader"
 
 const Home = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
+    const [loading, setLoading] = useState(true);
+
     const handlePost = () => {
         navigate('/create');
     }
-    useEffect(() => {
-        const verifyCookie = async () => {
-            if (!cookies.token) {
-                navigate("/login");
-            }
-            const { data } = await axios.post(
-                "http://localhost:5000",
-                {},
-                { withCredentials: true }
-            );
-            const { status, user } = data;
-            setUsername(user.username);
-            return status
-                ? console.log()
-                : (removeCookie("token"), navigate("/login"));
-        };
-        verifyCookie();
-    }, [cookies, navigate, removeCookie]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                if (!cookies.token) {
+                    navigate("/login");
+                    return;
+                }
+                const response = await axios.post(
+                    "http://localhost:5000",
+                    {},
+                    { withCredentials: true }
+                );
+                const { status, user } = response.data;
+                if (status) {
+                    setUsername(user.username);
+                } else {
+                    removeCookie("token");
+                    navigate("/login");
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, [cookies, navigate, removeCookie]);
 
     return (
         <>
@@ -51,8 +64,16 @@ const Home = () => {
                             </select>
                         </div>
                     </div>
-                    <div block ><RightMobile /></div>
-                    <Post username ={username}/>
+                    <div block><RightMobile /></div>
+                    <div style={{textAlign:'center'}}>
+                        {loading ? (
+                            <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                        ) : (
+                            <div style={{ textAlign: 'left' }}>
+                                <Post username={username} />
+                            </div>
+                        )}
+                    </div>
                 </div>
                 <RightSide />
             </div>
