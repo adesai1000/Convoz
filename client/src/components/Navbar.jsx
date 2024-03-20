@@ -1,10 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import { Fragment } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiHome7Line, RiMessageLine } from "react-icons/ri";
-import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react'
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -76,17 +72,6 @@ export default function Navbar({ username }) {
                                             </a>
                                         )}
                                     </Menu.Item>
-                                    {/*
-                                    <Menu.Item>
-                                        {({ active }) => (
-                                            <a
-                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-black')}
-                                            >
-                                                Settings
-                                            </a>
-                                        )}
-                                    </Menu.Item>
-                                     */}
                                     <Menu.Item>
                                         {({ active }) => (
                                             <a

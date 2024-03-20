@@ -4,8 +4,8 @@ import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const IndiPost = () => {
     const navigate = useNavigate();
@@ -15,22 +15,6 @@ const IndiPost = () => {
 
     const handlePost = () => {
         navigate("/posts");
-    };
-
-    const handleLike = (postId) => {
-        // Placeholder for like functionality
-    };
-
-    const handleComment = (postId) => {
-        // Placeholder for comment functionality
-    };
-
-    const handleProfile = () => {
-        try {
-            navigate("/profile");
-        } catch (error) {
-            console.error("Error navigating to profile:", error);
-        }
     };
     
     const submit = () => {
@@ -74,7 +58,7 @@ const IndiPost = () => {
                         <button className=" text-[#1976D2]">
                             <FaRegArrowAltCircleDown className="ml-2.5" />
                         </button>
-                        <button onClick={() => handleComment(post.id)} className="flex ml-10 items-center text-[#1976D2]">
+                        <button className="flex ml-10 items-center text-[#1976D2]">
                             <BiCommentMinus  className="mr-2 mt-1" /> {post.comments}
                         </button>
                     </div>

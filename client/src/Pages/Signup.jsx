@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -108,9 +106,9 @@ export default function Signup() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-[#1976D2] px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
+                                className="flex w-full justify-center rounded-md bg-[#1976D2] px-3 py-2.5 text-sm font-bold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
                             >
-                                Sign me up!
+                                Create
                             </button>
                         </div>
                     </form>
@@ -127,10 +125,10 @@ export default function Signup() {
                         theme="dark"
                         transition:Bounce
                     />
-                    <p className="mt-10 text-center text-sm">
+                    <p className="mt-10 text-center text-sm font-bold">
                         Already have an account?{' '}
                         <a className="font-semibold leading-6 hover:text-indigo-500">
-                            <Link to='/login' className="text-[#1976D2]">Sign in.</Link>
+                            <Link to='/login' className="text-[#1976D2] font-bold">Sign in.</Link>
                         </a>
                     </p>
                 </div>

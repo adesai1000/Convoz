@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../assets/Logo.png'
@@ -86,7 +84,7 @@ export default function Signin() {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-[#1976D2] px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="flex w-full justify-center rounded-md bg-[#1976D2] px-3 py-2.5 text-sm font-bold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 Sign in
                             </button>
@@ -105,9 +103,9 @@ export default function Signin() {
                         theme="dark"
                         transition:Bounce
                     />
-                    <p className="mt-10 text-center text-sm text-white">
+                    <p className="mt-10 text-center text-sm text-white font-bold">
                         Don't have an account yet?{' '}
-                        <a href="#" className="font-semibold leading-6 text-[#1976D2]">
+                        <a href="#" className="font-bold leading-6 text-[#1976D2]">
                             <Link to='/'>Create One.</Link>
                         </a>
                     </p>

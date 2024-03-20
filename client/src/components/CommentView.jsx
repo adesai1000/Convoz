@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
-import { BiCommentMinus } from "react-icons/bi";
 
 const CommentView = () => {
-    const navigate = useNavigate();
     const [posts, setPosts] = useState([
         { id: 1, user: "jay",text: "It is an amazing product!", likes: 500, comments: 25 },
         { id: 2, user: "emma",text: "It pairs seamlessly with the new Series 9 and the Apple Watch Ultra 2.", likes: 100, comments: 30 },
         { id: 3, user: "jack",text: "Got mine Last Week and I already LOVE it!", likes: 10, comments: 5 },
     ]);
 
-    const handleLike = (postId) => {
-        // Placeholder for like functionality
-    };
 
     return (
         <div className="mt-4 cursor-pointer">

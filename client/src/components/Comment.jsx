@@ -1,13 +1,7 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { markdown } from "markdown";
 
 const Comment = () => {
-    const navigate = useNavigate();
-    const [username, setUsername] = useState("");
     const [content, setContent] = useState("");
     const [markdownContent, setMarkdownContent] = useState("");
 
@@ -16,7 +10,6 @@ const Comment = () => {
     }
 
     const handleSubmit = () => {
-        //console.log("Content:", content);
     }
 
     const convertMarkdownToHTML = (markdownText) => {

@@ -5,9 +5,11 @@ import { SlReload } from "react-icons/sl";
 
 const ProfRight = ({ username }) => {
     const [randomUsers, setRandomUsers] = useState([]);
+    const [totalPosts, setTotalPosts] = useState(0);
 
     useEffect(() => {
         fetchRandomUsers();
+        fetchTotalPosts();
     }, []);
 
     const fetchRandomUsers = async () => {
@@ -16,6 +18,16 @@ const ProfRight = ({ username }) => {
             setRandomUsers(response.data.usernames);
         } catch (error) {
             console.error('Error fetching random users:', error);
+        }
+    };
+
+    const fetchTotalPosts = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/post/all');
+            const filteredPosts = response.data.filter(post => post.posterUsername === username);
+            setTotalPosts(filteredPosts.length);
+        } catch (error) {
+            console.error('Error fetching total posts:', error);
         }
     };
 
@@ -29,7 +41,9 @@ const ProfRight = ({ username }) => {
                         className="bg-[#E8E8E8] p-2 h-3/5 w-3/5 rounded-full mx-auto mt-5"
                     />
                     <p className="mt-2 text-white text-2xl font-bold">{username}</p>
-                    {/* Total Posts */}
+                    <div className="mt-2 mb-2 text-white font-bold">
+                        Total Posts: {totalPosts}
+                    </div>
                 </div>
             </div>
             <div className="md:block">

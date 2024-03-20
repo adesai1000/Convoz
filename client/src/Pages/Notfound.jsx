@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { Link } from 'react-router-dom'
 export default function Notfound() {
@@ -7,7 +5,7 @@ export default function Notfound() {
         <>
             <main className="grid min-h-screen place-items-center bg-black px-6 py-24 sm:py-32 lg:px-8 tex-white">
                 <div className="text-center">
-                    <p className="text-3xl font-semibold text-[#1976D2]">You should NOT be here!</p>
+                    <p className="text-3xl font-semibold text-[#1976D2]">This is embarassing :(</p>
                     <h1 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-3  xl">Page not found</h1>
                     <div className="mt-10 flex items-center justify-center gap-x-6">
                         <a

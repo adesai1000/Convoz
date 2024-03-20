@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
 import axios from 'axios';
 import {format} from "timeago.js"
 
@@ -29,7 +27,6 @@ const Post = ({username}) => {
         navigate("/posts");
     };
 
-
     return (
         <div className="mt-4 cursor-pointer" >
             {posts.map((post) => (
@@ -41,13 +38,6 @@ const Post = ({username}) => {
                         <a href='/profile'><span className="text-blue-500  text-xl font-bold md:text-lg">{post.posterUsername}</span></a>
                         <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
-                        {/* {username === post.posterUsername && (
-                            <>
-                                <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500'/>
-                                <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={() => confirmDelete(post.id)}/>
-                            </>
-                        )} */}
-                        
                     </div>
                     <div className="text-white text-2xl mb-2 font-bold" onClick={handlePost}>{post.title}</div>
                     <div className="text-white mb-2 text-xl" onClick={handlePost}>{post.content}</div>

@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -14,9 +11,7 @@ const PostView = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    const handlePost = () => {
-        navigate('/create');
-    }
+
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -35,7 +30,6 @@ const PostView = () => {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-
 
     return (
         <>

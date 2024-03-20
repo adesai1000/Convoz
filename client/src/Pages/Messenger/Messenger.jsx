@@ -50,7 +50,6 @@ export default function Messenger() {
             try {
                 const { data } = await userChats(username);
                 setConversations(data);
-                // console.log(data);
             } catch (error) {
                 console.log(error);
             }

@@ -22,14 +22,11 @@ const Create = () => {
         try {
             const posterUserId = id;
             const posterUsername = username;
-
-            // Make POST request to create post
             await axios.post(
-                "http://localhost:5000/post/", // Adjust the URL based on your backend route
+                "http://localhost:5000/post/",
                 { title, content, posterUserId, posterUsername },
                 { withCredentials: true }
             );
-            // Redirect user to posts page after successful submission
             history.go(-1)
         } catch (error) {
             console.error("Error creating post:", error);
