@@ -10,32 +10,30 @@ const Create = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
+    const [id, setId] = useState()
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [markdownTitle, setMarkdownTitle] = useState("");
-    const [markdownContent, setMarkdownContent] = useState("");
 
     const handleBack = () => {
         history.go(-1)
     }
 
-    const handleSubmit = () => {
-        //console.log("Title:", title);
-        //console.log("Content:", content);
-    }
+    const handleSubmit = async () => {
+        try {
+            const posterUserId = id;
+            const posterUsername = username;
 
-    const convertMarkdownToHTML = (markdownText) => {
-        return markdown.toHTML(markdownText);
-    };
-
-    const renderMarkdownTitle = () => {
-        const htmlTitle = convertMarkdownToHTML(title);
-        setMarkdownTitle(htmlTitle);
-    };
-
-    const renderMarkdownContent = () => {
-        const htmlContent = convertMarkdownToHTML(content);
-        setMarkdownContent(htmlContent);
+            // Make POST request to create post
+            await axios.post(
+                "http://localhost:5000/post/", // Adjust the URL based on your backend route
+                { title, content, posterUserId, posterUsername },
+                { withCredentials: true }
+            );
+            // Redirect user to posts page after successful submission
+            navigate("/home");
+        } catch (error) {
+            console.error("Error creating post:", error);
+        }
     };
 
     useEffect(() => {
@@ -50,17 +48,13 @@ const Create = () => {
             );
             const { status, user } = data;
             setUsername(user.username);
+            setId(user._id)
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-
-    useEffect(() => {
-        renderMarkdownTitle();
-        renderMarkdownContent();
-    }, [title, content]);
 
     return (
         <div>
@@ -75,10 +69,10 @@ const Create = () => {
                                 alt={username}
                             />
                             <div>
-                                <p className="flex ml-5 mt-2 md:mt-3 text-white text-2xl md:text-lg justify-center items-center">
+                                <p className="flex ml-5 mt-2 md:mt-3 text-white text-2xl md:text-xl font-bold justify-center items-center">
                                     What would you like to post today, {username}?
                                 </p>
-                                <p className="ml-5 text-[#1976D2] cursor-pointer underline text-lg md:none">
+                                <p className="ml-5 text-[#1976D2] cursor-pointer underline text-lg md:none font-bold">
                                     <a href="https://commonmark.org/help/" target="_blank">Markdown Help</a>
                                 </p>
                             </div>
@@ -99,10 +93,10 @@ const Create = () => {
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
                             <button
-                                className="bg-[#1976D2] text-white p-2 rounded"
+                                className="bg-[#1976D2] text-white p-2 rounded font-bold"
                                 onClick={handleSubmit}
                             >
-                                Submit
+                                Post
                             </button>
                         </div>
                     </div>

@@ -55,7 +55,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div block ><RightMobile /></div>
-                    <Post />
+                    <Post username ={username}/>
                 </div>
                 <RightSide />
             </div>
