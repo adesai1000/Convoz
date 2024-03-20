@@ -8,6 +8,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import ProfRight from "../components/ProfRight";
+import MyPost from "../components/MyPost";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -63,7 +64,7 @@ const Profile = () => {
                             </select>
                         </div>
                     </div>
-                    {activeTab === "Posts" && <Post />}
+                    {activeTab === "Posts" && <MyPost username={username} />}
                     {activeTab === "Liked" && <Post />}
                     {activeTab === "Comments" && <Post />}
                 </div>
