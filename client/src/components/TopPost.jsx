@@ -44,7 +44,7 @@ const TopPost = () => {
                         <a href='/profile'><span className="text-blue-500  text-xl font-bold md:text-lg">{post.user}</span></a>
                         <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500 text-lg font-bold"> 7 days ago</span>
-                        <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500'/>
+                        
                     </div>
                     <div className="text-white mb-2 font-bold text-2xl">{post.title}</div>
                     {/* <div className="text-white mb-2">{post.text}</div> */}

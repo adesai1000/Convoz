@@ -29,3 +29,37 @@
     --primary: black;
     --secondary: #1976D2;
   }
+
+  .react-confirm-alert-overlay {
+
+    background: rgba(255, 255, 255, 0.078) !important;
+    opacity: 0 ;
+  }
+  .react-confirm-alert-body{
+    h1{
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    margin-top: 0px;
+    padding: 1px;
+    }
+    background: black;
+    font-size: 15px;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+    border: 2.4px solid;
+    border-radius: 1.5%;
+    border-color: rgba(71, 85, 105);
+  }
+  .react-confirm-alert-button-group {
+    .buttonYes{
+      background: red;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .buttonNo{
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
