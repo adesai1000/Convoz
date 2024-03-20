@@ -1,24 +1,30 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
 import { FaRegStar } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
-import { RiEditLine } from "react-icons/ri";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
+import { BiCommentMinus } from "react-icons/bi";
+import axios from 'axios';
 
 const ProfRight = ({username}) => {
-    const user = {
-        profilePicture: "https://robohash.org/ayush",
-        username: "ayush",
-        bio: "This is the user's bio.",
-        totalLikes: 42,
-        totalPosts: 10, 
-    };
+    const navigate = useNavigate();
+    const [posts, setPosts] = useState([]);
 
-    const [isEditingBio, setIsEditingBio] = useState(false);
-    const [editedBio, setEditedBio] = useState(user.bio);
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/post/all'); 
+                const filteredPosts = response.data.filter(post => post.posterUsername === username);
+                setPosts(filteredPosts);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
 
-    const handleEditBio = () => {
-        setIsEditingBio(false);
-    };
+        fetchPosts();
+
+    }, [username]);
 
     return (
         <div className="w-full px-4 pt-5 md:w-1/4 md:top-0 md:p-4 md:items-center md:justify-center">
@@ -30,35 +36,10 @@ const ProfRight = ({username}) => {
                         className="bg-[#E8E8E8] p-2 h-3/5 w-3/5 rounded-full mx-auto mt-5"
                     />
                     <p className="mt-2 text-white text-2xl font-bold">{username}</p>
-                    {isEditingBio ? (
-                        <div className="flex flex-col items-center mt-2">
-                            <textarea
-                                value={editedBio}
-                                onChange={(e) => setEditedBio(e.target.value)}
-                                className="bg-black text-white border-2 border-slate-600 p-2 rounded resize-none"
-                            />
-                            <button
-                                onClick={handleEditBio}
-                                className="mt-2 bg-[#1976D2] text-white px-4 py-2 rounded cursor-pointer"
-                            >
-                                Save Bio
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="mt-2 text-white text-lg font-bold">{user.bio}</div>
-                    )}
-                    {!isEditingBio && (
-                        <div className="mt-2 text-white flex justify-center items-center">
-                            <button
-                                onClick={() => setIsEditingBio(true)}
-                                className="font-bold cursor-pointer flex items-center text-[#1976D2] text-lg"
-                            >
-                                <RiEditLine className="mr-1 mt-1 underline text-xl" /> Edit Bio
-                            </button>
-                        </div>
-                    )}
                     <div className="mt-2 mb-2 text-white font-bold">
-                        Total Likes: {user.totalLikes} | Posts: {user.totalPosts}
+                       <a>Total Posts: {posts.length}</a>
+                    </div>
+                    <div>
                     </div>
                 </div>
             </div>

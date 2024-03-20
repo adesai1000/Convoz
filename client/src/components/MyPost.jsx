@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown} from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
 import axios from 'axios';
 import {format} from "timeago.js"
 
@@ -29,7 +27,6 @@ const MyPost = ({username}) => {
     const handlePost = () => {
         navigate("/posts");
     };
-
 
     return (
         <div className="mt-4 cursor-pointer" >

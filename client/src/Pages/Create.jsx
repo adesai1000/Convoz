@@ -30,7 +30,7 @@ const Create = () => {
                 { withCredentials: true }
             );
             // Redirect user to posts page after successful submission
-            navigate("/home");
+            history.go(-1)
         } catch (error) {
             console.error("Error creating post:", error);
         }

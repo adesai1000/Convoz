@@ -37,7 +37,7 @@ const Profile = () => {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-
+    
     return (
         <>
             <Navbar username={username} />
