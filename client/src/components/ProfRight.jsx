@@ -5,11 +5,9 @@ import { SlReload } from "react-icons/sl";
 
 const ProfRight = ({ username }) => {
     const [randomUsers, setRandomUsers] = useState([]);
-    const [totalPosts, setTotalPosts] = useState(0);
 
     useEffect(() => {
         fetchRandomUsers();
-        fetchTotalPosts();
     }, []);
 
     const fetchRandomUsers = async () => {
@@ -21,15 +19,22 @@ const ProfRight = ({ username }) => {
         }
     };
 
-    const fetchTotalPosts = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/post/all');
-            const filteredPosts = response.data.filter(post => post.posterUsername === username);
-            setTotalPosts(filteredPosts.length);
-        } catch (error) {
-            console.error('Error fetching total posts:', error);
-        }
-    };
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/post/all'); 
+                const filteredPosts = response.data.filter(post => post.posterUsername === username);
+                setPosts(filteredPosts);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        };
+
+        fetchPosts();
+
+    }, [username]);
 
     return (
         <div className="w-full px-4 pt-5 md:w-1/4 md:top-0 md:p-4 md:items-center md:justify-center">
@@ -42,7 +47,7 @@ const ProfRight = ({ username }) => {
                     />
                     <p className="mt-2 text-white text-2xl font-bold">{username}</p>
                     <div className="mt-2 mb-2 text-white font-bold">
-                        Total Posts: {totalPosts}
+                        Total Posts: {posts.length}
                     </div>
                 </div>
             </div>
