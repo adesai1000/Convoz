@@ -31,10 +31,14 @@ module.exports.findPost = async (req, res) => {
 };
 
 module.exports.deletePost = async (req, res) => {
-    const { postId } = req.params;
+    const { postId, posterUserId } = req.body;
     try {
-        await PostModel.findByIdAndDelete(postId);
-        res.status(200).json("DELETED");
+        const deletedPost = await PostModel.findOneAndDelete({ _id: postId, posterUserId: posterUserId });
+        if (deletedPost) {
+            res.status(200).json({ message: "Post deleted successfully", deletedPost });
+        } else {
+            res.status(404).json({ message: "Post not found or unauthorized to delete" });
+        }
     } catch (error) {
         res.status(500).json(error);
     }
@@ -44,18 +48,6 @@ module.exports.fetchPosts = async (req, res) => {
     try {
         const allPosts = await PostModel.find();
         res.status(200).json(allPosts);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-};
-module.exports.fetchTopPosts = async (req, res) => {
-    try {
-        const allPosts = await PostModel.find();
-        // Sorting posts based on post score (upvotes - downvotes)
-        allPosts.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
-        // Returning the top 3 posts
-        const top3Posts = allPosts.slice(0, 3);
-        res.status(200).json(top3Posts);
     } catch (error) {
         res.status(500).json(error);
     }
