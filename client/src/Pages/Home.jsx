@@ -6,13 +6,14 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import RightSide from "../components/RightSide";
 import RightMobile from "../components/RightMobile";
-import SyncLoader from "react-spinners/SyncLoader"
+import SyncLoader from "react-spinners/SyncLoader";
 
 const Home = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(true);
+    const [sortingOption, setSortingOption] = useState("latest");
 
     const handlePost = () => {
         navigate('/create');
@@ -56,7 +57,10 @@ const Home = () => {
                         <button className="bg-[#1976D2] text-white text-xl font-bold p-2 rounded md:mt-0" onClick={handlePost}>+ New Post</button>
                         <div className="flex items-center space-x-2">
                             <p className="text-xl font-bold">Sort:</p>
-                            <select className="text-white font-bold text-xl bg-black border-2 border-slate-600 rounded p-2">
+                            <select
+                                className="text-white font-bold text-xl bg-black border-2 border-slate-600 rounded p-2"
+                                onChange={(e) => setSortingOption(e.target.value)}
+                            >
                                 <option value="latest">Latest</option>
                                 <option value="likes">Likes</option>
                                 <option value="comments">Comments</option>
@@ -70,7 +74,7 @@ const Home = () => {
                             <SyncLoader color={"#1976D2"} loading={true} size={10} />
                         ) : (
                             <div style={{ textAlign: 'left' }}>
-                                <Post username={username} />
+                                <Post username={username} sortingOption={sortingOption} />
                             </div>
                         )}
                     </div>

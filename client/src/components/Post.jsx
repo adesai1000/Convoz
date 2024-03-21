@@ -6,7 +6,7 @@ import axios from 'axios';
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
 
-const Post = ({ username }) => {
+const Post = ({ username, sortingOption }) => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
 
@@ -14,7 +14,20 @@ const Post = ({ username }) => {
         const fetchPosts = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/post/all');
-                setPosts(response.data);
+                let sortedPosts = response.data;
+
+                // Sorting logic based on sortingOption
+                if (sortingOption === 'likes') {
+                    sortedPosts.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+                } else if (sortingOption === 'comments') {
+                    sortedPosts.sort((a, b) => b.totalComments - a.totalComments);
+                } else if (sortingOption === 'oldest') {
+                    sortedPosts.sort((a, b) => new Date(a.postedOn) - new Date(b.postedOn));
+                } else if (sortingOption === 'latest') {
+                    sortedPosts.sort((a, b) => new Date(b.postedOn) - new Date(a.postedOn)); // Sort in descending order
+                }
+
+                setPosts(sortedPosts);
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
@@ -22,7 +35,7 @@ const Post = ({ username }) => {
 
         fetchPosts();
 
-    }, []);
+    }, [sortingOption]);
 
     const handlePost = () => {
         navigate("/posts");
