@@ -57,11 +57,11 @@ const Create = () => {
         <div>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col justify-start sm:flex-row items-start sm:justify-center border-slate-600">
-                <div className="w-full item-start md:w-1/2 p-4">
+                <div className="w-full item-start md:w-1/2 p-3">
                     <div className="border-2 border-slate-600 p-4 rounded md:flex-row items-center justify-between   text-white">
                         <button className="bg-[#1976D2] text-white p-3 rounded md:mt-0 " onClick={handleBack}><IoArrowBack /></button>
                         <div className="flex">
-                            <img className="overflow-hidden rounded-full bg-[#E8E8E8] h-10 w-auto mt-3"
+                            <img className=" rounded-full bg-[#E8E8E8] h-20 w-20 mt-3 md:w-auto md:h-10"
                                 src={`https://robohash.org/${username}`}
                                 alt={username}
                             />
