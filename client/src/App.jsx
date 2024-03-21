@@ -8,6 +8,7 @@ import Create from './Pages/Create';
 import Profile from './Pages/Profile';
 import Messenger from './Pages/Messenger/Messenger';
 import PostView from './Pages/PostView';
+import UserProfile from './Pages/UserProfile'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/messenger' element={<Messenger />} />
         <Route path='/posts' element={<PostView />} />
+        <Route path='/user' element={<UserProfile />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
