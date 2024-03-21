@@ -47,7 +47,7 @@ const ProfRight = ({ username }) => {
                     <img
                         src={`https://robohash.org/${username}`}
                         alt="Profile"
-                        className="bg-[#E8E8E8] p-2 h-3/5 w-3/5 rounded-full mx-auto mt-5"
+                        className="bg-[#E8E8E8] p-2 h-3/5 w-3/5 overflow-hidden rounded-full mx-auto mt-5"
                     />
                     <p className="mt-2 text-white text-2xl font-bold">{username}</p>
                     <div className="mt-2 mb-2 text-white font-bold">

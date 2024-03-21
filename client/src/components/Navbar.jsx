@@ -44,11 +44,11 @@ export default function Navbar({ username }) {
                     </ul>
                     <div className='flex gap-8 items-center'>
                         <Menu as="div" className="relative">
-                            <Menu.Button className="relative flex rounded-full bg-[#E8E8E8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2] focus:ring-offset-1 focus:ring-offset-white">
+                            <Menu.Button className=" overflow-hidden relative flex rounded-full bg-[#E8E8E8] text-sm focus:outline-none focus:ring-2 focus:ring-[#1976D2] focus:ring-offset-1 focus:ring-offset-white">
                                 <span className="absolute -inset-1.5" />
                                 <span className="sr-only">Open user menu</span>
                                 <img
-                                    className="h-7 w-7 rounded-full"
+                                    className="h-7 w-7 rounded-full overflow-hidden"
                                     src={`https://robohash.org/${username}`}
                                     alt={username}
                                 />

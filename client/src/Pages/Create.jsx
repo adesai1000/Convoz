@@ -61,7 +61,7 @@ const Create = () => {
                     <div className="border-2 border-slate-600 p-4 rounded md:flex-row items-center justify-between   text-white">
                         <button className="bg-[#1976D2] text-white p-3 rounded md:mt-0 " onClick={handleBack}><IoArrowBack /></button>
                         <div className="flex">
-                            <img className="rounded-full bg-[#E8E8E8] h-10 w-auto mt-3"
+                            <img className="overflow-hidden rounded-full bg-[#E8E8E8] h-10 w-auto mt-3"
                                 src={`https://robohash.org/${username}`}
                                 alt={username}
                             />

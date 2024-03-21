@@ -40,7 +40,7 @@ const IndiPost = () => {
             {posts.map((post) => (
                 <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                     <div className="flex items-center mb-2 cursor-pointer" >
-                        <div className="rounded-full h-8 w-8 bg-white mr-2">
+                        <div className=" overflow-hidden rounded-full h-8 w-8 bg-white mr-2">
                         <a href='/profile'><img src="https://robohash.org/ayush" alt="User Avatar" /></a>
                         </div>
                         <a href='/profile'><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.user}</span></a>

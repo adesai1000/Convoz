@@ -56,7 +56,7 @@ const RightSide = () => {
                 ) : (
                     randomUsers.map((username, index) => (
                         <div key={index} className="flex justify-between">
-                            <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
+                            <div className=" relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
                                 <img src={`https://robohash.org/${username}`} alt={`user-${index}`} />
                                 <p className="ml-4 text-white justify-center text-xl font-bold">{username}</p>
                             </div>
