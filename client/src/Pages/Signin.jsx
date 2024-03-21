@@ -9,12 +9,12 @@ export default function Signin() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const email = event.target.email.value;
+        const username = event.target.username.value;
         const password = event.target.password.value;
 
         try {
             const response = await Axios.post('http://localhost:5000/login', {
-                email,
+                username,
                 password,
             }, { withCredentials: true })
             if (response.data.success) {
@@ -46,16 +46,16 @@ export default function Signin() {
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
-                                Email*
+                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-white">
+                                Username*
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    placeholder='example@gmail.com'
+                                    id="username"
+                                    name="username"
+                                    type="username"
+                                    autoComplete="username"
+                                    placeholder='JohnAppleseed'
                                     required
                                     className="block w-full rounded-md border-0 py-2.5 px-2.5 text-black shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#1976D2] sm:text-sm sm:leading-6"
                                 />
@@ -106,7 +106,7 @@ export default function Signin() {
                     <p className="mt-10 text-center text-sm text-white font-bold">
                         Don't have an account yet?{' '}
                         <a href="#" className="font-bold leading-6 text-[#1976D2]">
-                            <Link to='/'>Create One.</Link>
+                            <Link to='/'> Create One.</Link>
                         </a>
                     </p>
                 </div>

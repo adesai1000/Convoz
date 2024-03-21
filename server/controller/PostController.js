@@ -48,3 +48,17 @@ module.exports.fetchPosts = async (req, res) => {
         res.status(500).json(error);
     }
 };
+module.exports.fetchTopPosts = async (req, res) => {
+    try {
+        const allPosts = await PostModel.find();
+        // Sorting posts based on post score (upvotes - downvotes)
+        allPosts.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+        // Returning the top 3 posts
+        const top3Posts = allPosts.slice(0, 3);
+        res.status(200).json(top3Posts);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+};
+
+

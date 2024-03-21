@@ -34,13 +34,13 @@ module.exports.Signup = async (req, res, next) => {
 
 module.exports.Login = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
+        const { username, password } = req.body;
+        if (!username || !password) {
             return res.json({ message: "All Fields are required" });
         }
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (!user) {
-            return res.json({ message: "Email is incorrect" });
+            return res.json({ message: "Username is incorrect" });
         }
         const auth = await bcrypt.compare(password, user.password);
         if (!auth) {
