@@ -16,7 +16,6 @@ const UserProfile = () => {
     const createChat = () => {
         navigate('/messenger');
     }
-    console.log(id)
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {

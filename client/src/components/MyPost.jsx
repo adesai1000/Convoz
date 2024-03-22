@@ -28,7 +28,7 @@ const MyPost = ({ username }) => {
 
         fetchPosts();
     }, [username]);
-
+   
     const formatScore = (score) => {
         if (score >= 1000000) {
             return (score / 1000000).toFixed(1) + 'M';
