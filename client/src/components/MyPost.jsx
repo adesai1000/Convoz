@@ -8,7 +8,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { TfiFaceSad } from "react-icons/tfi";
 import ReactMarkdown from 'react-markdown';
 
-const MyPost = ({ username }) => {
+const MyPost = ({ username}) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -18,6 +18,7 @@ const MyPost = ({ username }) => {
                 setLoading(true);
                 const response = await axios.get('http://localhost:5000/post/all');
                 const filteredPosts = response.data.filter(post => post.posterUsername === username);
+
                 setPosts(filteredPosts);
             } catch (error) {
                 console.error('Error fetching posts:', error);

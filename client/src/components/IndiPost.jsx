@@ -9,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactMarkdown from 'react-markdown';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
+import {Link} from 'react-router-dom'
 
 const IndiPost = ({ id, currentUser }) => {
     const [post, setPost] = useState(null);
@@ -87,9 +88,12 @@ const IndiPost = ({ id, currentUser }) => {
                     <div key={post._id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                         <div className="flex items-center mb-2 cursor-pointer">
                             <div className=" overflow-hidden rounded-full h-8 w-8 bg-white mr-2">
-                                <a href='/profile'><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></a>
+                            <Link to={`/user/${post.posterUsername}`}>
+                                <img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" />
+                                </Link>
                             </div>
-                            <a href='/profile'><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.posterUsername}</span></a>
+                            
+                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             {post.posterUsername === currentUser && (
