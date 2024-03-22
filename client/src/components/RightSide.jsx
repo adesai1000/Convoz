@@ -6,7 +6,7 @@ import { BsGraphUpArrow } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
 import { SlReload } from "react-icons/sl";
 import SyncLoader from "react-spinners/SyncLoader";
-
+import { Link } from 'react-router-dom';
 const RightSide = () => {
     const navigate = useNavigate();
     const [randomUsers, setRandomUsers] = useState([]);
@@ -26,10 +26,6 @@ const RightSide = () => {
         } finally {
             setLoading(false);
         }
-    };
-
-    const handleProfile = () => {
-        navigate("/profile");
     };
 
     return (
@@ -57,10 +53,14 @@ const RightSide = () => {
                     randomUsers.map((username, index) => (
                         <div key={index} className="flex justify-between">
                             <div className=" relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
-                                <img src={`https://robohash.org/${username}`} alt={`user-${index}`} />
+                            
+                                <img src={`https://robohash.org/${username}`} alt={`user-${index}`}  />
                                 <p className="ml-4 text-white justify-center text-xl font-bold">{username}</p>
+                    
                             </div>
-                            <p className="text-[#1976D2] mt-5 justify-center underline cursor-pointer text-xl font-bold" onClick={handleProfile}>View</p>
+                            <Link to={`/user/${username}`}>
+                            <p className="text-[#1976D2] mt-5 justify-center underline cursor-pointer text-xl font-bold">View</p>
+                            </Link>
                         </div>
                     ))
                 )}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { FaRegStar } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
 import SyncLoader from "react-spinners/SyncLoader";
+import { Link } from 'react-router-dom';
 
 const ProfRight = ({ username }) => {
     const [randomUsers, setRandomUsers] = useState([]);
@@ -77,7 +78,9 @@ const ProfRight = ({ username }) => {
                                     <img src={`https://robohash.org/${user}`} alt={`User-${index}`} />
                                     <p className="ml-4 text-white justify-center text-xl font-bold">{user}</p>
                                 </div>
-                                <p className="text-[#1976D2] mt-3 justify-center underline text-xl font-bold">View</p>
+                                <Link to={`/user/${user}`}>
+                            <p className="text-[#1976D2] mt-5 justify-center underline cursor-pointer text-xl font-bold">View</p>
+                            </Link>
                             </div>
                         ))
                     )}
