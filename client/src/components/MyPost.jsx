@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
 import { TfiFaceSad } from "react-icons/tfi";
+import ReactMarkdown from 'react-markdown';
 
 const MyPost = ({ username }) => {
-    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -28,10 +28,6 @@ const MyPost = ({ username }) => {
 
         fetchPosts();
     }, [username]);
-
-    const handlePost = () => {
-        navigate("/posts");
-    };
 
     const formatScore = (score) => {
         if (score >= 1000000) {
@@ -66,8 +62,12 @@ const MyPost = ({ username }) => {
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             </div>
-                            <div className="text-white text-2xl mb-2 font-bold" onClick={handlePost}>{post.title}</div>
-                            <div className="text-white mb-2 text-xl" onClick={handlePost}>{post.content}</div>
+                            <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
+                    <ReactMarkdown>{post.title}</ReactMarkdown>
+                    </Link>
+                    <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
+                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                    </Link>
                             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                                 <button className="flex items-center text-[#1976D2]">
                                     <FaRegArrowAltCircleUp className="mr-2.5 text-white" />
@@ -76,9 +76,9 @@ const MyPost = ({ username }) => {
                                 <button className=" text-[#1976D2]">
                                     <FaRegArrowAltCircleDown className="ml-2.5" />
                                 </button>
-                                <button className="flex ml-10 items-center text-[#1976D2]">
-                                    <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
-                                </button>
+                                <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-10 items-center text-[#1976D2]">
+                            <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                        </button></Link> 
                             </div>
                         </div>
                     ))

@@ -9,10 +9,12 @@ import Profile from './Pages/Profile';
 import Messenger from './Pages/Messenger/Messenger';
 import PostView from './Pages/PostView';
 import UserProfile from './Pages/UserProfile'
+import GoTop from './components/GoTop';
 
 export default function App() {
   return (
     <BrowserRouter>
+    <GoTop />
       <Routes>
         <Route path="/" element={<Singup />} />
         <Route path="/home" element={<Home />} />

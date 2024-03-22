@@ -9,10 +9,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactMarkdown from 'react-markdown';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
-import { useNavigate } from 'react-router-dom';
 
 const IndiPost = ({ id, currentUser }) => {
-    const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -55,7 +53,7 @@ const IndiPost = ({ id, currentUser }) => {
                                     { postId: id, posterUserId: post.posterUserId },
                                     { withCredentials: true }
                                 );
-                                navigate('/home');
+                                history.go(-1)
                             }
                             catch(error){
                                 console.error("Error Deleting Post:", error)
