@@ -3,12 +3,10 @@ import axios from 'axios';
 import TopPost from './TopPost';
 import { FaRegStar } from "react-icons/fa";
 import { BsGraphUpArrow } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
 import { SlReload } from "react-icons/sl";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Link } from 'react-router-dom';
 const RightSide = () => {
-    const navigate = useNavigate();
     const [randomUsers, setRandomUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
