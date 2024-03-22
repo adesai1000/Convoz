@@ -22,12 +22,14 @@ const Create = () => {
         try {
             const posterUserId = id;
             const posterUsername = username;
-            await axios.post(
+            const response = await axios.post(
                 "http://localhost:5000/post/",
                 { title, content, posterUserId, posterUsername },
                 { withCredentials: true }
             );
-            history.go(-1)
+            const {_id} = response.data
+            navigate(`/posts/${_id}`)
+            
         } catch (error) {
             console.error("Error creating post:", error);
         }
