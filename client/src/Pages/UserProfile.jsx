@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
@@ -8,6 +8,7 @@ import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
 
 const UserProfile = () => {
+    const {id} = useParams()
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const UserProfile = () => {
     const createChat = () => {
         navigate('/messenger');
     }
-
+    console.log(id)
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -28,18 +29,24 @@ const UserProfile = () => {
             );
             const { status, user } = data;
             setUsername(user.username);
+    
+            if (id === user.username) {
+                navigate("/profile");
+            }
+    
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
-    }, [cookies, navigate, removeCookie]);
+    }, [cookies, id, navigate, removeCookie]);
     
+
     return (
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight username={username}/>
+                <ProfRight username={id}/>
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">
@@ -61,7 +68,7 @@ const UserProfile = () => {
                             </select>
                         </div>
                     </div>
-                    {activeTab === "Posts" && <MyPost username={username} />}
+                    {activeTab === "Posts" && <MyPost username={id} />}
                     {activeTab === "Liked" && <Post />}
                     {activeTab === "Comments" && <Post />}
                 </div>
