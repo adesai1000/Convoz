@@ -48,7 +48,7 @@ const TopPost = () => {
 
     return (
         <div className="mt-4 cursor-pointer">
-            {loading ? ( // Conditionally render spinner while loading
+            {loading ? (
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
                 </div>

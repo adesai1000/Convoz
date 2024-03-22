@@ -20,8 +20,8 @@ export default function App() {
         <Route path='/create' element={< Create />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/messenger' element={<Messenger />} />
-        <Route path='/posts' element={<PostView />} />
-        <Route path='/user' element={<UserProfile />} />
+        <Route path='/posts/:id' element={<PostView />} />
+        <Route path='/user/:id' element={<UserProfile />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >

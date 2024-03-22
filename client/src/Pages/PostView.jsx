@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
@@ -7,11 +7,13 @@ import RightSide from "../components/RightSide";
 import IndiPost from "../components/IndiPost";
 import Comment from "../components/Comment";
 import CommentView from "../components/CommentView";
+
 const PostView = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-
+    console.log(id)
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -36,7 +38,7 @@ const PostView = () => {
             <Navbar username={username} />
             <div className=" bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 ">
-                    <IndiPost />
+                    <IndiPost id={id} currentUser={username}/>
                     <Comment />
                     <CommentView />
                 </div>
@@ -45,4 +47,5 @@ const PostView = () => {
         </>
     );
 };
+
 export default PostView;

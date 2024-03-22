@@ -53,4 +53,3 @@ module.exports.fetchPosts = async (req, res) => {
     }
 };
 
-
