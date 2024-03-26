@@ -1,29 +1,47 @@
 const CommentModel = require("../model/CommentModel");
+const PostModel = require("../model/PostModel");
 
-module.exports.createComment = async(req,res) =>{
-    const {content, postId, commenterUserId, commenterUsername} = req.body; 
-    const newComment= new CommentModel({
+module.exports.createComment = async (req, res) => {
+    const { content, postId, commenterUserId, commenterUsername } = req.body;
+    const newComment = new CommentModel({
         content,
         postId,
         commenterUserId,
         commenterUsername
     });
-    try{
+
+    try {
         const result = await newComment.save();
-        res.status(200).json(result)
+
+        // Fetch count of comments with the same postId
+        const commentCount = await CommentModel.countDocuments({ postId });
+
+        // Update the totalComments field in the PostModel
+        await PostModel.findOneAndUpdate(
+            { _id: postId },
+            { $set: { totalComments: commentCount } }
+        );
+
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json(error);
     }
-    catch(error){
-        res.status(500).json(error)
-    }
-}
+};
+
 module.exports.deleteComment = async (req, res) => {
     const { commentId, commenterUsername } = req.body;
-    //console.log("Received commentId:", commentId);
-   // console.log("Received commenterUsername:", commenterUsername);
     try {
         const deleteComment = await CommentModel.findOneAndDelete({ _id: commentId, commenterUsername: commenterUsername });
-        //console.log("Deleted comment:", deleteComment);
         if (deleteComment) {
+            // Fetch count of comments with the same postId after deletion
+            const commentCount = await CommentModel.countDocuments({ postId: deleteComment.postId });
+
+            // Update the totalComments field in the PostModel
+            await PostModel.findOneAndUpdate(
+                { _id: deleteComment.postId },
+                { $set: { totalComments: commentCount } }
+            );
+
             res.status(200).json({ message: "Comment Deleted Successfully", deleteComment });
         } else {
             res.status(400).json({ message: "Comment not found or unauthorized to delete" });
@@ -32,7 +50,8 @@ module.exports.deleteComment = async (req, res) => {
         console.error("Error deleting comment:", error);
         res.status(500).json(error);
     }
-}
+};
+
 
 module.exports.fetchComments = async (req, res) => {
     const { postId } = req.body;

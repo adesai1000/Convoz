@@ -58,7 +58,7 @@ const CommentView = ({ id, currentUser }) => {
                                     { commentId: commentId, commenterUsername: currentUser },
                                     { withCredentials: true }
                                 );
-                                fetchComments();
+                                location.reload()
                             } catch (error) {
                                 console.error("Error Deleting Comment:", error)
                             }
