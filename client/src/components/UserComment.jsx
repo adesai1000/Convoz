@@ -5,12 +5,10 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const UserComment = ({ username }) => {
+const MyComment = ({ username, sortingOption }) => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,7 +20,19 @@ const UserComment = ({ username }) => {
                 { username: username },
                 { withCredentials: true }
             );
-            setComments(response.data);
+
+            let sortedComments = response.data;
+
+            if (sortingOption === 'oldest') {
+                sortedComments.sort((a, b) => new Date(a.postedOn) - new Date(b.postedOn));
+            } else if (sortingOption === 'latest') {
+                sortedComments.sort((a, b) => new Date(b.postedOn) - new Date(a.postedOn));
+            }
+            else if (sortingOption === 'likes') {
+                sortedComments.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+            }
+
+            setComments(sortedComments);
         } catch (error) {
             console.error("Error Fetching Data:", error);
         } finally {
@@ -32,11 +42,11 @@ const UserComment = ({ username }) => {
 
     useEffect(() => {
         fetchComments();
-    }, [username]); 
+    }, [username, sortingOption]);
 
     return (
         <div className="mt-4 cursor-pointer">
-            <h1 className='text-white text-4xl font-bold mb-4'>User Comments</h1>
+            <h1 className='text-white text-4xl font-bold mb-4'>Comments</h1>
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
@@ -78,4 +88,4 @@ const UserComment = ({ username }) => {
     );
 };
 
-export default UserComment;
+export default MyComment;

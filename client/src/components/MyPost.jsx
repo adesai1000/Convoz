@@ -8,7 +8,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { TfiFaceSad } from "react-icons/tfi";
 import ReactMarkdown from 'react-markdown';
 
-const MyPost = ({ username}) => {
+const MyPost = ({ username, sortingOption }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -19,7 +19,19 @@ const MyPost = ({ username}) => {
                 const response = await axios.get('http://localhost:5000/post/all');
                 const filteredPosts = response.data.filter(post => post.posterUsername === username);
 
-                setPosts(filteredPosts);
+                let sortedPosts = [...filteredPosts];
+
+                if (sortingOption === 'likes') {
+                    sortedPosts.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+                } else if (sortingOption === 'comments') {
+                    sortedPosts.sort((a, b) => b.totalComments - a.totalComments);
+                } else if (sortingOption === 'oldest') {
+                    sortedPosts.sort((a, b) => new Date(a.postedOn) - new Date(b.postedOn));
+                } else if (sortingOption === 'latest') {
+                    sortedPosts.sort((a, b) => new Date(b.postedOn) - new Date(a.postedOn));
+                }
+
+                setPosts(sortedPosts);
             } catch (error) {
                 console.error('Error fetching posts:', error);
             } finally {
@@ -28,7 +40,7 @@ const MyPost = ({ username}) => {
         };
 
         fetchPosts();
-    }, [username]);
+    }, [username, sortingOption]);
    
     const formatScore = (score) => {
         if (score >= 1000000) {
@@ -51,26 +63,26 @@ const MyPost = ({ username}) => {
                     <div className="text-white flex flex-col align-center items-center justify-center">
                         <TfiFaceSad className='flex justify-center align-center items-center mt-1 mb-2 text-5xl font-bold'/>
                         <div className='text-white text-xl font-bold'>{username} has made no posts yet</div>
-                        </div>
+                    </div>
                 ) : (
                     posts.map((post) => (
                         <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                             <div className="flex items-center mb-2 cursor-pointer">
                                 <div className="rounded-full h-8 w-8 bg-white mr-2 overflow-hidden">
-                                <Link to={`/user/${post.posterUsername}`}>
-                                    <a href='/profile'><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></a>
-                                </Link>
+                                    <Link to={`/user/${post.posterUsername}`}>
+                                        <a href='/profile'><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></a>
+                                    </Link>
                                 </div>
                                 <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             </div>
                             <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
-                    <ReactMarkdown>{post.title}</ReactMarkdown>
-                    </Link>
-                    <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
-                    </Link>
+                                <ReactMarkdown>{post.title}</ReactMarkdown>
+                            </Link>
+                            <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
+                                <ReactMarkdown>{post.content}</ReactMarkdown>
+                            </Link>
                             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                                 <button className="flex items-center text-[#1976D2]">
                                     <FaRegArrowAltCircleUp className="mr-2.5 text-white" />
@@ -79,9 +91,11 @@ const MyPost = ({ username}) => {
                                 <button className=" text-[#1976D2]">
                                     <FaRegArrowAltCircleDown className="ml-2.5" />
                                 </button>
-                                <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-10 items-center text-[#1976D2]">
-                            <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
-                        </button></Link> 
+                                <Link to={{ pathname: `/posts/${post._id}` }}>
+                                    <button className="flex ml-10 items-center text-[#1976D2]">
+                                        <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                                    </button>
+                                </Link> 
                             </div>
                         </div>
                     ))

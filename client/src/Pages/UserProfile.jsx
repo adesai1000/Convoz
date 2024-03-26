@@ -14,6 +14,8 @@ const UserProfile = () => {
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
     const [activeTab, setActiveTab] = useState("Posts");
+    const [sortingOption, setSortingOption] = useState("latest");
+
     const createChat = () => {
         navigate('/messenger');
     }
@@ -60,7 +62,7 @@ const UserProfile = () => {
                         <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0 text-xl font-bold" onClick={createChat}>Message</button>
                         <div className="flex items-center space-x-2">
                             <p className="text-xl font-bold">Sort:</p>
-                            <select className="text-white bg-black border-2 text-xl font-bold border-slate-600 rounded p-2">
+                            <select className="text-white bg-black border-2 text-xl font-bold border-slate-600 rounded p-2" onChange={(e) => setSortingOption(e.target.value)}>
                                 <option value="latest">Latest</option>
                                 <option value="likes">Likes</option>
                                 <option value="comments">Comments</option>
@@ -68,9 +70,9 @@ const UserProfile = () => {
                             </select>
                         </div>
                     </div>
-                    {activeTab === "Posts" && <MyPost username={id} />}
+                    {activeTab === "Posts" && <MyPost username={id} sortingOption={sortingOption} />}
                     {activeTab === "Liked" && <Post />}
-                    {activeTab === "Comments" && <UserComment username={id} />}
+                    {activeTab === "Comments" && <UserComment username={id} sortingOption={sortingOption}/>}
                 </div>
             </div>
         </>

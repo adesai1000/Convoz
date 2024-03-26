@@ -10,7 +10,7 @@ import { FiEdit } from "react-icons/fi";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const MyComment = ({ username }) => {
+const MyComment = ({ username, sortingOption }) => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,19 @@ const MyComment = ({ username }) => {
                 { username: username },
                 { withCredentials: true }
             );
-            setComments(response.data);
+
+            let sortedComments = response.data;
+
+            if (sortingOption === 'oldest') {
+                sortedComments.sort((a, b) => new Date(a.postedOn) - new Date(b.postedOn));
+            } else if (sortingOption === 'latest') {
+                sortedComments.sort((a, b) => new Date(b.postedOn) - new Date(a.postedOn));
+            }
+            else if (sortingOption === 'likes') {
+                sortedComments.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+            }
+
+            setComments(sortedComments);
         } catch (error) {
             console.error("Error Fetching Data:", error);
         } finally {
@@ -32,7 +44,7 @@ const MyComment = ({ username }) => {
 
     useEffect(() => {
         fetchComments();
-    }, [username]); 
+    }, [username, sortingOption]);
 
     const submit = (commentId) => {
         confirmAlert({
@@ -62,7 +74,7 @@ const MyComment = ({ username }) => {
                                 console.error("Error Deleting Comment:", error)
                             }
                         }
-    
+
                         deleteComment();
                     }
                 }
