@@ -4,7 +4,7 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 ## Features
 - Create(Done), Read(Done), Update and Delete(Done) Posts
 - Like and Unlike Posts
-- Create(Done), Reply, Read(Done), Update, and delete(Done) nested comments
+- Create(Done), Reply, Read(Done), Update(Done), and delete(Done) nested comments
 - Auth using JWT (Done)
 - Messaging (Done) real-time using Socket.io (in progress)
 - View Profiles and browse their Posts (Done), liked posts, and comments(Done). Also, show account age.
