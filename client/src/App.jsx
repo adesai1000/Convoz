@@ -10,6 +10,7 @@ import Messenger from './Pages/Messenger/Messenger';
 import PostView from './Pages/PostView';
 import UserProfile from './Pages/UserProfile'
 import GoTop from './components/GoTop';
+import EditComment from './Pages/EditComment';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path='/messenger' element={<Messenger />} />
         <Route path='/posts/:id' element={<PostView />} />
         <Route path='/user/:id' element={<UserProfile />} />
+        <Route path='/editComment' element={<EditComment />}/>
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >

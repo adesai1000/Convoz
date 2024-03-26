@@ -9,8 +9,10 @@ import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { useNavigate } from "react-router-dom";
 
 const CommentView = ({ id, currentUser }) => {
+    const navigate = useNavigate();
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -70,6 +72,12 @@ const CommentView = ({ id, currentUser }) => {
         });
     };
 
+    const handleEdit = (postId, content) => {
+        localStorage.setItem('editPostId', postId);
+        localStorage.setItem('editContent', content);
+        navigate('/editComment')
+    };
+
     return (
         <div className="mt-4 cursor-pointer">
             <h1 className='text-white text-4xl font-bold mb-4'>Comments ({comments.length})</h1>
@@ -99,7 +107,7 @@ const CommentView = ({ id, currentUser }) => {
                                 )}
                                 {comment.commenterUsername === currentUser && (
                                     <>
-                                        <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500'/>
+                                        <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500' onClick={() => handleEdit(comment._id, comment.content)}/>
                                         <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={() => submit(comment._id)}/>
                                     </>
                                 )}
