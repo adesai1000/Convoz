@@ -38,20 +38,20 @@ const CommentView = ({ id, currentUser }) => {
     const submit = (commentId) => {
         confirmAlert({
             title: 'Confirm Deletion',
-            message: 'Are you sure you would like to delete this post? This action cannot be undone.',
+            message: 'Are you sure you would like to delete this comment? This action cannot be undone.',
             buttons: [
                 {
                     label: 'No',
                     className: "buttonNo",
-                    onClick: () =>{
-                    console.log("Clicked No")
+                    onClick: () => {
+                        console.log("Clicked No")
                     }
                 },
                 {
                     label: 'Yes',
                     className: "buttonYes",
-                    onClick: () =>{
-                        const deletePost = async () => {
+                    onClick: () => {
+                        const deleteComment = async () => {
                             try {
                                 await axios.post(
                                     `http://localhost:5000/comment/delete`,
@@ -60,16 +60,17 @@ const CommentView = ({ id, currentUser }) => {
                                 );
                                 fetchComments();
                             } catch (error) {
-                                console.error("Error Deleting Post:", error)
+                                console.error("Error Deleting Comment:", error)
                             }
-                        }                        
-                        
-                        deletePost();
+                        }
+    
+                        deleteComment();
                     }
                 }
             ]
         });
     };
+    
 
     return (
         <div className="mt-4 cursor-pointer">

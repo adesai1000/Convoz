@@ -17,8 +17,12 @@ module.exports.createComment = async(req,res) =>{
     }
 }
 module.exports.deleteComment = async (req, res) => {
+    const { commentId, commenterUsername } = req.body;
+    //console.log("Received commentId:", commentId);
+   // console.log("Received commenterUsername:", commenterUsername);
     try {
         const deleteComment = await CommentModel.findOneAndDelete({ _id: commentId, commenterUsername: commenterUsername });
+        //console.log("Deleted comment:", deleteComment);
         if (deleteComment) {
             res.status(200).json({ message: "Comment Deleted Successfully", deleteComment });
         } else {
@@ -29,8 +33,6 @@ module.exports.deleteComment = async (req, res) => {
         res.status(500).json(error);
     }
 }
-
-
 
 module.exports.fetchComments = async (req, res) => {
     const { postId } = req.body;
