@@ -13,10 +13,8 @@ module.exports.createComment = async (req, res) => {
     try {
         const result = await newComment.save();
 
-        // Fetch count of comments with the same postId
         const commentCount = await CommentModel.countDocuments({ postId });
 
-        // Update the totalComments field in the PostModel
         await PostModel.findOneAndUpdate(
             { _id: postId },
             { $set: { totalComments: commentCount } }
@@ -33,10 +31,8 @@ module.exports.deleteComment = async (req, res) => {
     try {
         const deleteComment = await CommentModel.findOneAndDelete({ _id: commentId, commenterUsername: commenterUsername });
         if (deleteComment) {
-            // Fetch count of comments with the same postId after deletion
             const commentCount = await CommentModel.countDocuments({ postId: deleteComment.postId });
 
-            // Update the totalComments field in the PostModel
             await PostModel.findOneAndUpdate(
                 { _id: deleteComment.postId },
                 { $set: { totalComments: commentCount } }
