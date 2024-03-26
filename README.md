@@ -2,20 +2,20 @@
 Convoz is a fully-featured social media web application, built with the MERN stack and Tailwind CSS.  
 
 ## Features
-- Create, Read, Update and Delete Posts
+- Create(Done), Read(Done), Update and Delete(Done) Posts
 - Like and Unlike Posts
-- Create, Reply, Read, Update, and delete nested comments
+- Create(Done), Reply, Read(Done), Update, and delete(Done) nested comments
 - Auth using JWT (Done)
-- Messaging (Done) realtime using Socket.io (in progress)
-- View Profiles and browse their Posts (Done), liked posts, and liked comments. Also, show account age.
+- Messaging (Done) real-time using Socket.io (in progress)
+- View Profiles and browse their Posts (Done), liked posts, and comments(Done). Also, show account age.
 - Random Avatar for each user (Done)
 - Infinite Scrolling / Pagination
-- Sort Posts based on attributes such as Most liked, Most comments, Date Created (Oldest or Newest)
+- Sort Posts based on attributes such as Most liked, Most comments, Date Created (Oldest or Newest) (Done)
 - Profanity Filtering in posts and comments
 - Client Side Rate Limiting using use-cooldown
 - Search Posts by title
 - Search Users by username
-- Find Others area on the home screen which features random users
+- Find Others area on the home screen which features random users (Done)
 - Page not found page (Done)
 ## Installation and usage
 1) Clone this repository  
