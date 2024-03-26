@@ -40,7 +40,7 @@ const PostView = () => {
                 <div className="w-full md:w-1/2 ">
                     <IndiPost id={id} currentUser={username}/>
                     <Comment />
-                    <CommentView />
+                    <CommentView id={id} currentUser ={username}/>
                 </div>
                 <RightSide />
             </div>
