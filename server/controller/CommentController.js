@@ -69,3 +69,23 @@ module.exports.fetchAllUserComments = async(req,res) =>{
         res.status(500).json(error)
     }
 }
+
+module.exports.editComment = async (req, res) => {
+    const { commentId, content } = req.body;
+    try {
+        const updatedComment = await CommentModel.findOneAndUpdate(
+            { _id: commentId },
+            { $set: { content: content, isEdited: true } },
+            { new: true }
+        );
+
+        if (!updatedComment) {
+            return res.status(404).json({ message: "Comment not found" });
+        }
+
+        res.status(200).json({ message: "Comment updated successfully", updatedComment });
+    } catch (error) {
+        console.error("Error editing comment:", error);
+        res.status(500).json(error);
+    }
+};

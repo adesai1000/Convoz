@@ -14,7 +14,6 @@ const CommentView = ({ id, currentUser }) => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     const fetchComments = async () => {
         try {
             setLoading(true);
@@ -33,7 +32,7 @@ const CommentView = ({ id, currentUser }) => {
 
     useEffect(() => {
         fetchComments();
-    }, [id]); 
+    }, [id]);
 
     const submit = (commentId) => {
         confirmAlert({
@@ -63,18 +62,17 @@ const CommentView = ({ id, currentUser }) => {
                                 console.error("Error Deleting Comment:", error)
                             }
                         }
-    
+
                         deleteComment();
                     }
                 }
             ]
         });
     };
-    
 
     return (
         <div className="mt-4 cursor-pointer">
-            <h1 className='text-white text-4xl font-bold mb-4'>Comments</h1>
+            <h1 className='text-white text-4xl font-bold mb-4'>Comments ({comments.length})</h1>
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
@@ -95,13 +93,16 @@ const CommentView = ({ id, currentUser }) => {
                                     <span className="text-blue-500  text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
                                 </Link>
                                 <span className="text-gray-500 mx-1">•</span>
-                                <span className="text-gray-500 text-lg font-bold">{format(comment.postedOn)}</span>
+                                <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
+                                {comment.isEdited && (
+                                    <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">[edited]</span>
+                                )}
                                 {comment.commenterUsername === currentUser && (
-                                <>
-                                    <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500'/>
-                                    <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={() => submit(comment._id)}/>
-                                </>
-                            )}
+                                    <>
+                                        <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500'/>
+                                        <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={() => submit(comment._id)}/>
+                                    </>
+                                )}
                             </div>
                             <ReactMarkdown className="text-white text-xl">{comment.content}</ReactMarkdown>
                             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">

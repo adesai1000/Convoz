@@ -8,6 +8,7 @@ const commentSchema = new mongoose.Schema({
     commenterUsername: { type: String, required: true },
     upvotes: { type: Number, default: 0 },
     downvotes: { type: Number, default: 0 },
+    isEdited: { type: Boolean, default: false }
 });
 
 const CommentModel = mongoose.model("Comment", commentSchema);
