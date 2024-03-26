@@ -43,3 +43,14 @@ module.exports.fetchComments = async (req, res) => {
         res.status(500).json(error);
     }
 }
+
+module.exports.fetchAllUserComments = async(req,res) =>{
+    const {username} = req.body;
+    try{
+        const userComments = await CommentModel.find({ commenterUsername: username});
+        res.status(200).json(userComments)
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+}

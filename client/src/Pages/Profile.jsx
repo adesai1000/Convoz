@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
+import MyComment from "../components/MyComment"
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -63,7 +64,7 @@ const Profile = () => {
                     </div>
                     {activeTab === "Posts" && <MyPost username={username} />}
                     {activeTab === "Liked" && <Post />}
-                    {activeTab === "Comments" && <Post />}
+                    {activeTab === "Comments" && <MyComment username={username} />}
                 </div>
             </div>
         </>

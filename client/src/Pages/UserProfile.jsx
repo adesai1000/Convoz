@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
+import UserComment from "../components/userComment";
 
 const UserProfile = () => {
     const {id} = useParams()
@@ -69,7 +70,7 @@ const UserProfile = () => {
                     </div>
                     {activeTab === "Posts" && <MyPost username={id} />}
                     {activeTab === "Liked" && <Post />}
-                    {activeTab === "Comments" && <Post />}
+                    {activeTab === "Comments" && <UserComment username={id} />}
                 </div>
             </div>
         </>
