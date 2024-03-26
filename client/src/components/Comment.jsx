@@ -1,25 +1,26 @@
 import { useState } from "react";
-import { markdown } from "markdown";
-
-const Comment = () => {
+import axios from 'axios'
+const Comment = ({postId, currentUser, currentUserId}) => {
     const [content, setContent] = useState("");
-    const [markdownContent, setMarkdownContent] = useState("");
 
-    const handleBack = () => {
-        history.go(-1)
+    const handleSubmit = async() => {
+        try{
+            const commenterUserId = currentUserId;
+            const commenterUsername = currentUser;
+            const response = await axios.post(
+                "http://localhost:5000/comment/create", {
+                content,
+                postId,
+                commenterUserId,
+                commenterUsername
+                }
+            )
+            location.reload();
+        }
+        catch(error){
+        console.error("Error Creating Comment:", error)
+        }
     }
-
-    const handleSubmit = () => {
-    }
-
-    const convertMarkdownToHTML = (markdownText) => {
-        return markdown.toHTML(markdownText);
-    };
-
-    const renderMarkdownContent = () => {
-        const htmlContent = convertMarkdownToHTML(content);
-        setMarkdownContent(htmlContent);
-    };
 
     return (
         <div>

@@ -4,7 +4,6 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
-import { markdown } from "markdown";
 
 const Create = () => {
     const navigate = useNavigate();

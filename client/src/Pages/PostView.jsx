@@ -13,7 +13,7 @@ const PostView = () => {
     const { id } = useParams();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    console.log(id)
+    const [userId, setUserId] = useState("")
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
@@ -26,6 +26,7 @@ const PostView = () => {
             );
             const { status, user } = data;
             setUsername(user.username);
+            setUserId(user._id)
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));
@@ -39,7 +40,7 @@ const PostView = () => {
             <div className=" bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 ">
                     <IndiPost id={id} currentUser={username}/>
-                    <Comment />
+                    <Comment postId={id} currentUser={username} currentUserId={userId}/>
                     <CommentView id={id} currentUser ={username}/>
                 </div>
                 <RightSide />
