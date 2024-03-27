@@ -98,7 +98,7 @@ const CommentView = ({ id, currentUser }) => {
                                     </Link>
                                 </div>
                                 <Link to={`/user/${comment.commenterUsername}`}>
-                                    <span className="text-blue-500  text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
+                                    <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
                                 </Link>
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
@@ -115,9 +115,9 @@ const CommentView = ({ id, currentUser }) => {
                             <ReactMarkdown className="text-white text-xl">{comment.content}</ReactMarkdown>
                             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                                 <button className="flex items-center text-[#1976D2]">
-                                    <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> {comment.upvotes}
+                                    <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" /> {comment.upvotes}
                                 </button>
-                                <button className=" text-[#1976D2]">
+                                <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
                                     <FaRegArrowAltCircleDown className="ml-2.5" />
                                 </button>
                             </div>

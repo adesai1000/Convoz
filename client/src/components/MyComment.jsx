@@ -91,7 +91,6 @@ const MyComment = ({ username, sortingOption }) => {
 
     return (
         <div className="mt-4 cursor-pointer">
-            <h1 className='text-white text-4xl font-bold mb-4'>Comments</h1>
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
@@ -109,7 +108,7 @@ const MyComment = ({ username, sortingOption }) => {
                                     </Link>
                                 </div>
                                 <Link to={`/user/${comment.commenterUsername}`}>
-                                    <span className="text-blue-500  text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
+                                    <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
                                 </Link>
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
@@ -127,10 +126,10 @@ const MyComment = ({ username, sortingOption }) => {
                             <ReactMarkdown className="text-white text-xl">{comment.content}</ReactMarkdown>
                             </Link>
                             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-                                <button className="flex items-center text-[#1976D2]">
-                                    <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> {comment.upvotes}
+                                <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                    <FaRegArrowAltCircleUp className="mr-2.5 " /> {comment.upvotes}
                                 </button>
-                                <button className=" text-[#1976D2]">
+                                <button className="text-[#1976D2] hover:text-[#1976d2e2]">
                                     <FaRegArrowAltCircleDown className="ml-2.5" />
                                 </button>
                             </div>

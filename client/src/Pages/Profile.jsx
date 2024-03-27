@@ -53,7 +53,7 @@ const Profile = () => {
                     </div>
 
                     <div className="border-2 border-slate-600 p-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
-                        <button className="bg-[#1976D2] text-white p-2 rounded md:mt-0 text-xl font-bold" onClick={handlePost}>+ New Post</button>
+                        <button className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-2 rounded md:mt-0 text-xl font-bold" onClick={handlePost}>+ New Post</button>
                         <div className="flex items-center space-x-2">
                             <p className="text-xl font-bold">Sort:</p>
                             <select className="text-white bg-black border-2 text-xl font-bold border-slate-600 rounded p-2" onChange={(e) => setSortingOption(e.target.value)}>

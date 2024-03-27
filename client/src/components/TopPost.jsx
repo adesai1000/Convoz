@@ -52,22 +52,25 @@ const TopPost = () => {
                             <div className="overflow-hidden rounded-full h-8 w-8 bg-white mr-2">
                             <Link to={`/user/${post.posterUsername}`}><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></Link>
                             </div>
-                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
+                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
+                            {post.isEdited && (
+                                    <span className="text-gray-500 text-lg font-bold ml-2">[edited]</span>
+                                )}
                         </div>
                         <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
                     <ReactMarkdown>{post.title}</ReactMarkdown>
                     </Link>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-                            <button className="flex items-center text-[#1976D2]">
-                                <FaRegArrowAltCircleUp className="mr-2.5 text-white" />
+                            <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                <FaRegArrowAltCircleUp className="mr-2.5 " />
                             </button>
                             <a>{formatScore(post.upvotes - post.downvotes)}</a>
-                            <button className=" text-[#1976D2]">
+                            <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
                                 <FaRegArrowAltCircleDown className="ml-2.5" />
                             </button>
-                            <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-10 items-center text-[#1976D2]">
+                            <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
                             <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
                         </button></Link> 
                         </div>

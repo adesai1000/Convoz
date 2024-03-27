@@ -44,7 +44,7 @@ const Comment = ({postId, currentUser, currentUserId}) => {
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
                             <button
-                                className="bg-[#1976D2] text-white p-2 rounded w-full text-xl font-bold"
+                                className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-2 rounded w-full text-xl font-bold"
                                 onClick={handleSubmit}
                             >
                                 Post

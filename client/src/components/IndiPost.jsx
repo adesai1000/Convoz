@@ -99,7 +99,7 @@ const IndiPost = ({ id, currentUser }) => {
                                 </Link>
                             </div>
                             
-                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
+                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500 hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             {post.isEdited && (
@@ -116,12 +116,12 @@ const IndiPost = ({ id, currentUser }) => {
                         <ReactMarkdown className="text-white mb-2 text-lg font-semibold">{post.content}</ReactMarkdown>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2]">
-                                <FaRegArrowAltCircleUp className="mr-2.5 text-white" /> {formatScore(post.upvotes - post.downvotes)}
+                                <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" /> {formatScore(post.upvotes - post.downvotes)}
                             </button>
                             <button className=" text-[#1976D2]">
-                                <FaRegArrowAltCircleDown className="ml-2.5" />
+                                <FaRegArrowAltCircleDown className="ml-2.5 text-[#1976D2] hover:text-[#1976d2e2]" />
                             </button>
-                            <button className="flex ml-10 items-center text-[#1976D2]">
+                            <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
                                 <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
                             </button>
                         </div>

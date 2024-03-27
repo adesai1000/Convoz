@@ -30,7 +30,7 @@ const RightSide = () => {
         <div className="hidden md:block w-1/4 p-4">
             <div className="mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
                 <FaRegStar className="mt-1 text-xl text-yellow-500 max-h-90%" />
-                <div className="text-xl text-white font-bold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target="_blank" rel="noopener noreferrer" className="text-[#1976D2] underline font-semibold">Repo!</a>
+                <div className="text-xl text-white font-bold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target="_blank" rel="noopener noreferrer" className="text-[#1976D2] underline hover:text-[#1976d2e2] font-semibold">Repo!</a>
                 </div>
             </div>
             <div className="mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
@@ -57,7 +57,7 @@ const RightSide = () => {
                     
                             </div>
                             <Link to={`/user/${username}`}>
-                            <p className="text-[#1976D2] mt-5 justify-center underline cursor-pointer text-xl font-bold">View</p>
+                            <p className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline mt-5 justify-center cursor-pointer text-xl font-bold">View</p>
                             </Link>
                         </div>
                     ))

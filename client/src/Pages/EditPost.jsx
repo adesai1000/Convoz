@@ -67,7 +67,7 @@ const EditPost = () => {
                 <div className="w-full item-start md:w-1/2 p-3">
                     <div className="border-2 border-slate-600 p-4 rounded md:flex-row items-center justify-between   text-white">
                         <button
-                            className="bg-[#1976D2] text-white p-3 rounded md:mt-0 "
+                            className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-3 rounded md:mt-0 "
                             onClick={handleBack}
                         >
                             <IoArrowBack />
@@ -82,7 +82,7 @@ const EditPost = () => {
                                 <p className="flex ml-5 mt-2 md:mt-3 text-white text-2xl md:text-3xl font-bold justify-center items-center">
                                     Edit Post
                                 </p>
-                                <p className="ml-5 text-[#1976D2] cursor-pointer underline text-lg md:none font-bold">
+                                <p className="ml-5 text-[#1976D2] hover:text-[#1976d2e2] cursor-pointer underline text-lg md:none font-bold">
                                     <a
                                         href="https://commonmark.org/help/"
                                         target="_blank"
@@ -108,7 +108,7 @@ const EditPost = () => {
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
                             <button
-                                className="bg-[#1976D2] text-white p-2 rounded font-bold"
+                                className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-2 rounded font-bold"
                                 onClick={handleSubmit}
                             >
                                 Edit
