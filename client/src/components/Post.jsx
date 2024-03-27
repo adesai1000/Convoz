@@ -68,8 +68,8 @@ const Post = ({ sortingOption }) => {
 
     const triggerConfetti = () => {
         confetti({
-            particleCount: 100,
-            spread: 160
+            particleCount: 200,
+            spread: 900
         });
     };
 
