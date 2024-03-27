@@ -9,7 +9,7 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 - Messaging (Done) real-time using Socket.io (in progress)
 - View Profiles and browse their Posts (Done), liked posts, and comments(Done).
 - Random Avatar for each user (Done)
-- Infinite Scrolling / Pagination
+- Load More (Done)
 - Sort Posts based on attributes such as Most liked, Most comments, Date Created (Oldest or Newest) (Done)
 - Profanity Filtering in posts and comments
 - Client Side Rate Limiting using use-cooldown
