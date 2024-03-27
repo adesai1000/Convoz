@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
@@ -9,40 +9,77 @@ import MyPost from "../components/MyPost";
 import UserComment from "../components/userComment";
 
 const UserProfile = () => {
-    const {id} = useParams()
+    const { id } = useParams();
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
+    const [receiverId, setReceiverId] = useState(null);
+    const [senderId, setSenderId] = useState(null);
     const [activeTab, setActiveTab] = useState("Posts");
     const [sortingOption, setSortingOption] = useState("latest");
 
-    const createChat = () => {
-        navigate('/messenger');
-    }
-    useEffect(() => {
-        const verifyCookie = async () => {
-            if (!cookies.token) {
-                navigate("/login");
-            }
-            const { data } = await axios.post(
-                "http://localhost:5000",
-                {},
+    const createChat = async () => {
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/chat/",
+                {
+                    senderId: senderId,
+                    receiverId: receiverId,
+                    sender: username,
+                    receiver: id
+                },
                 { withCredentials: true }
             );
-            const { status, user } = data;
-            setUsername(user.username);
-    
-            if (id === user.username) {
-                navigate("/profile");
+            navigate('/messenger');
+        } catch (error) {
+            console.error("Error creating chat:", error);
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (!cookies.token) {
+                    navigate("/login");
+                    return;
+                }
+                const userData = await axios.post(
+                    "http://localhost:5000",
+                    {},
+                    { withCredentials: true }
+                );
+                setUsername(userData.data.user.username);
+                setSenderId(userData.data.user._id);
+                if (id === userData.data.user.username) {
+                    navigate("/profile");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                removeCookie("token");
+                navigate("/login");
             }
-    
-            return status
-                ? console.log("Logged in")
-                : (removeCookie("token"), navigate("/login"));
         };
-        verifyCookie();
-    }, [cookies, id, navigate, removeCookie]);
-    
+
+        fetchData();
+    }, [cookies.token, id, navigate, removeCookie]);
+
+    useEffect(() => {
+        const fetchReceiverId = async () => {
+            try {
+                const response = await axios.post(
+                    "http://localhost:5000/chat/findrid",
+                    { receiverUsername: id },
+                    { withCredentials: true }
+                );
+
+                setReceiverId(response.data.userId);
+            } catch (error) {
+                console.error("Error fetching receiver ID:", error);
+            }
+        };
+
+        fetchReceiverId();
+    }, [id]);
 
     return (
         <>
@@ -78,4 +115,5 @@ const UserProfile = () => {
         </>
     );
 };
+
 export default UserProfile;
