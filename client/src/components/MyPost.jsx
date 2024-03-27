@@ -76,6 +76,9 @@ const MyPost = ({ username, sortingOption }) => {
                                 <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
+                                {post.isEdited && (
+                                    <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                                )}
                             </div>
                             <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
                                 <ReactMarkdown>{post.title}</ReactMarkdown>

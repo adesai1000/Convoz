@@ -112,7 +112,10 @@ const MyComment = ({ username, sortingOption }) => {
                                     <span className="text-blue-500  text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
                                 </Link>
                                 <span className="text-gray-500 mx-1">•</span>
-                                <span className="text-gray-500 text-lg font-bold">{format(new Date(comment.postedOn))}</span>
+                                <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
+                                {comment.isEdited && (
+                                    <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">[edited]</span>
+                                )}
                                 {comment.commenterUsername === username && (
                                     <>
                                         <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500' onClick={() => handleEdit(comment._id, comment.content)}/>
