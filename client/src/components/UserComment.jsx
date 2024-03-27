@@ -67,7 +67,10 @@ const MyComment = ({ username, sortingOption }) => {
                                     <span className="text-blue-500  text-2xl font-bold md:text-lg">{comment.commenterUsername}</span>
                                 </Link>
                                 <span className="text-gray-500 mx-1">•</span>
-                                <span className="text-gray-500 text-lg font-bold">{format(new Date(comment.postedOn))}</span>
+                                <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
+                                {comment.isEdited && (
+                                    <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">[edited]</span>
+                                )}
                             </div>
                             <Link to={`/posts/${comment.postId}`}>
                             <ReactMarkdown className="text-white text-xl">{comment.content}</ReactMarkdown>

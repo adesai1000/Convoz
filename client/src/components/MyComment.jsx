@@ -98,7 +98,7 @@ const MyComment = ({ username, sortingOption }) => {
                 </div>
             ) : (
                 comments.length === 0 ? (
-                    <div className="text-white text-xl text-center font-bold">No comments yet.</div>
+                    <div className="text-white text-xl text-center font-bold">{username} has made no comments yet.</div>
                 ) : (
                     comments.map(comment => (
                         <div key={comment._id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
