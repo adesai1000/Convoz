@@ -53,3 +53,22 @@ module.exports.fetchPosts = async (req, res) => {
     }
 };
 
+module.exports.editPost = async (req, res) => {
+    const { postId, title, content } = req.body;
+    try {
+        const updatedPost = await PostModel.findOneAndUpdate(
+            { _id: postId },
+            { $set: {title:title, content: content, isEdited: true } },
+            { new: true }
+        );
+
+        if (!updatedPost) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        res.status(200).json({ message: "Post updated successfully", updatedPost });
+    } catch (error) {
+        console.error("Error editing Post:", error);
+        res.status(500).json(error);
+    }
+};

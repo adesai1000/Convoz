@@ -9,6 +9,7 @@ const postSchema = new mongoose.Schema({
     upvotes: { type: Number, default: 0 },
     downvotes: { type: Number, default: 0 },
     totalComments: { type: Number, default: 0 },
+    isEdited: { type: Boolean, default: false }
 });
 
 const PostModel = mongoose.model("Post", postSchema);

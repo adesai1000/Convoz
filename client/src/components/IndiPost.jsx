@@ -96,9 +96,12 @@ const IndiPost = ({ id, currentUser }) => {
                             <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500  text-2xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
+                            {post.isEdited && (
+                                    <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                                )}
                             {post.posterUsername === currentUser && (
                                 <>
-                                    <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500'/>
+                                    <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500' onClick={() => handleEdit(post._id, post.title, post.content)}/>
                                     <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={submit}/>
                                 </>
                             )}

@@ -11,6 +11,7 @@ import PostView from './Pages/PostView';
 import UserProfile from './Pages/UserProfile'
 import GoTop from './components/GoTop';
 import EditComment from './Pages/EditComment';
+import EditPost from './Pages/EditPost';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Route path='/posts/:id' element={<PostView />} />
         <Route path='/user/:id' element={<UserProfile />} />
         <Route path='/editComment' element={<EditComment />}/>
+        <Route path='/editPost' element={<EditPost />}/>
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >

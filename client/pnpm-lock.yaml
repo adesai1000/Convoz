@@ -79,6 +79,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.33
     version: 8.4.33
+  postcss-nested:
+    specifier: ^6.0.1
+    version: 6.0.1(postcss@8.4.33)
   tailwindcss:
     specifier: ^3.4.1
     version: 3.4.1
