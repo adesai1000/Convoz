@@ -10,11 +10,12 @@ import ReactMarkdown from 'react-markdown';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
 import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
 
 const IndiPost = ({ id, currentUser }) => {
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -76,7 +77,12 @@ const IndiPost = ({ id, currentUser }) => {
             return score;
         }
     };
-
+    const handleEdit = (postId, title, content) => {
+        localStorage.setItem('editPostId', postId);
+        localStorage.setItem('editPostTitle', title)
+        localStorage.setItem('editContent', content);
+        navigate('/editPost')
+    };
     return (
         <div className="mt-4 cursor-pointer">
             {loading ? (
