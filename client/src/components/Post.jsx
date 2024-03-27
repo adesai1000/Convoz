@@ -5,11 +5,13 @@ import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
+import confetti from 'canvas-confetti';
 
 const Post = ({ sortingOption }) => {
     const [posts, setPosts] = useState([]);
     const [displayedPosts, setDisplayedPosts] = useState(5);
     const [loading, setLoading] = useState(false);
+    const [lastLoadClicked, setLastLoadClicked] = useState(false);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -29,6 +31,9 @@ const Post = ({ sortingOption }) => {
                 }
 
                 setPosts(sortedPosts);
+                if (sortedPosts.length === 0) {
+                    setLastLoadClicked(true);
+                }
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
@@ -39,8 +44,17 @@ const Post = ({ sortingOption }) => {
     }, [sortingOption]);
 
     const loadMorePosts = () => {
+        if (displayedPosts + 5 >= posts.length) {
+            setLastLoadClicked(true);
+        }
         setDisplayedPosts(prevCount => prevCount + 5);
     };
+
+    useEffect(() => {
+        if (lastLoadClicked) {
+            triggerConfetti();
+        }
+    }, [lastLoadClicked]);
 
     const formatScore = (score) => {
         if (score >= 1000000) {
@@ -50,6 +64,13 @@ const Post = ({ sortingOption }) => {
         } else {
             return score;
         }
+    };
+
+    const triggerConfetti = () => {
+        confetti({
+            particleCount: 100,
+            spread: 160
+        });
     };
 
     return (
@@ -64,14 +85,14 @@ const Post = ({ sortingOption }) => {
                         <span className="text-gray-500 mx-1">•</span>
                         <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                         {post.isEdited && (
-                                    <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
-                                )}
+                            <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                        )}
                     </div>
-                   <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
-                    <ReactMarkdown>{post.title}</ReactMarkdown>
+                    <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
+                        <ReactMarkdown>{post.title}</ReactMarkdown>
                     </Link>
                     <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
+                        <ReactMarkdown>{post.content}</ReactMarkdown>
                     </Link>
 
                     <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
@@ -82,26 +103,27 @@ const Post = ({ sortingOption }) => {
                         <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
                             <FaRegArrowAltCircleDown className="ml-2.5" />
                         </button>
-                        <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                            <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
-                        </button></Link> 
+                        <Link to={{ pathname: `/posts/${post._id}` }}>
+                            <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                            </button>
+                        </Link>
                     </div>
-                </div> 
+                </div>
             ))}
             {loading && <p>Loading...</p>}
-            {displayedPosts < posts.length && (
+            {!loading && displayedPosts < posts.length && (
                 <div className="flex justify-center mt-4">
                     <button className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white font-bold py-2 px-4 rounded" onClick={loadMorePosts}>
                         Load More
                     </button>
                 </div>
             )}
-            {displayedPosts >= posts.length && (
-    <div className="flex justify-center mt-4">
-        <p className='text-white text-2xl font-bold'>You reached the end :)</p>
-    </div>
-)}
-
+            {lastLoadClicked && (
+                <div className="flex justify-center mt-4">
+                    <p className='text-white text-2xl font-bold'>You reached the end :)</p>
+                </div>
+            )}
         </div>
     );
 };
