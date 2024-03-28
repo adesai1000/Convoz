@@ -12,6 +12,7 @@ import UserProfile from './Pages/UserProfile'
 import GoTop from './components/GoTop';
 import EditComment from './Pages/EditComment';
 import EditPost from './Pages/EditPost';
+import SearchView from './Pages/SearchView';
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Route path='/user/:id' element={<UserProfile />} />
         <Route path='/editComment' element={<EditComment />}/>
         <Route path='/editPost' element={<EditPost />}/>
+        <Route path='/search' element={<SearchView />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >

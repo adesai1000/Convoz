@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
-import { FaSearch } from 'react-icons/fa'
+import React, { useState, Fragment } from 'react'; // Added Fragment import
+import { FaSearch } from 'react-icons/fa';
 import { RiHome7Line, RiMessageLine } from "react-icons/ri";
-import { Menu, Transition } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -12,6 +12,8 @@ function classNames(...classes) {
 export default function Navbar({ username }) {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
+    const [searchQuery, setSearchQuery] = useState('');
+
     const Logout = () => {
         removeCookie("token");
         navigate("/login");
@@ -26,15 +28,29 @@ export default function Navbar({ username }) {
     const handleProfile = () => {
         navigate("/profile")
     }
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        navigate(`/search?query=${searchQuery}`);
+    };
+
     return (
         <header className='bg-black border-b-2 border-slate-600'>
             <div className="flex justify-between items-center max-w-4xl mx-auto p-3">
                 <h1 className='font-bold text-2xl sm:text-4xl flex-wrap'>
                     <span className='text-[#1976D2] hover:text-[#1976d2e2] cursor-pointer' onClick={handleHome}>Convoz</span>
                 </h1>
-                <form className='border-2 border-slate-600 p-2 rounded flex items-center text-white focus:border-[#1976D2]'>
-                    <input type='text' placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-60' />
-                    <FaSearch />
+                <form className='border-2 border-slate-600 p-2 rounded flex items-center text-white focus:border-[#1976D2]' onSubmit={handleSearch}>
+                    <input
+                        type='text'
+                        placeholder='Search...'
+                        className='bg-transparent focus:outline-none w-24 sm:w-60'
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <button type="submit">
+                        <FaSearch />
+                    </button>
                 </form>
 
                 <div className='flex gap-8 items-center'>
@@ -88,6 +104,6 @@ export default function Navbar({ username }) {
                     </div>
                 </div>
             </div>
-        </header >
+        </header>
     )
 }

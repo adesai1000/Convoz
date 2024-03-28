@@ -37,6 +37,7 @@ const MyPost = ({ username, sortingOption }) => {
                 setPosts(sortedPosts);
             } catch (error) {
                 console.error('Error fetching posts:', error);
+                // Handle error here, e.g., set an error state
             } finally {
                 setLoading(false);
             }
