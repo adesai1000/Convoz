@@ -7,8 +7,6 @@ import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
-import { MdDeleteOutline } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -56,49 +54,7 @@ const MyPost = ({ username, sortingOption }) => {
             return score;
         }
     };
-    const handleEdit = (postId, title, content) => {
-        localStorage.setItem('editPostId', postId);
-        localStorage.setItem('editPostTitle', title)
-        localStorage.setItem('editContent', content);
-        navigate('/editPost')
-    };
-    const submit = (postId, posterUserId) => {
-        confirmAlert({
-            title: 'Confirm Deletion',
-            message: 'Are you sure you would like to delete this post? This action cannot be undone.',
-            buttons: [
-                {
-                    label: 'No',
-                    className: "buttonNo",
-                    onClick: () =>{
-                    console.log("Clicked No")
-                    }
-                },
-                {
-                    label: 'Yes',
-                    className: "buttonYes",
-                    onClick: () =>{
-                        const deletePost = async()=>{
-                            try{
-                                
-                                console.log(postId)
-                                console.log(posterUserId)
-                                await axios.post(
-                                    `http://localhost:5000/post/delete`,
-                                    { postId: postId, posterUserId: posterUserId },
-                                    { withCredentials: true }
-                                );
-                            }
-                            catch(error){
-                                console.error("Error Deleting Post:", error)
-                            }
-                        }
-                        deletePost();
-                    }
-                }
-            ]
-        });
-    };
+    
     return (
         <div className="mt-4 cursor-pointer">
             {loading ? (
@@ -125,12 +81,6 @@ const MyPost = ({ username, sortingOption }) => {
                                 {post.isEdited && (
                                     <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
                                 )}
-                                {post.posterUsername === username && (
-                                <>
-                                    <FiEdit className='text-white text-2xl ml-5 mt-1 md:text-lg hover:text-gray-500' onClick={() => handleEdit(post._id, post.title, post.content)}/>
-                                    <MdDeleteOutline className='text-red-500 items-center text-3xl ml-3 mt-1 md:text-xl hover:text-gray-500' onClick={() => submit(post._id, post.posterUserId)}/>
-                                </>
-                            )}
                             </div>
                             <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
                                 <ReactMarkdown>{post.title}</ReactMarkdown>
