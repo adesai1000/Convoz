@@ -69,7 +69,7 @@ export default function Messenger() {
         };
         if (currentChat) {
             const intervalId = setInterval(getMessages, 1000);
-            scrollRef.current?.scrollIntoView({ behavior: "smooth" }); // Poll every 5 seconds
+            scrollRef.current?.scrollIntoView({ behavior: "smooth" });
             return () => clearInterval(intervalId);
         }
     }, [currentChat]);
