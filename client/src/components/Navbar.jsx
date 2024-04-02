@@ -31,8 +31,9 @@ export default function Navbar({ username }) {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        navigate(`/search?query=${searchQuery}`);
+        navigate(`/search/${searchQuery}`);
     };
+    
 
     return (
         <header className='bg-black border-b-2 border-slate-600'>

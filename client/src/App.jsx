@@ -29,7 +29,7 @@ export default function App() {
         <Route path='/user/:id' element={<UserProfile />} />
         <Route path='/editComment' element={<EditComment />}/>
         <Route path='/editPost' element={<EditPost />}/>
-        <Route path='/search' element={<SearchView />} />
+        <Route path='/search/:query' element={<SearchView />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
