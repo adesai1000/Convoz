@@ -7,7 +7,6 @@ import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
 import './Messenger.scss'
 import { Message } from '../../components/message/Message';
 import { RiMessageLine } from "react-icons/ri";
-import {io} from 'socket.io-client'
 import { FaRegStar } from 'react-icons/fa';
 
 export default function Messenger() {
@@ -19,7 +18,6 @@ export default function Messenger() {
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const socket = useRef()
     const scrollRef = useRef();
 
     useEffect(() => {
@@ -98,16 +96,6 @@ export default function Messenger() {
     scrollRef.current?.scrollIntoView({behavior: "smooth"})
   },[messages])
 
-  useEffect(()=>{
-    socket.current = io("ws://localhost:8900");
-  })
-
-  useEffect(()=>{
-    socket.current.emit("addUser", id);
-    socket.current.on("getUsers",users=>{
-        console.log(users)
-    })
-  },[username]) 
     return (
         <>
             <Navbar username={username} />
