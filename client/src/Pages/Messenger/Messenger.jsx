@@ -1,13 +1,13 @@
-import Navbar from '../../components/Navbar';
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from '../../components/Navbar';
 import { ActiveConv } from '../../components/ActiveConv/ActiveConv';
-import './Messenger.scss'
 import { Message } from '../../components/message/Message';
 import { RiMessageLine } from "react-icons/ri";
 import { FaRegStar } from 'react-icons/fa';
+import './Messenger.scss';
 
 export default function Messenger() {
     const navigate = useNavigate();
@@ -33,7 +33,7 @@ export default function Messenger() {
                 );
                 const { user } = data;
                 setUsername(user.username);
-                setId(user._id)
+                setId(user._id);
             } catch (error) {
                 console.error(error);
                 removeCookie("token");
@@ -57,44 +57,42 @@ export default function Messenger() {
         }
     }, [username]);
 
+    useEffect(() => {
+        const getMessages = async () => {
+            try {
+                const res = await axios.get(`http://localhost:5000/message/${currentChat?._id}`);
+                setMessages(res.data);
+                scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if (currentChat) {
+            const intervalId = setInterval(getMessages, 1000);
+            scrollRef.current?.scrollIntoView({ behavior: "smooth" }); // Poll every 5 seconds
+            return () => clearInterval(intervalId);
+        }
+    }, [currentChat]);
+
     const userChats = async () => {
         const API = axios.create({ baseURL: 'http://localhost:5000' });
         return API.get(`/chat/${id}`);
     };
-    useEffect(()=>{
-        const getMessages = async ()=>{
-            try{
-                 const res = await axios.get(`http://localhost:5000/message/${currentChat?._id}`);
-                setMessages(res.data)
-            }
-           catch(error){
-            console.log(error)
-           }
-        }
-        if (currentChat) {
-            getMessages();
-        }
-    },[currentChat])
 
-    const handleSubmit = async (e)=>{
-    e.preventDefault();
-    const message = {
-        chatId: currentChat._id,
-        senderId: id,
-        text: newMessage
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const message = {
+            chatId: currentChat._id,
+            senderId: id,
+            text: newMessage
+        };
+        try {
+            await axios.post(`http://localhost:5000/message`, message);
+            setNewMessage("");
+        } catch (error) {
+            console.log(error);
+        }
     };
-    try{
-        const res = await axios.post(`http://localhost:5000/message`, message)
-        setMessages([...messages, res.data])
-        setNewMessage("")
-    }
-    catch(error){
-        console.log(error)
-    }
-  }
-  useEffect(()=>{
-    scrollRef.current?.scrollIntoView({behavior: "smooth"})
-  },[messages])
 
     return (
         <>
@@ -104,39 +102,39 @@ export default function Messenger() {
                     <div className="chatMenuWrapper">
                         <div className='convoHeading'>Convoz</div>
                         {conversations.map((conversation) => (
-                            <div onClick={()=>setCurrentChat(conversation)}>
-                                 <ActiveConv key={conversation._id} conversation={conversation} currentUser={id} />
+                            <div key={conversation._id} onClick={() => setCurrentChat(conversation)}>
+                                <ActiveConv conversation={conversation} currentUser={id} />
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className='chatBox'>
                     <div className="chatBoxWrapper">
-                        {
-                            currentChat ? 
-                        <>
-                        <div className='messageHeading'>{id === currentChat.members[0] ? currentChat.members[3] : currentChat.members[2]}</div>
-                        <div className="chatBoxTop">
-                            {messages.map(m=>(
-                                <div ref={scrollRef}>
-                                
-                                <Message message={m} own={m.senderId === id}  />
+                        {currentChat ?
+                            <>
+                                <div className='messageHeading'>{id === currentChat.members[0] ? currentChat.members[3] : currentChat.members[2]}</div>
+                                <div className="chatBoxTop">
+                                    {messages.map(m => (
+                                        <div key={m._id} ref={scrollRef}>
+                                            <Message message={m} own={m.senderId === id} />
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                        <div className="chatBoxBottom">
-                            <textarea className='chatMessageInput' placeholder='Message'
-                            onChange={(e)=>setNewMessage(e.target.value)}
-                            value={newMessage}
-                            ></textarea>
-                            <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
-                        </div> </>: <>
-                        <div className='defaultDisplay'>
-                        <RiMessageLine size="5rem" />
-                        <div className="defaultDisplayHeading">Convoz Messenger</div>
-                            <div className='defaultDisplayText flex items-center gap-1'><FaRegStar className='mr-1 text-yellow-500'/>Don't forget to star the  <a href="https://github.com/adesai1000/Convoz" target=" _blank" className="text-[#1976D2] underline font-semibold"> Repo!</a></div>
-                        </div>
-                        </>}
+                                <div className="chatBoxBottom">
+                                    <textarea className='chatMessageInput' placeholder='Message'
+                                        onChange={(e) => setNewMessage(e.target.value)}
+                                        value={newMessage}
+                                    ></textarea>
+                                    <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
+                                </div>
+                            </> :
+                            <>
+                                <div className='defaultDisplay'>
+                                    <RiMessageLine size="5rem" />
+                                    <div className="defaultDisplayHeading">Convoz Messenger</div>
+                                    <div className='defaultDisplayText flex items-center gap-1'><FaRegStar className='mr-1 text-yellow-500' />Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target="_blank" rel="noopener noreferrer" className="text-[#1976D2] underline font-semibold"> Repo!</a></div>
+                                </div>
+                            </>}
                     </div>
                 </div>
             </div>
