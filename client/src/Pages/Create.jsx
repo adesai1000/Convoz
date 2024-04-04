@@ -5,35 +5,44 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
 import { MdOutlineLocationOn } from "react-icons/md";
+import profaneWords from 'profane-words';
 
 const Create = () => {
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
     const [username, setUsername] = useState("");
-    const [id, setId] = useState()
+    const [id, setId] = useState();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
     const handleBack = () => {
-        history.go(-1)
-    }
+        history.go(-1);
+    };
 
     const handleSubmit = async () => {
         try {
             const posterUserId = id;
             const posterUsername = username;
+            const filteredTitle = filterProfanity(title);
+            const filteredContent = filterProfanity(content);
+
             const response = await axios.post(
                 "http://localhost:5000/post/",
-                { title, content, posterUserId, posterUsername },
+                { title: filteredTitle, content: filteredContent, posterUserId, posterUsername },
                 { withCredentials: true }
             );
-            const {_id} = response.data
-            navigate(`/posts/${_id}`)
-            
+            const { _id } = response.data;
+            navigate(`/posts/${_id}`);
         } catch (error) {
             console.error("Error creating post:", error);
         }
     };
+
+    const filterProfanity = (text) => {
+        const profaneRegex = new RegExp(`\\b(?:${profaneWords.join("|")})\\b`, "gi");
+        return text.replace(profaneRegex, (match) => "X".repeat(match.length));
+    };
+    
 
     useEffect(() => {
         const verifyCookie = async () => {
@@ -47,7 +56,7 @@ const Create = () => {
             );
             const { status, user } = data;
             setUsername(user.username);
-            setId(user._id)
+            setId(user._id);
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));
@@ -92,13 +101,13 @@ const Create = () => {
                                 onChange={(e) => setContent(e.target.value)}
                             ></textarea>
                             <div className="flex">
-                            <button
-                                className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-2 rounded font-bold"
-                                onClick={handleSubmit}
-                            >
-                                Post
-                            </button>
-                            <MdOutlineLocationOn className="text-5xl ml-3  justify-center text-[#1976D2] hover:text-[#1976d2e2] hover:cursor-pointer" />
+                                <button
+                                    className="bg-[#1976D2] hover:bg-[#1976d2e2] text-white p-2 rounded font-bold"
+                                    onClick={handleSubmit}
+                                >
+                                    Post
+                                </button>
+                                <MdOutlineLocationOn className="text-5xl ml-3  justify-center text-[#1976D2] hover:text-[#1976d2e2] hover:cursor-pointer" />
                             </div>
                         </div>
                     </div>

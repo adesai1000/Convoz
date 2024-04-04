@@ -23,6 +23,12 @@ dependencies:
   mapbox-gl:
     specifier: ^3.2.0
     version: 3.2.0
+  pnpm:
+    specifier: ^8.15.6
+    version: 8.15.6
+  profane-words:
+    specifier: ^1.5.11
+    version: 1.5.11
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -3479,6 +3485,12 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /pnpm@8.15.6:
+    resolution: {integrity: sha512-d7iem+d6Kwatj0A6Gcrl4il29hAj+YrTI9XDAZSVjrwC7gpq5dE+5FT2E05OjK8poF8LGg4dKxe8prah8RWfhg==}
+    engines: {node: '>=16.14'}
+    hasBin: true
+    dev: false
+
   /postcss-import@15.1.0(postcss@8.4.33):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
@@ -3557,6 +3569,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /profane-words@1.5.11:
+    resolution: {integrity: sha512-LWe0nG62ZCV2WMds+TwoDsTCGdRnlwEQY1f3rRbzENQixC1eJ3+NR3GWJRn0AWHZQnxgPR1l3CgyrQqIiUGxFA==}
+    dev: false
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}

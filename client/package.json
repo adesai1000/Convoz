@@ -16,6 +16,8 @@
         "canvas-confetti": "^1.9.2",
         "mapbox": "1.0.0-beta10",
         "mapbox-gl": "^3.2.0",
+        "pnpm": "^8.15.6",
+        "profane-words": "^1.5.11",
         "react": "^18.2.0",
         "react-axios": "^2.0.6",
         "react-confirm-alert": "^3.0.6",
