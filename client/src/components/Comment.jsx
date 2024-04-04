@@ -1,5 +1,7 @@
 import { useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
+import profaneWords from 'profane-words';
+
 const Comment = ({postId, currentUser, currentUserId}) => {
     const [content, setContent] = useState("");
 
@@ -7,9 +9,11 @@ const Comment = ({postId, currentUser, currentUserId}) => {
         try{
             const commenterUserId = currentUserId;
             const commenterUsername = currentUser;
+            const filteredContent = filterProfanity(content);
+
             const response = await axios.post(
                 "http://localhost:5000/comment/create", {
-                content,
+                content: filteredContent,
                 postId,
                 commenterUserId,
                 commenterUsername
@@ -18,9 +22,14 @@ const Comment = ({postId, currentUser, currentUserId}) => {
             location.reload();
         }
         catch(error){
-        console.error("Error Creating Comment:", error)
+            console.error("Error Creating Comment:", error)
         }
-    }
+    };
+
+    const filterProfanity = (text) => {
+        const profaneRegex = new RegExp(`\\b(?:${profaneWords.join("|")})\\b`, "gi");
+        return text.replace(profaneRegex, (match) => "X".repeat(match.length));
+    };
 
     return (
         <div>
