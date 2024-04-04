@@ -11,7 +11,7 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 - Random Avatar for each user (Done)
 - Load More (Done)
 - Sort Posts based on attributes such as Most liked, Most comments, Date Created (Oldest or Newest) (Done)
-- Profanity Filtering in posts(Done) and comments
+- Profanity Filtering in posts and comments (Done)
 - Client Side Rate Limiting using use-cooldown
 - Search Posts by title (Done)
 - Search Users by username (Done)
