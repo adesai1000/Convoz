@@ -9,7 +9,6 @@ const MessageRoute = require("./routes/MessageRoute");
 const PostRoute = require("./routes/PostRoute")
 const CommentRoute = require("./routes/CommentRoute")
 const SearchRoute = require("./routes/SearchRoute");
-const NestedCommentRoute = require("./routes/NestedCommentRoute");
 const app = express();
 dotenv.config();
 
@@ -41,7 +40,6 @@ app.use("/message", MessageRoute);
 app.use("/post", PostRoute);
 app.use("/comment", CommentRoute)
 app.use("/search", SearchRoute)
-app.use("/reply", NestedCommentRoute )
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
