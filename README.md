@@ -12,7 +12,6 @@ Convoz is a fully-featured social media web application, built with the MERN sta
 - Load More Pagination
 - Sort Posts based on attributes such as Most liked, Most comments, and Date Created (Oldest or Newest)
 - Profanity Filtering in posts and comments
-- Client Side Rate Limiting using use-cooldown
 - Search Posts by title
 - Search Users by username
 - Find Others area on the home screen which features random users
@@ -29,7 +28,7 @@ npm install
 cd client
 npm install
 ```
-3) Create .env in root directory
+3) Create .env in the root directory
 ```
 cd ..
 touch .env
