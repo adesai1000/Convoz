@@ -40,7 +40,7 @@ const Create = () => {
 
     const filterProfanity = (text) => {
         const profaneRegex = new RegExp(`\\b(?:${profaneWords.join("|")})\\b`, "gi");
-        return text.replace(profaneRegex, (match) => "X".repeat(match.length));
+        return text.replace(profaneRegex, (match) => "𝘟".repeat(match.length));
     };
     
 
