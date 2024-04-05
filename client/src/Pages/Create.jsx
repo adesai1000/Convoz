@@ -16,7 +16,7 @@ const Create = () => {
     const [content, setContent] = useState("");
 
     const handleBack = () => {
-        history.go(-1);
+        navigate(-1);
     };
 
     const handleSubmit = async () => {
@@ -25,7 +25,7 @@ const Create = () => {
             const posterUsername = username;
             const filteredTitle = filterProfanity(title);
             const filteredContent = filterProfanity(content);
-
+    
             const response = await axios.post(
                 "http://localhost:5000/post/",
                 { title: filteredTitle, content: filteredContent, posterUserId, posterUsername },
@@ -37,12 +37,12 @@ const Create = () => {
             console.error("Error creating post:", error);
         }
     };
+    
 
     const filterProfanity = (text) => {
         const profaneRegex = new RegExp(`\\b(?:${profaneWords.join("|")})\\b`, "gi");
         return text.replace(profaneRegex, (match) => "𝘟".repeat(match.length));
     };
-    
 
     useEffect(() => {
         const verifyCookie = async () => {
