@@ -35,6 +35,7 @@ const Home = () => {
                 const { status, user } = response.data;
                 if (status) {
                     setUsername(user.username);
+                    localStorage.setItem("currentUser", user._id)
                 } else {
                     removeCookie("token");
                     navigate("/login");

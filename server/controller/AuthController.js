@@ -52,13 +52,28 @@ module.exports.Login = async (req, res, next) => {
             withCredentials: true,
             httpOnly: false,
         });
-        // Send user data along with token
         res.status(202).json({ message: "User logged in successfully", success: true });
         next();
     } catch (error) {
         console.log(error);
     }
 };
+
+module.exports.deleteProfile = async(req,res) =>{
+    try{
+    const {userId} = req.body; 
+    const deleteUser = await User.findByIdAndDelete({_id: userId})
+    if(deleteUser){
+        res.status(200).json({message: "Account deleted successfully", deleteUser})
+    }
+    else{
+        res.status(400).json({message: "Account not found or not authorized to delete"})
+    }
+    }
+    catch(error){
+        console.log(error);
+    }
+}
 module.exports.randomUsers = async (req, res) => {
     try {
       const users = await User.aggregate([{ $sample: { size: 3 } }]);

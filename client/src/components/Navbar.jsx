@@ -16,6 +16,7 @@ export default function Navbar({ username }) {
 
     const Logout = () => {
         removeCookie("token");
+        localStorage.removeItem("currentUser")
         navigate("/login");
     };
     const handleHome = () => {

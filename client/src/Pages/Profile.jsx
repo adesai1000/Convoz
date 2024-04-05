@@ -14,6 +14,7 @@ const Profile = () => {
     const [username, setUsername] = useState("");
     const [activeTab, setActiveTab] = useState("Posts");
     const [sortingOption, setSortingOption] = useState("latest");
+    const [userId, setUserId] = useState("")
 
     const handlePost = () => {
         navigate('/create');
@@ -31,18 +32,19 @@ const Profile = () => {
             );
             const { status, user } = data;
             setUsername(user.username);
+            setUserId(user._id);
             return status
                 ? console.log("Logged in")
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-    
+    const currentUserId = localStorage.getItem("currentUser");
     return (
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight username={username}/>
+                <ProfRight username={username} id={userId}/>
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">
