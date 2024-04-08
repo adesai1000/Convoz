@@ -5,13 +5,9 @@ import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
-import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const MyPost = ({ username, sortingOption }) => {
-    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
 

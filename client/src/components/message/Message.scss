@@ -18,26 +18,30 @@
 .messageText{
     padding: 10px;
     border-radius: 20px;
-    background-color: #01BF2F;
+    background-color: #2E2D32;
     color: white;
     font-weight: 500;
     max-width: 300px;
+    font-size: 17px;
 }
 .messageBottom{
     display: flex;
     font-size: 10px;
     margin-top: 5px;
-    margin-left: 10px;
+    margin-left: 8px;
     font-weight: bold;
     color: gray;
+    margin-right: 10px;
 }
 .message.own{
     align-items: flex-end;
     margin-right: 15px;
+    
 }
 
 .message.own .messageText{
     background-color: #1976D2;
     color: white;
     font-weight: 500;
+    font-size: 17px;
 }

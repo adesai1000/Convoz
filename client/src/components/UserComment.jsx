@@ -5,8 +5,6 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const MyComment = ({ username, sortingOption }) => {
     const [comments, setComments] = useState([]);

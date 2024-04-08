@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'; // Added Fragment import
+import React, { useState, Fragment } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { RiHome7Line, RiMessageLine } from "react-icons/ri";
 import { Menu, Transition } from '@headlessui/react';

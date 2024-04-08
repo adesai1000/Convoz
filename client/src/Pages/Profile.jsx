@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import Post from "../components/Post";
 import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
 import MyComment from "../components/MyComment"
