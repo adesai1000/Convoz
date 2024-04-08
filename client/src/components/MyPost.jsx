@@ -37,7 +37,6 @@ const MyPost = ({ username, sortingOption }) => {
                 setPosts(sortedPosts);
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                // Handle error here, e.g., set an error state
             } finally {
                 setLoading(false);
             }
@@ -63,49 +62,50 @@ const MyPost = ({ username, sortingOption }) => {
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
             ) : (
-                posts.length === 0 ? (
+                posts.length === 0 && (
                     <div className="text-white flex flex-col align-center items-center justify-center">
                         <div className='text-white text-xl font-bold'>{username} has made no posts yet</div>
                     </div>
-                ) : (
-                    posts.map((post) => (
-                        <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
-                            <div className="flex items-center mb-2 cursor-pointer">
-                                <div className="rounded-full h-8 w-8 bg-white mr-2 overflow-hidden">
-                                    <Link to={`/user/${post.posterUsername}`}>
-                                        <a href='/profile'><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></a>
-                                    </Link>
-                                </div>
-                                <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
-                                <span className="text-gray-500 mx-1">•</span>
-                                <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
-                                {post.isEdited && (
-                                    <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
-                                )}
-                            </div>
-                            <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
-                                <ReactMarkdown>{post.title}</ReactMarkdown>
-                            </Link>
-                            <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
-                                <ReactMarkdown>{post.content}</ReactMarkdown>
-                            </Link>
-                            <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-                                <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                    <FaRegArrowAltCircleUp className="mr-2.5" />
-                                </button>
-                                <a>{formatScore(post.upvotes - post.downvotes)}</a>
-                                <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
-                                    <FaRegArrowAltCircleDown className="ml-2.5" />
-                                </button>
-                                <Link to={{ pathname: `/posts/${post._id}` }}>
-                                    <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                        <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
-                                    </button>
-                                </Link> 
-                            </div>
-                        </div>
-                    ))
                 )
+            )}
+            {posts.length > 0 && (
+                posts.map((post) => (
+                    <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
+                        <div className="flex items-center mb-2 cursor-pointer">
+                            <div className="rounded-full h-8 w-8 bg-white mr-2 overflow-hidden">
+                                <Link to={`/user/${post.posterUsername}`}>
+                                    <a href='/profile'><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></a>
+                                </Link>
+                            </div>
+                            <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
+                            <span className="text-gray-500 mx-1">•</span>
+                            <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
+                            {post.isEdited && (
+                                <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                            )}
+                        </div>
+                        <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
+                            <ReactMarkdown>{post.title}</ReactMarkdown>
+                        </Link>
+                        <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
+                            <ReactMarkdown>{post.content}</ReactMarkdown>
+                        </Link>
+                        <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
+                            <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                <FaRegArrowAltCircleUp className="mr-2.5" />
+                            </button>
+                            <a>{formatScore(post.upvotes - post.downvotes)}</a>
+                            <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
+                                <FaRegArrowAltCircleDown className="ml-2.5" />
+                            </button>
+                            <Link to={{ pathname: `/posts/${post._id}` }}>
+                                <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                    <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                                </button>
+                            </Link> 
+                        </div>
+                    </div>
+                ))
             )}
         </div>
     );

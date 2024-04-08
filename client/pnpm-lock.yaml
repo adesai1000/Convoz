@@ -17,6 +17,9 @@ dependencies:
   canvas-confetti:
     specifier: ^1.9.2
     version: 1.9.2
+  client:
+    specifier: 'link:'
+    version: 'link:'
   mapbox:
     specifier: 1.0.0-beta10
     version: 1.0.0-beta10
