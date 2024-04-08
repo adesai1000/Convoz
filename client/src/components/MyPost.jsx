@@ -7,12 +7,14 @@ import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const MyPost = ({ username, sortingOption }) => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [fetchError, setFetchError] = useState(false);error
+    const [fetchError, setFetchError] = useState(false); // Track fetch error
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -34,10 +36,10 @@ const MyPost = ({ username, sortingOption }) => {
                 }
 
                 setPosts(sortedPosts);
-                setFetchError(false);
+                setFetchError(false); // Reset fetch error state
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                setFetchError(true);
+                setFetchError(true); // Set fetch error state
             } finally {
                 setLoading(false);
             }
@@ -62,7 +64,7 @@ const MyPost = ({ username, sortingOption }) => {
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
-            ) : fetchError ? (
+            ) : fetchError ? ( // Display error message if fetch failed
                 <div className="text-white flex flex-col align-center items-center justify-center">
                     <div className='text-white text-xl font-bold'>Failed to fetch posts. Please try again later.</div>
                 </div>
