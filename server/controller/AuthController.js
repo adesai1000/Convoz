@@ -5,7 +5,6 @@ const Post = require("../model/PostModel");
 const CommentModel = require("../model/CommentModel");
 const chatModel = require('../model/chatModel');
 const ChatModel = require("../model/chatModel");
-const messageModel = require('../model/messageModel');
 const MessageModel = require("../model/messageModel");
 
 module.exports.Signup = async (req, res, next) => {
