@@ -49,7 +49,7 @@ const Profile = () => {
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">
                             <button className={`tab-btn ${activeTab === "Posts" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Posts")}>Posts</button>
-                            <button className={`tab-btn  ${activeTab === "Liked" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Liked")}>Liked</button>
+                           
                             <button className={`tab-btn ${activeTab === "Comments" ? "active text-[#1976D2] underline" : ""}`} onClick={() => setActiveTab("Comments")}>Comments</button>
                         </div>
                     </div>
@@ -67,7 +67,6 @@ const Profile = () => {
                         </div>
                     </div>
                     {activeTab === "Posts" && <MyPost username={username} sortingOption={sortingOption} />}
-                    {activeTab === "Liked" && <Post />}
                     {activeTab === "Comments" && <MyComment username={username} sortingOption={sortingOption}/>}
                 </div>
             </div>
