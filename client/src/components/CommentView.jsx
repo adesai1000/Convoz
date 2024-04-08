@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
@@ -83,7 +83,7 @@ const CommentView = ({ id, currentUser }) => {
             <h1 className='text-white text-4xl font-bold mb-4'>Comments ({comments.length})</h1>
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
-                    <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                    <RiseLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
             ) : (
                 comments.length === 0 ? (

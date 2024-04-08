@@ -5,11 +5,14 @@ import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
 import SyncLoader from "react-spinners/SyncLoader";
+import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 
 const MyPost = ({ username, sortingOption }) => {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [fetchError, setFetchError] = useState(false);error
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -31,8 +34,10 @@ const MyPost = ({ username, sortingOption }) => {
                 }
 
                 setPosts(sortedPosts);
+                setFetchError(false);
             } catch (error) {
                 console.error('Error fetching posts:', error);
+                setFetchError(true);
             } finally {
                 setLoading(false);
             }
@@ -56,6 +61,10 @@ const MyPost = ({ username, sortingOption }) => {
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                </div>
+            ) : fetchError ? (
+                <div className="text-white flex flex-col align-center items-center justify-center">
+                    <div className='text-white text-xl font-bold'>Failed to fetch posts. Please try again later.</div>
                 </div>
             ) : (
                 posts.length === 0 && (

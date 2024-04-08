@@ -8,7 +8,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactMarkdown from 'react-markdown';
 import { format } from "timeago.js";
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom';
 
@@ -87,7 +87,7 @@ const IndiPost = ({ id, currentUser }) => {
         <div className="mt-4 cursor-pointer">
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
-                    <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                    <RiseLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
             ) : (
                 post && (

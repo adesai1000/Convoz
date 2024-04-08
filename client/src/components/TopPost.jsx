@@ -5,7 +5,7 @@ import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 
 const TopPost = () => {
     const [posts, setPosts] = useState([]);
@@ -43,7 +43,7 @@ const TopPost = () => {
         <div className="mt-4 cursor-pointer">
             {loading ? (
                 <div style={{ textAlign: 'center' }}>
-                    <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                    <RiseLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
             ) : (
                 posts.map((post) => (

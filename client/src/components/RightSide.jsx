@@ -4,7 +4,7 @@ import TopPost from './TopPost';
 import { FaRegStar } from "react-icons/fa";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { SlReload } from "react-icons/sl";
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 import { Link } from 'react-router-dom';
 const RightSide = () => {
     const [randomUsers, setRandomUsers] = useState([]);
@@ -45,7 +45,7 @@ const RightSide = () => {
                 </div>
                 {loading ? (
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                        <RiseLoader color={"#1976D2"} loading={true} size={10} />
                     </div>
                 ) : (
                     randomUsers.map((username, index) => (

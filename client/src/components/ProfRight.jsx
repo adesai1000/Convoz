@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { FaRegStar } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { confirmAlert } from 'react-confirm-alert';
@@ -136,7 +136,7 @@ const ProfRight = ({ username}) => {
                     </div>
                     {loading ? (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                            <RiseLoader color={"#1976D2"} loading={true} size={10} />
                         </div>
                     ) : (
                         randomUsers.map((user, index) => (

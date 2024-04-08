@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 import RightSide from "../components/RightSide";
 import RightMobile from "../components/RightMobile";
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -72,7 +72,9 @@ const Home = () => {
                     <div block><RightMobile /></div>
                     <div style={{textAlign:'center'}}>
                         {loading ? (
-                            <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '15vh' }}>
+                                <RiseLoader color={"#1976D2"} loading={true} size={20} />
+                            </div>
                         ) : (
                             <div style={{ textAlign: 'left' }}>
                                 <Post username={username} sortingOption={sortingOption} />

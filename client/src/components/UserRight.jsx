@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaRegStar } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
-import SyncLoader from "react-spinners/SyncLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 
 const UserRight = ({ username }) => {
     const [randomUsers, setRandomUsers] = useState([]);
@@ -68,7 +68,7 @@ const UserRight = ({ username }) => {
                     </div>
                     {loading ? (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <SyncLoader color={"#1976D2"} loading={true} size={10} />
+                            <RiseLoader color={"#1976D2"} loading={true} size={10} />
                         </div>
                     ) : (
                         randomUsers.map((user, index) => (
