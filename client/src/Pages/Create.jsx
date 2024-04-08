@@ -4,7 +4,6 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
-import { MdOutlineLocationOn } from "react-icons/md";
 import profaneWords from 'profane-words';
 
 const Create = () => {
@@ -107,7 +106,6 @@ const Create = () => {
                                 >
                                     Post
                                 </button>
-                                <MdOutlineLocationOn className="text-5xl ml-3  justify-center text-[#1976D2] hover:text-[#1976d2e2] hover:cursor-pointer" />
                             </div>
                         </div>
                     </div>
