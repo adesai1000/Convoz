@@ -1,6 +1,12 @@
 const User = require("../model/User");
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
+const Post = require("../model/PostModel");
+const CommentModel = require("../model/CommentModel");
+const chatModel = require('../model/chatModel');
+const ChatModel = require("../model/chatModel");
+const messageModel = require('../model/messageModel');
+const MessageModel = require("../model/messageModel");
 
 module.exports.Signup = async (req, res, next) => {
     try {
@@ -24,7 +30,6 @@ module.exports.Signup = async (req, res, next) => {
             withCredentials: true,
             httpOnly: true,
         });
-        // Send user data along with token
         res.status(201).json({ message: "User created successfully.", success: true });
         next();
     } catch (error) {
@@ -63,7 +68,12 @@ module.exports.deleteProfile = async(req,res) =>{
     try{
     const {userId} = req.body; 
     const deleteUser = await User.findByIdAndDelete({_id: userId})
-    if(deleteUser){
+    const deleteUserPost = await Post.deleteMany({posterUserId: userId})
+    const deleteUserComment = await CommentModel.deleteMany({commenterUserId: userId})
+    const deleteUserChats = await ChatModel.deleteMany({members: userId})
+    const deleteUserMessagesSender = await MessageModel.deleteMany({senderId: userId})
+    const deleteUserMessagesReceiver = await MessageModel.deleteMany({receiverId: userId})
+    if(deleteUser && deleteUserPost && deleteUserComment && deleteUserChats && deleteUserMessagesSender && deleteUserMessagesReceiver){
         res.status(200).json({message: "Account deleted successfully", deleteUser})
     }
     else{

@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import { FaRegStar } from "react-icons/fa";
 import { SlReload } from "react-icons/sl";
 import SyncLoader from "react-spinners/SyncLoader";
 import { Link } from 'react-router-dom';
+import { MdOutlineDeleteForever } from "react-icons/md";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const ProfRight = ({ username }) => {
+const ProfRight = ({ username}) => {
     const [randomUsers, setRandomUsers] = useState([]);
+    const [cookies, removeCookie] = useCookies([]);
     const [loading, setLoading] = useState(true);
+    const [userid, setUserid] = useState(null)
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchRandomUsers();
     }, []);
-
+    const id = localStorage.getItem('currentUser')
     const fetchRandomUsers = async () => {
         try {
             setLoading(true);
@@ -41,6 +49,61 @@ const ProfRight = ({ username }) => {
         fetchPosts();
     }, [username]);
 
+    useEffect(() => {
+        const fetchUserUsername = async () => {
+            try {
+                const response = await axios.post(
+                    "http://localhost:5000/chat/finduid",
+                    { userUsername: username },
+                    { withCredentials: true }
+                );
+
+                setUserid(response.data.userUID);
+            } catch (error) {
+                console.error("Error fetching user Username:", error);
+            }
+        };
+        fetchUserUsername();
+    }, [username]);
+
+    const deleteAccount = () => {
+        confirmAlert({
+            title: '☠️ CAUTION ☠️',
+            message: 'Deleting your account will remove your Profile, Posts, Comments, Chats and Messages, it will be like YOU WERE NEVER HERE.',
+            buttons: [
+                {
+                    label: 'No',
+                    className: "buttonNo",
+                    onClick: () =>{
+                    //console.log("Clicked No")
+                    }
+                },
+                {
+                    label: 'Yes',
+                    className: "buttonYes",
+                    onClick: () =>{
+                        const deleteUser = async()=>{
+                            try{
+                                await axios.post(
+                                    `http://localhost:5000/delete`,
+                                    { userId: id},
+                                    { withCredentials: true }
+                                    
+                                );
+                                removeCookie("token");
+                                localStorage.removeItem("currentUser");
+                                navigate("/login");
+                            }
+                            catch(error){
+                                console.error("Error Deleting Profile:", error)
+                            }
+                        }
+                        deleteUser();
+                    }
+                }
+            ]
+        });
+    };
     return (
         <div className="w-full px-4 pt-5 md:w-1/4 md:top-0 md:p-4 md:items-center md:justify-center">
             <div className="border-2 border-slate-600 rounded mb-4 justify-center">
@@ -55,6 +118,10 @@ const ProfRight = ({ username }) => {
                         Total Posts: {posts.length}
                     </div>
                 </div>
+                {id === userid && (
+                <a onClick={deleteAccount}><MdOutlineDeleteForever className='text-red-600 text-3xl mb-1 hover:text-red-700'/></a>        
+                )}
+                
             </div>
             <div className="md:block">
                 <div className="md:mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">

@@ -44,7 +44,7 @@ const Profile = () => {
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight username={username} id={userId}/>
+                <ProfRight username={username}/>
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">
