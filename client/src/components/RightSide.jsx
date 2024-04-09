@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TopPost from './TopPost';
 import { FaRegStar } from "react-icons/fa";
-import { BsGraphUpArrow } from "react-icons/bs";
+import { LuMedal } from "react-icons/lu";
 import { SlReload } from "react-icons/sl";
 import RiseLoader from "react-spinners/RiseLoader";
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ const RightSide = () => {
                 </div>
             </div>
             <div className="mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
-                <BsGraphUpArrow className="mt-2 text-lg text-white max-h-90%" />
+                <LuMedal className="text-3xl text-white max-h-90%" />
                 <div className="text-xl text-white font-bold">Top Posts</div>
             </div>
             <TopPost />

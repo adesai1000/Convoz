@@ -6,6 +6,7 @@ import axios from 'axios';
 import { format } from "timeago.js";
 import ReactMarkdown from 'react-markdown';
 import RiseLoader from "react-spinners/RiseLoader";
+import { LuMedal } from "react-icons/lu";
 
 const TopPost = () => {
     const [posts, setPosts] = useState([]);
@@ -16,7 +17,7 @@ const TopPost = () => {
             try {
                 setLoading(true);
                 const response = await axios.get('http://localhost:5000/post/all');
-                const sortedPosts = response.data.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+                const sortedPosts = response.data.sort((a, b) => b.upvotes - a.upvotes);
                 const topThreePosts = sortedPosts.slice(0, 3);
                 setPosts(topThreePosts);
             } catch (error) {
@@ -60,16 +61,18 @@ const TopPost = () => {
                                 )}
                         </div>
                         <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">
-                    <ReactMarkdown>{post.title}</ReactMarkdown>
-                    </Link>
+                            <ReactMarkdown>{post.title}</ReactMarkdown>
+                        </Link>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                <FaRegArrowAltCircleUp className="mr-2.5 " />
+                                <LuMedal  className="mr-2.5 text-2xl " />
                             </button>
                             <a>{formatScore(post.upvotes)}</a>
-                            <Link to={{ pathname: `/posts/${post._id}` }}><button className="flex ml-5 items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                            <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
-                        </button></Link> 
+                            <Link to={{ pathname: `/posts/${post._id}` }}>
+                                <button className="flex ml-5 mt-1 items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                    <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
+                                </button>
+                            </Link> 
                         </div>
                     </div>
                 ))

@@ -14,7 +14,7 @@ const MyPost = ({ username, sortingOption }) => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [fetchError, setFetchError] = useState(false); // Track fetch error
+    const [fetchError, setFetchError] = useState(false);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -26,7 +26,7 @@ const MyPost = ({ username, sortingOption }) => {
                 let sortedPosts = [...filteredPosts];
 
                 if (sortingOption === 'likes') {
-                    sortedPosts.sort((a, b) => (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes));
+                    sortedPosts.sort((a, b) => b.upvotes - a.upvotes);
                 } else if (sortingOption === 'comments') {
                     sortedPosts.sort((a, b) => b.totalComments - a.totalComments);
                 } else if (sortingOption === 'oldest') {

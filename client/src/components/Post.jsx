@@ -35,9 +35,7 @@ const Post = ({ sortingOption }) => {
         let sortedPosts = response.data;
 
         if (sortingOption === "likes") {
-          sortedPosts.sort(
-            (a, b) => b.upvotes - b.downvotes - (a.upvotes - a.downvotes)
-          );
+          sortedPosts.sort((a, b) => b.upvotes - a.upvotes);
         } else if (sortingOption === "comments") {
           sortedPosts.sort((a, b) => b.totalComments - a.totalComments);
         } else if (sortingOption === "oldest") {
