@@ -113,7 +113,7 @@ const IndiPost = ({ id, currentUser }) => {
                             )}
                         </div>
                         <ReactMarkdown className="text-white text-2xl mb-2 font-bold">{post.title}</ReactMarkdown>
-                        <ReactMarkdown className="text-white mb-2 text-lg font-semibold">{post.content}</ReactMarkdown>
+                        <ReactMarkdown className="text-white mb-2 text-lg ">{post.content}</ReactMarkdown>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2]">
                                 <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" /> {formatScore(post.upvotes)}

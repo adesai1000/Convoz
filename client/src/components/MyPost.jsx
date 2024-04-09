@@ -57,6 +57,15 @@ const MyPost = ({ username, sortingOption }) => {
             return score;
         }
     };
+
+    // Function to truncate content to first 25 words
+    const truncateContent = (content) => {
+        const words = content.split(' ');
+        if (words.length > 25) {
+            return words.slice(0, 25).join(' ') + '...';
+        }
+        return content;
+    };
     
     return (
         <div className="mt-4 cursor-pointer">
@@ -95,7 +104,7 @@ const MyPost = ({ username, sortingOption }) => {
                             <ReactMarkdown>{post.title}</ReactMarkdown>
                         </Link>
                         <Link to={{ pathname: `/posts/${post._id}` }} className="text-white mb-2 text-xl">
-                            <ReactMarkdown>{post.content}</ReactMarkdown>
+                            <ReactMarkdown>{truncateContent(post.content)}</ReactMarkdown>
                         </Link>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
