@@ -15,7 +15,6 @@ const Post = ({ sortingOption }) => {
   const [upvotedPosts, setUpvotedPosts] = useState([]);
 
   useEffect(() => {
-    // Load upvoted posts from local storage
     const upvotedPostsFromStorage = JSON.parse(
       localStorage.getItem("upvotedPosts")
     );
@@ -25,7 +24,6 @@ const Post = ({ sortingOption }) => {
   }, []);
 
   useEffect(() => {
-    // Save upvoted posts to local storage
     localStorage.setItem("upvotedPosts", JSON.stringify(upvotedPosts));
   }, [upvotedPosts]);
 
@@ -103,7 +101,6 @@ const Post = ({ sortingOption }) => {
         return;
       }
 
-      // Check if post is already upvoted
       if (upvotedPosts.includes(postId)) {
         console.log("Already upvoted");
         return;
@@ -128,7 +125,6 @@ const Post = ({ sortingOption }) => {
         return;
       }
 
-      // Check if post is already upvoted
       if (!upvotedPosts.includes(postId)) {
         console.log("Not upvoted");
         return;
@@ -165,7 +161,7 @@ const Post = ({ sortingOption }) => {
     }
     return content;
   };
-  // Add this useEffect to fetch upvoted posts
+
   useEffect(() => {
     const fetchUpvotedPosts = async () => {
       try {
@@ -175,9 +171,9 @@ const Post = ({ sortingOption }) => {
           return;
         }
 
-        const response = await axios.get(
+        const response = await axios.post(
           "http://localhost:5000/post/allupvotedposts",
-          { params: { userId } }
+          { userId: userId },
         );
         setUpvotedPosts(response.data);
       } catch (error) {
@@ -233,15 +229,24 @@ const Post = ({ sortingOption }) => {
           </Link>
 
           <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-            <button
-              className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${
-                upvotedPosts.includes(post._id) ? "text-white" : ""
-              }`}
-              onClick={() => upvotePost(post._id)}
-              disabled={upvotedPosts.includes(post._id)}
-            >
-              <FaRegArrowAltCircleUp className="mr-2.5 " />
-            </button>
+            {upvotedPosts.includes(post._id) ? (
+              <button
+                className="flex items-center  hover:text-[#1976d2e2] text-white"
+                onClick={() => removeUpvote(post._id)}
+              >
+                <FaRegArrowAltCircleUp className="mr-2.5 " />
+              </button>
+            ) : (
+              <button
+                className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${
+                  upvotedPosts.includes(post._id) ? "text-white" : ""
+                }`}
+                onClick={() => upvotePost(post._id)}
+                disabled={upvotedPosts.includes(post._id)}
+              >
+                <FaRegArrowAltCircleUp className="mr-2.5 " />
+              </button>
+            )}
 
             <a>{formatScore(post.upvotes)}</a>
             <Link to={{ pathname: `/posts/${post._id}` }}>
