@@ -1,4 +1,5 @@
 const PostModel = require("../model/PostModel");
+const CommentModel = require("../model/CommentModel")
 
 module.exports.createPost = async (req, res) => {
     const { title, content, posterUserId, posterUsername } = req.body;
@@ -34,7 +35,8 @@ module.exports.deletePost = async (req, res) => {
     const { postId, posterUserId } = req.body;
     try {
         const deletedPost = await PostModel.findOneAndDelete({ _id: postId, posterUserId: posterUserId });
-        if (deletedPost) {
+        const deletePostComments = await CommentModel.deleteMany({postId: postId})
+        if (deletedPost && deletePostComments) {
             res.status(200).json({ message: "Post deleted successfully", deletedPost });
         } else {
             res.status(404).json({ message: "Post not found or unauthorized to delete" });
