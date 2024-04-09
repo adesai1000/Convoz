@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp } from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
@@ -116,13 +116,10 @@ const IndiPost = ({ id, currentUser }) => {
                         <ReactMarkdown className="text-white mb-2 text-lg font-semibold">{post.content}</ReactMarkdown>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2]">
-                                <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" /> {formatScore(post.upvotes - post.downvotes)}
+                                <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" /> {formatScore(post.upvotes)}
                             </button>
-                            <button className=" text-[#1976D2]">
-                                <FaRegArrowAltCircleDown className="ml-2.5 text-[#1976D2] hover:text-[#1976d2e2]" />
-                            </button>
-                            <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                            <button className="flex ml-5 items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
                             </button>
                         </div>
                     </div>

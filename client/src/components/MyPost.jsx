@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from 'react-icons/fa';
+import { FaRegArrowAltCircleUp } from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
@@ -36,10 +36,10 @@ const MyPost = ({ username, sortingOption }) => {
                 }
 
                 setPosts(sortedPosts);
-                setFetchError(false); // Reset fetch error state
+                setFetchError(false);
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                setFetchError(true); // Set fetch error state
+                setFetchError(true);
             } finally {
                 setLoading(false);
             }
@@ -64,7 +64,7 @@ const MyPost = ({ username, sortingOption }) => {
                 <div style={{ textAlign: 'center' }}>
                     <SyncLoader color={"#1976D2"} loading={true} size={10} />
                 </div>
-            ) : fetchError ? ( // Display error message if fetch failed
+            ) : fetchError ? (
                 <div className="text-white flex flex-col align-center items-center justify-center">
                     <div className='text-white text-xl font-bold'>Failed to fetch posts. Please try again later.</div>
                 </div>
@@ -101,13 +101,10 @@ const MyPost = ({ username, sortingOption }) => {
                             <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
                                 <FaRegArrowAltCircleUp className="mr-2.5" />
                             </button>
-                            <a>{formatScore(post.upvotes - post.downvotes)}</a>
-                            <button className=" text-[#1976D2] hover:text-[#1976d2e2]">
-                                <FaRegArrowAltCircleDown className="ml-2.5" />
-                            </button>
+                            <a>{formatScore(post.upvotes)}</a>
                             <Link to={{ pathname: `/posts/${post._id}` }}>
-                                <button className="flex ml-10 items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                    <BiCommentMinus className="mr-2 mt-1" /> {post.totalComments}
+                                <button className="flex ml-5 items-center text-[#1976D2] hover:text-[#1976d2e2]">
+                                    <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
                                 </button>
                             </Link> 
                         </div>
