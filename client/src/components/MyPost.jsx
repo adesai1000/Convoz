@@ -107,9 +107,6 @@ const MyPost = ({ username, sortingOption }) => {
                             <ReactMarkdown>{truncateContent(post.content)}</ReactMarkdown>
                         </Link>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-                            <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                <FaRegArrowAltCircleUp className="mr-2.5" />
-                            </button>
                             <a>{formatScore(post.upvotes)}</a>
                             <Link to={{ pathname: `/posts/${post._id}` }}>
                                 <button className="flex ml-5 items-center text-[#1976D2] hover:text-[#1976d2e2]">
