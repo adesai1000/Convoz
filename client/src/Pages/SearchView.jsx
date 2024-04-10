@@ -60,6 +60,14 @@ const SearchView = () => {
     fetchResults();
   }, [query]);
 
+  const truncateContent = (content) => {
+    const words = content.split(' ');
+    if (words.length > 15) {
+        return words.slice(0, 15).join(' ') + '...';
+    }
+    return content;
+  };
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-start">
         <div className="md:w-1/2 p-4 justify-center ">
@@ -92,7 +100,7 @@ const SearchView = () => {
                             </Link>
                             <Link to={{ pathname: `/posts/${post._id}` }}>
                             <p className="text-white mb-2 text-xl">
-                                <ReactMarkdown>{post.content}</ReactMarkdown>
+                                <ReactMarkdown>{truncateContent(post.content)}</ReactMarkdown>
                             </p>
                             </Link>
                         </div>
