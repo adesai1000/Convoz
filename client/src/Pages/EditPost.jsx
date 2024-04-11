@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
+import { toast } from 'react-toastify';
 
 const EditPost = () => {
     const navigate = useNavigate();
@@ -25,10 +26,12 @@ const EditPost = () => {
                 { withCredentials: true }
             );
             history.go(-1)
+            toast.success("Post Edited!")
             localStorage.removeItem("editPostId");
             localStorage.removeItem("editPostTitle");
             localStorage.removeItem("editContent");
         } catch (error) {
+            toast.error(error)
             console.error("Error editing comment:", error);
         }
     };

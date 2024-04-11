@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import profaneWords from 'profane-words';
+import { toast } from 'react-toastify';
 
 const Comment = ({postId, currentUser, currentUserId}) => {
     const [content, setContent] = useState("");
@@ -19,9 +20,13 @@ const Comment = ({postId, currentUser, currentUserId}) => {
                 commenterUsername
                 }
             )
-            location.reload();
+            toast.success("Comment Created!")
+            setTimeout(() => {
+                location.reload();
+              }, 500);
         }
         catch(error){
+            toast.error(error)
             console.error("Error Creating Comment:", error)
         }
     };

@@ -2,7 +2,8 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../assets/Logo.png'
 import Axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
+
 export default function Signin() {
     const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ export default function Signin() {
                 password,
             }, { withCredentials: true })
             if (response.data.success) {
+                toast.success("Signed in!")
                 navigate("/home");
             }
             else {
@@ -38,7 +40,7 @@ export default function Signin() {
                         alt="Convoz"
                     />
                     <h2 className="mt-10 text-center text-xl font-bold leading-9 tracking-tight text-white">
-                        Log In
+                        Sign In
                     </h2>
                 </div>
 
@@ -90,19 +92,7 @@ export default function Signin() {
                             </button>
                         </div>
                     </form>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="dark"
-                        transition:Bounce
-                    />
+                    
                     <p className="mt-10 text-center text-sm text-white font-bold">
                         Don't have an account yet?{' '}
                         <a href="#" className="font-bold leading-6 text-[#1976D2]">

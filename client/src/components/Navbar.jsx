@@ -4,6 +4,7 @@ import { RiHome7Line, RiMessageLine } from "react-icons/ri";
 import { Menu, Transition } from '@headlessui/react';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { toast } from 'react-toastify';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -17,6 +18,7 @@ export default function Navbar({ username }) {
     const Logout = () => {
         removeCookie("token");
         localStorage.removeItem("currentUser")
+        toast.success("Signed Out!")
         navigate("/login");
     };
     const handleHome = () => {

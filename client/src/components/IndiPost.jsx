@@ -168,11 +168,11 @@ const IndiPost = ({ id, currentUser }) => {
                                 </Link>
                             </div>
 
-                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500 hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
+                            <a><Link to={`/user/${post.posterUsername}`}><span className="text-blue-500 hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg ">{post.posterUsername}</span></Link></a>
                             <span className="text-gray-500 mx-1">•</span>
-                            <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
+                            <span className="text-gray-500 text-sm md:text-lg font-bold">{format(post.postedOn)}</span>
                             {post.isEdited && (
-                                <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                                <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">[edited]</span>
                             )}
                             {post.posterUsername === currentUser && (
                                 <>

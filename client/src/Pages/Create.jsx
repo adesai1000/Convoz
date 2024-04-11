@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
 import profaneWords from 'profane-words';
 import { MdOutlineImage } from "react-icons/md";
+import { toast } from 'react-toastify';
 
 const Create = () => {
     const navigate = useNavigate();
@@ -32,8 +33,10 @@ const Create = () => {
                 { withCredentials: true }
             );
             const { _id } = response.data;
+            toast.success("Post Created!")
             navigate(`/posts/${_id}`);
         } catch (error) {
+            toast.error(error)
             console.error("Error creating post:", error);
         }
     };

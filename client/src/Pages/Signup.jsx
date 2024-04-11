@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import Logo from '../assets/Logo.png';
 
 export default function Signup() {
@@ -23,6 +22,7 @@ export default function Signup() {
             }, { withCredentials: true });
 
             if (response.data.success) {
+                toast.success("Account Created!")
                 navigate("/login");
             } else {
                 toast.error(response.data.message);
@@ -112,19 +112,6 @@ export default function Signup() {
                             </button>
                         </div>
                     </form>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={2000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="dark"
-                        transition:Bounce
-                    />
                     <p className="mt-10 text-center text-sm font-bold">
                         Already have an account?{' '}
                         <a className="font-semibold leading-6 hover:text-indigo-500">
