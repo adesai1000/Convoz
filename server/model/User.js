@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:[true, "You need to choose a passoword."]
     },
+    isVip:{
+        type:Boolean,
+        default:false,
+    },
     createdAt:{
         type:Date,
         default: new Date(),

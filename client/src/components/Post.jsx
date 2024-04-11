@@ -6,6 +6,7 @@ import axios from "axios";
 import { format } from "timeago.js";
 import ReactMarkdown from "react-markdown";
 import confetti from "canvas-confetti";
+import { MdOutlineVerified } from "react-icons/md";
 
 const Post = ({ sortingOption }) => {
   const [posts, setPosts] = useState([]);
@@ -202,7 +203,9 @@ const Post = ({ sortingOption }) => {
               <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-xl font-bold md:text-lg">
                 {post.posterUsername}
               </span>
+              
             </Link>
+            <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
             <span className="text-gray-500 mx-1">•</span>
             <span className="text-gray-500 text-lg font-bold">
               {format(post.postedOn)}

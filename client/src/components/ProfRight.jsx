@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { MdOutlineVerified } from "react-icons/md";
 
-const ProfRight = ({ username}) => {
+const ProfRight = ({ username, verified}) => {
     const [randomUsers, setRandomUsers] = useState([]);
     const [cookies, removeCookie] = useCookies([]);
     const [loading, setLoading] = useState(true);
@@ -113,7 +114,12 @@ const ProfRight = ({ username}) => {
                         alt="Profile"
                         className="bg-[#E8E8E8] p-2 h-3/5 w-3/5 overflow-hidden rounded-full mx-auto mt-5"
                     />
-                    <p className="mt-2 text-white text-2xl font-bold">{username}</p>
+                    <div className='flex flex-row justify-center items-center'>
+                        <p className="mt-2 text-white text-2xl font-bold items-center justify-center">{username}</p>
+                        {verified &&(
+                            <MdOutlineVerified className='mt-2 ml-2 text-2xl text-yellow-500 items-center' />
+                        )}
+                    </div>
                     <div className="mt-2 mb-2 text-white font-bold">
                         Total Posts: {posts.length}
                     </div>

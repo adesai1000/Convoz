@@ -5,7 +5,6 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { IoArrowBack } from "react-icons/io5";
 import profaneWords from 'profane-words';
-import { MdOutlineImage } from "react-icons/md";
 import { toast } from 'react-toastify';
 
 const Create = () => {
@@ -110,7 +109,6 @@ const Create = () => {
                                 >
                                     Post
                                 </button>
-                                <MdOutlineImage className="text-4xl ml-3 mt-0.5  justify-center text-white hover:text-[#1976d2e2] hover:cursor-pointer"/>
                             </div>
                         </div>
                     </div>
