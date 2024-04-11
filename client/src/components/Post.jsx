@@ -205,7 +205,10 @@ const Post = ({ sortingOption }) => {
               </span>
               
             </Link>
-            <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
+            {post.isVip &&(
+               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
+            )}
+           
             <span className="text-gray-500 mx-1">•</span>
             <span className="text-gray-500 text-lg font-bold">
               {format(post.postedOn)}

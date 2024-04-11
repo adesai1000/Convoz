@@ -1,8 +1,7 @@
 const PostModel = require("../model/PostModel");
 const CommentModel = require("../model/CommentModel")
 const PostUpvoteModel = require("../model/PostUpvoteModel");
-const postUpvoteModel = require("../model/PostUpvoteModel");
-
+const User = require("../model/User");
 module.exports.createPost = async (req, res) => {
     const { title, content, posterUserId, posterUsername } = req.body;
     const newPost = new PostModel({
@@ -51,7 +50,22 @@ module.exports.deletePost = async (req, res) => {
 module.exports.fetchPosts = async (req, res) => {
     try {
         const allPosts = await PostModel.find();
-        res.status(200).json(allPosts);
+
+        // Create an array to store promises of fetching user data
+        const userPromises = allPosts.map(post => User.findById(post.posterUserId));
+
+        // Wait for all user data promises to resolve
+        const users = await Promise.all(userPromises);
+
+        // Update each post object with the isVip status
+        const postsWithIsVip = allPosts.map((post, index) => {
+            return {
+                ...post.toObject(),
+                isVip: users[index] ? users[index].isVip : false
+            };
+        });
+
+        res.status(200).json(postsWithIsVip);
     } catch (error) {
         res.status(500).json(error);
     }
