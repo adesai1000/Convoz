@@ -13,6 +13,7 @@ import GoTop from './components/GoTop';
 import EditComment from './Pages/EditComment';
 import EditPost from './Pages/EditPost';
 import SearchView from './Pages/SearchView';
+import Vip from './Pages/Vip';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path='/editComment' element={<EditComment />}/>
         <Route path='/editPost' element={<EditPost />}/>
         <Route path='/search/:query' element={<SearchView />} />
+        <Route path='/vip' element={<Vip />}/>
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
