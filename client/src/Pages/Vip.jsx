@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { MdOutlineVerified } from "react-icons/md";
+import { MdOutlineVerified } from "react-icons/md"; 
 import { FaDollarSign } from "react-icons/fa";
-
+import { RiVipCrownLine } from "react-icons/ri";
 const Vip = () => {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -45,14 +45,14 @@ const Vip = () => {
   return (
     <>
       <Navbar username={username} />
-      <div className="mt-10 bg-black flex justify-center items-center">
-        <div className="bg-[#093726] h-auto w-96 rounded-lg shadow-lg p-2">
+      <div className="mt-8 bg-black flex justify-center items-center">
+        <div className="bg-black h-auto w-96 rounded-lg shadow-lg p-2 border-2 border-slate-600">
           <MdOutlineVerified className="text-5xl text-[#eab308] mt-2 mb-1 ml-4" />
           <h1 className="text-4xl font-bold font-poppins text-white ml-4">
             Become a VIP
           </h1>
           <div className="flex flex-row items-center justify-center mt-2">
-          <FaDollarSign className="text-[#D4AF37] text-5xl mr-4" />
+          <RiVipCrownLine  className="text-[#D4AF37] text-4xl mr-4" />
             <div className="mt-2 h-20 w-52 mb-2 bg-white p-2 rounded-3xl border-4 border-[#eab308] shadow-md">
               <div className="flex flex-row items-center">
                 <img
@@ -64,7 +64,7 @@ const Vip = () => {
                 <MdOutlineVerified className="text-4xl text-[#eab308] mt-2 mb-1" />
               </div>
             </div>
-            <FaDollarSign className="text-[#D4AF37] text-5xl ml-4" />
+            <RiVipCrownLine  className="text-[#D4AF37] text-4xl ml-4" />
           </div>
           <div className="text-white flex mt-5 flex-col">
             <div className="flex flex-row mb-2 ml-3">
@@ -85,7 +85,7 @@ const Vip = () => {
                 </p>
               </div>
             </div>
-            <button className="bg-[#c5a333] hover:bg-[#D4AF37] text-white py-3 px-6  rounded-xl text-2xl font-bold shadow-xl">Pay $5</button>
+            <button className="bg-[#1976D2] hover:bg-[#D4AF37] text-white py-3 px-6  rounded-xl text-2xl font-bold shadow-xl">Pay $5</button>
           </div>
         </div>
       </div>
