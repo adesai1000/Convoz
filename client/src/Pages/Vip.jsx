@@ -90,6 +90,7 @@ const checkout = async () => {
         quantity: quantity,
         price: itemPrice,
         name: itemName,
+        userId: localStorage.getItem("currentUser"),
       }),
     });
     const data = await res.json();
@@ -124,7 +125,7 @@ const checkout = async () => {
             </h1>
             <div className="flex flex-row items-center justify-center mt-2">
               <RiVipCrownLine className="text-[#D4AF37] text-4xl mr-4" />
-              <div className="mt-2 h-20 w-52 mb-2 bg-white p-2 rounded-3xl border-4 border-[#eab308] shadow-md">
+              <div className="mt-2 h-20 w-auto mb-2 bg-white p-2 rounded-3xl border-4 border-[#eab308] shadow-md">
                 <div className="flex flex-row items-center">
                   <img
                     className="h-12 w-12 mt-1 rounded-full overflow-hidden border-2 border-black shadow-md"
