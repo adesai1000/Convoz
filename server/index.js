@@ -48,29 +48,30 @@ app.use((err, req, res, next) => {
 
 
 //STRIPE INTEGRATION
-app.post("/checkout", async(req,res)=>{
-  try{
+// STRIPE INTEGRATION
+app.post("/checkout", async (req, res) => {
+  try {
+    const { id, quantity, price, name } = req.body;
+
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: [card],
+      payment_method_types: ["card"],
       mode: "payment",
-      line_items: req.body.items.map(item=>{
-        return{
-          price_data:{
-            currency:"usd",
-            product_data:{
-            name:item.name
-            },
-            unit_amount:(item.price)*100,
+      line_items: [{
+        price_data: {
+          currency: "inr",
+          product_data: {
+            name: name
           },
-          quantity:item.quantity
-        }
-      }),
-      success_url:"http://localhost:5173/success",
-      cancel_url:"http://localhost:5173/cancel"
-    })
-    res.json({url:session.url})
+          unit_amount: price * 100, // assuming price is in cents
+        },
+        quantity: quantity
+      }],
+      success_url: "http://localhost:5173/success",
+      cancel_url: "http://localhost:5173/cancel"
+    });
+
+    res.json({ url: session.url });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-  catch(error){
-    res.status(500).json({error:error.message})
-  }
-})
+});

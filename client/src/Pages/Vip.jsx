@@ -68,6 +68,44 @@ const Vip = () => {
     };
   }, [cookies, navigate, removeCookie]);
 
+  const itemName="CONVOZ VIP"
+  const itemPrice=500;
+  const quantity=1;
+
+const checkout = async () => {
+  try {
+    if (isNaN(quantity) || isNaN(itemPrice) || quantity <= 0 || itemPrice <= 0) {
+      console.error("Invalid quantity or price.");
+      return;
+    }
+
+    const res = await fetch("http://localhost:5000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        id: 1,
+        quantity: quantity,
+        price: itemPrice,
+        name: itemName,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.url) {
+      console.log("Redirecting to:", data.url);
+      window.location = data.url;
+    } else {
+      console.error("No URL found in the API response.");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+  
   return (
     <>
       <Navbar username={username} />
@@ -155,7 +193,7 @@ const Vip = () => {
                   </p>
                 </div>
               </div>
-              <button className="bg-[#1976D2] hover:bg-[#D4AF37] text-white py-3 px-6  rounded-xl text-2xl font-bold shadow-xl">
+              <button className="bg-[#1976D2] hover:bg-[#D4AF37] text-white py-3 px-6  rounded-xl text-2xl font-bold shadow-xl" onClick={checkout}>
                 Pay $5
               </button>
             </div>
