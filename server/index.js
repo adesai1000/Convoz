@@ -9,6 +9,7 @@ const MessageRoute = require("./routes/MessageRoute");
 const PostRoute = require("./routes/PostRoute")
 const CommentRoute = require("./routes/CommentRoute")
 const SearchRoute = require("./routes/SearchRoute");
+const stripe = require("stripe")(process.env.SECRET_STRIPE_KEY)
 const app = express();
 dotenv.config();
 
@@ -44,3 +45,32 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');
 });
+
+
+//STRIPE INTEGRATION
+app.post("/checkout", async(req,res)=>{
+  try{
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: [card],
+      mode: "payment",
+      line_items: req.body.items.map(item=>{
+        return{
+          price_data:{
+            currency:"usd",
+            product_data:{
+            name:item.name
+            },
+            unit_amount:(item.price)*100,
+          },
+          quantity:item.quantity
+        }
+      }),
+      success_url:"http://localhost:5173/success",
+      cancel_url:"http://localhost:5173/cancel"
+    })
+    res.json({url:session.url})
+  }
+  catch(error){
+    res.status(500).json({error:error.message})
+  }
+})

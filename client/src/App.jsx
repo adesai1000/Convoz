@@ -14,6 +14,8 @@ import EditComment from './Pages/EditComment';
 import EditPost from './Pages/EditPost';
 import SearchView from './Pages/SearchView';
 import Vip from './Pages/Vip';
+import Success from './Pages/Success';
+import Cancel from './Pages/Cancel';
 
 export default function App() {
   return (
@@ -32,6 +34,8 @@ export default function App() {
         <Route path='/editPost' element={<EditPost />}/>
         <Route path='/search/:query' element={<SearchView />} />
         <Route path='/vip' element={<Vip />}/>
+        <Route path='/success' element={<Success />}/>
+        <Route path='/cancel' element={<Cancel />} />
         <Route path='*' element={<Notfound />} />
       </Routes >
     </BrowserRouter >
