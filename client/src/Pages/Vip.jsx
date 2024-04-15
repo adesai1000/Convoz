@@ -81,7 +81,7 @@ const Vip = () => {
         <div className="mt-8 bg-black flex justify-center items-center">
           <div className="bg-black h-auto w-96 rounded-lg shadow-lg p-2 border-2 border-slate-600">
             <MdOutlineVerified className="text-5xl text-[#eab308] mt-2 mb-1 ml-4" />
-            <h1 className="text-4xl font-bold font-poppins text-white ml-4">
+            <h1 className="text-4xl font-bold font-poppins text-[#D4AF37] ml-4">
               You are a VIP!
             </h1>
             <div className="flex flex-row items-center justify-center mt-2">
