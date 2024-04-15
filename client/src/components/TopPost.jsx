@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegArrowAltCircleUp } from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
