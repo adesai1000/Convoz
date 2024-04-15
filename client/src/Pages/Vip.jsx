@@ -23,7 +23,6 @@ const Vip = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         if (!cookies.token) {
           navigate("/login");
           return;
@@ -104,7 +103,7 @@ const Vip = () => {
             </div>
             <div className="flex justify-center mt-4">
               <button
-                className="bg-[#D4AF37] hover:bg-[#1976D2] text-white py-3 px-6 rounded-xl text-2xl font-bold shadow-xl"
+                className="bg-[#D4AF37] mb-2 hover:bg-[#1976D2] text-white py-3 px-6 rounded-xl text-2xl font-bold shadow-xl"
                 onClick={goHome}
               >
                 Continue
