@@ -38,6 +38,9 @@ dependencies:
   nodemon:
     specifier: ^3.0.3
     version: 3.0.3
+  server:
+    specifier: 'link:'
+    version: 'link:'
   stripe:
     specifier: ^15.1.0
     version: 15.1.0

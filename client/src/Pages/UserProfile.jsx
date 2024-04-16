@@ -3,10 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import Post from "../components/Post";
 import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
-import UserComment from "../components/userComment";
+import userComment from "../components/UserComment"
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -107,7 +106,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                     {activeTab === "Posts" && <MyPost username={id} sortingOption={sortingOption} />}
-                    {activeTab === "Comments" && <UserComment username={id} sortingOption={sortingOption}/>}
+                    {activeTab === "Comments" && <userComment username={id} sortingOption={sortingOption}/>}
                 </div>
             </div>
         </>
