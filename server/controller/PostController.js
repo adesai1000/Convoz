@@ -23,7 +23,14 @@ module.exports.findPost = async (req, res) => {
     try {
         const resultPost = await PostModel.findOne({ _id: postId });
         if (resultPost) {
-            res.status(200).json(resultPost);
+            // Fetch user data for the poster of the post
+            const poster = await User.findById(resultPost.posterUserId);
+            // Include isVip status in the post object
+            const postWithIsVip = {
+                ...resultPost.toObject(),
+                isVip: poster ? poster.isVip : false
+            };
+            res.status(200).json(postWithIsVip);
         } else {
             res.status(404).json({ message: "Post not found" });
         }
@@ -31,6 +38,7 @@ module.exports.findPost = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
 
 module.exports.deletePost = async (req, res) => {
     const { postId, posterUserId } = req.body;

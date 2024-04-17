@@ -13,6 +13,7 @@ import { MdOutlineVerified } from "react-icons/md";
 
 const ProfRight = ({ username, verified}) => {
     const [randomUsers, setRandomUsers] = useState([]);
+    const [randomisVip, setRandomisVip] = useState([]);
     const [cookies, removeCookie] = useCookies([]);
     const [loading, setLoading] = useState(true);
     const [userid, setUserid] = useState(null)
@@ -27,6 +28,7 @@ const ProfRight = ({ username, verified}) => {
             setLoading(true);
             const response = await axios.get('http://localhost:5000/random');
             setRandomUsers(response.data.usernames);
+            setRandomisVip(response.data.isVip)
         } catch (error) {
             console.error('Error fetching random users:', error);
         } finally {
@@ -150,12 +152,17 @@ const ProfRight = ({ username, verified}) => {
                                 <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
                                     <img src={`https://robohash.org/${user}`} alt={`User-${index}`} />
                                     <p className="ml-4 text-white justify-center text-xl font-bold">{user}</p>
+                                    {randomisVip[index] && (
+                                        <MdOutlineVerified className="absolute top-0 right-0 text-yellow-500 text-xl" />
+                                    )}
                                 </div>
                                 <Link to={`/user/${user}`}>
-                            <p className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline mt-5 justify-center cursor-pointer text-xl font-bold">View</p>
-                            </Link>
+                                    <p className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline mt-5 justify-center cursor-pointer text-xl font-bold">View</p>
+                                </Link>
                             </div>
                         ))
+                        
+                        
                     )}
                 </div>
             </div>

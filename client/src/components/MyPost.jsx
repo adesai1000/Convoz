@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { MdOutlineVerified } from "react-icons/md";
 
 const MyPost = ({ username, sortingOption }) => {
     const navigate = useNavigate();
@@ -58,7 +59,6 @@ const MyPost = ({ username, sortingOption }) => {
         }
     };
 
-    // Function to truncate content to first 25 words
     const truncateContent = (content) => {
         const words = content.split(' ');
         if (words.length > 25) {
@@ -94,6 +94,10 @@ const MyPost = ({ username, sortingOption }) => {
                                 </Link>
                             </div>
                             <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
+
+            {post.isVip &&(
+               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
+            )}
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             {post.isEdited && (

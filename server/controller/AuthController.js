@@ -85,11 +85,21 @@ module.exports.deleteProfile = async(req,res) =>{
 }
 module.exports.randomUsers = async (req, res) => {
     try {
-      const users = await User.aggregate([{ $sample: { size: 3 } }]);
-      const usernames = users.map(user => user.username);
-      res.json({ usernames });
+        const users = await User.aggregate([{ $sample: { size: 3 } }]);
+        const userDetails = users.map(user => ({
+            username: user.username,
+            isVip: user.isVip || false // Assuming isVip is a field in the User schema
+        }));
+        
+        // Separate arrays for usernames and isVip
+        const usernames = userDetails.map(user => user.username);
+        const isVip = userDetails.map(user => user.isVip);
+
+        res.json({ usernames, isVip });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server Error' });
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
     }
-  };
+};
+
+
