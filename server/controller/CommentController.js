@@ -1,6 +1,7 @@
 const CommentModel = require("../model/CommentModel");
 const PostModel = require("../model/PostModel");
-const CommentUpvoteModel = require("../model/CommentUpvoteModel")
+const CommentUpvoteModel = require("../model/CommentUpvoteModel");
+const User = require("../model/User")
 module.exports.createComment = async (req, res) => {
     const { content, postId, commenterUserId, commenterUsername } = req.body;
     const newComment = new CommentModel({
@@ -53,22 +54,49 @@ module.exports.fetchComments = async (req, res) => {
     const { postId } = req.body;
     try {
         const comments = await CommentModel.find({ postId: postId });
-        res.status(200).json(comments);
+
+        // Create an array to store promises of fetching user data for each commenter
+        const userPromises = comments.map(comment => User.findById(comment.commenterUserId));
+
+        // Wait for all user data promises to resolve
+        const users = await Promise.all(userPromises);
+
+        // Update each comment object with the isVip status
+        const commentsWithIsVip = comments.map((comment, index) => {
+            return {
+                ...comment.toObject(),
+                isVip: users[index] ? users[index].isVip : false
+            };
+        });
+
+        res.status(200).json(commentsWithIsVip);
     } catch (error) {
         res.status(500).json(error);
     }
-}
+};
 
-module.exports.fetchAllUserComments = async(req,res) =>{
-    const {username} = req.body;
-    try{
-        const userComments = await CommentModel.find({ commenterUsername: username});
-        res.status(200).json(userComments)
+
+module.exports.fetchAllUserComments = async (req, res) => {
+    const { username } = req.body;
+    try {
+        const userComments = await CommentModel.find({ commenterUsername: username });
+
+        const userPromises = userComments.map(comment => User.findOne({ username: comment.commenterUsername }));
+
+        const users = await Promise.all(userPromises);
+
+        const commentsWithIsVip = userComments.map((comment, index) => {
+            return {
+                ...comment.toObject(),
+                isVip: users[index] ? users[index].isVip : false
+            };
+        });
+
+        res.status(200).json(commentsWithIsVip);
+    } catch (error) {
+        res.status(500).json(error);
     }
-    catch(error){
-        res.status(500).json(error)
-    }
-}
+};
 
 module.exports.editComment = async (req, res) => {
     const { commentId, content } = req.body;

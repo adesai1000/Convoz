@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import ProfRight from "../components/ProfRight";
 import MyPost from "../components/MyPost";
-import userComment from "../components/UserComment"
+import UserComment from "../components/UserComment"
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -106,7 +106,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                     {activeTab === "Posts" && <MyPost username={id} sortingOption={sortingOption} />}
-                    {activeTab === "Comments" && <userComment username={id} sortingOption={sortingOption}/>}
+                    {activeTab === "Comments" && <UserComment username={id} sortingOption={sortingOption}/>}
                 </div>
             </div>
         </>

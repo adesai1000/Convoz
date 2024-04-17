@@ -11,6 +11,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { useNavigate } from "react-router-dom";
 import { TbEditCircle } from "react-icons/tb";
+import { MdOutlineVerified } from "react-icons/md";
 
 const CommentView = ({ id, currentUser }) => {
   const navigate = useNavigate();
@@ -110,9 +111,14 @@ const CommentView = ({ id, currentUser }) => {
               </div>
               <Link to={`/user/${comment.commenterUsername}`}>
                 <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">
-                  {comment.commenterUsername}
+                  {comment.commenterUsername}                 
                 </span>
               </Link>
+              <div className="">
+            {comment.isVip &&(
+               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
+            )}
+            </div>  
               <span className="text-gray-500 mx-1">•</span>
               <span className="text-gray-500 text-sm md:text-lg font-bold">
                 {format(comment.postedOn)}
