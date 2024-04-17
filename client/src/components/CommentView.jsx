@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaRegArrowAltCircleUp, FaRegArrowAltCircleDown } from "react-icons/fa";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import RiseLoader from "react-spinners/RiseLoader";
 import { format } from "timeago.js";
 import ReactMarkdown from "react-markdown";
@@ -80,32 +80,6 @@ const CommentView = ({ id, currentUser }) => {
     navigate("/editComment");
   };
 
-  const handleUpvote = async (commentId) => {
-    try {
-      await axios.post(
-        "http://localhost:5000/comment/upvote",
-        { commentId, userId: currentUser },
-        { withCredentials: true }
-      );
-      fetchComments(); // Refresh comments after upvoting
-    } catch (error) {
-      console.error("Error Upvoting Comment:", error);
-    }
-  };
-
-  const handleDownvote = async (commentId) => {
-    try {
-      await axios.post(
-        "http://localhost:5000/comment/removeupvote",
-        { commentId, userId: currentUser },
-        { withCredentials: true }
-      );
-      fetchComments(); // Refresh comments after downvoting
-    } catch (error) {
-      console.error("Error Removing Upvote from Comment:", error);
-    }
-  };
-
   return (
     <div className="mt-4 cursor-pointer">
       <h1 className="text-white text-4xl font-bold mb-4">
@@ -165,24 +139,8 @@ const CommentView = ({ id, currentUser }) => {
               {comment.content}
             </ReactMarkdown>
             <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-              <button
-                className={`flex items-center text-[#1976D2] ${
-                  comment.upvoters.includes(currentUser) ? 'text-white' : ''
-                }`}
-                onClick={() => handleUpvote(comment._id)}
-                disabled={comment.upvoters.includes(currentUser)}
-              >
+              <button className="flex items-center text-[#1976D2]">
                 <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" />{" "}
-                {comment.upvotes}
-              </button>
-              <button
-                className={`flex items-center text-[#1976D2] ${
-                  comment.upvoters.includes(currentUser) ? '' : 'text-white'
-                }`}
-                onClick={() => handleDownvote(comment._id)}
-                disabled={!comment.upvoters.includes(currentUser)}
-              >
-                <FaRegArrowAltCircleDown className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" />{" "}
                 {comment.upvotes}
               </button>
             </div>
