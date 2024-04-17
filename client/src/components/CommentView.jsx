@@ -10,6 +10,7 @@ import { FiEdit } from "react-icons/fi";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from "react-router-dom";
+import { TbEditCircle } from "react-icons/tb";
 
 const CommentView = ({ id, currentUser }) => {
     const navigate = useNavigate();
@@ -103,7 +104,9 @@ const CommentView = ({ id, currentUser }) => {
                                 <span className="text-gray-500 mx-1">•</span>
                                 <span className="text-gray-500 text-sm md:text-lg font-bold">{format(comment.postedOn)}</span>
                                 {comment.isEdited && (
-                                    <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">[edited]</span>
+                                    <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">
+                                    <TbEditCircle />
+                                    </span>
                                 )}
                                 {comment.commenterUsername === currentUser && (
                                     <>

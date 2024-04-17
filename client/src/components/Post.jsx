@@ -7,6 +7,7 @@ import { format } from "timeago.js";
 import ReactMarkdown from "react-markdown";
 import confetti from "canvas-confetti";
 import { MdOutlineVerified } from "react-icons/md";
+import { TbEditCircle } from "react-icons/tb";
 
 const Post = ({ sortingOption }) => {
   const [posts, setPosts] = useState([]);
@@ -214,8 +215,8 @@ const Post = ({ sortingOption }) => {
               {format(post.postedOn)}
             </span>
             {post.isEdited && (
-              <span className="text-gray-500  text-lg font-bold ml-2">
-                [edited]
+              <span className="text-gray-500 text-xl font-bold ml-2">
+                <TbEditCircle />
               </span>
             )}
           </div>

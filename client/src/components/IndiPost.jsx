@@ -12,6 +12,7 @@ import RiseLoader from "react-spinners/RiseLoader";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineVerified } from "react-icons/md";
+import { TbEditCircle } from "react-icons/tb";
 
 const IndiPost = ({ id, currentUser }) => {
   const [post, setPost] = useState(null);
@@ -196,7 +197,7 @@ const IndiPost = ({ id, currentUser }) => {
               </span>
               {post.isEdited && (
                 <span className="text-gray-500  text-sm md:text-lg font-bold ml-2">
-                  [edited]
+                  <TbEditCircle />
                 </span>
               )}
               {post.posterUsername === currentUser && (

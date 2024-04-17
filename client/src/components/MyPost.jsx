@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegArrowAltCircleUp } from 'react-icons/fa';
 import { BiCommentMinus } from "react-icons/bi";
 import axios from 'axios';
 import { format } from "timeago.js";
@@ -10,6 +9,7 @@ import ReactMarkdown from 'react-markdown';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { MdOutlineVerified } from "react-icons/md";
+import { TbEditCircle } from "react-icons/tb";
 
 const MyPost = ({ username, sortingOption }) => {
     const navigate = useNavigate();
@@ -101,7 +101,9 @@ const MyPost = ({ username, sortingOption }) => {
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             {post.isEdited && (
-                                <span className="text-gray-500  text-lg font-bold ml-2">[edited]</span>
+                                <span className="text-gray-500  text-lg font-bold ml-2">
+                            <TbEditCircle />
+                                </span>
                             )}
                         </div>
                         <Link to={{ pathname: `/posts/${post._id}` }} className="text-white text-2xl mb-2 font-bold">

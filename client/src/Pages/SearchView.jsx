@@ -9,6 +9,7 @@ import RightSide from "../components/RightSide";
 import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { MdOutlineVerified } from "react-icons/md";
+import { TbEditCircle } from "react-icons/tb";
 
 const SearchView = () => {
   const [results, setResults] = useState({ users: [], posts: [] });
@@ -110,8 +111,8 @@ const SearchView = () => {
                     {format(post.postedOn)}
                   </span>
                   {post.isEdited && (
-                    <span className="text-gray-500  text-lg font-bold ml-2">
-                      [edited]
+                    <span className="text-gray-500 text-lg font-bold ml-2">
+                      <TbEditCircle />
                     </span>
                   )}
                 </div>
