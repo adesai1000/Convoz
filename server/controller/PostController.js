@@ -59,13 +59,10 @@ module.exports.fetchPosts = async (req, res) => {
     try {
         const allPosts = await PostModel.find();
 
-        // Create an array to store promises of fetching user data
         const userPromises = allPosts.map(post => User.findById(post.posterUserId));
 
-        // Wait for all user data promises to resolve
         const users = await Promise.all(userPromises);
 
-        // Update each post object with the isVip status
         const postsWithIsVip = allPosts.map((post, index) => {
             return {
                 ...post.toObject(),
