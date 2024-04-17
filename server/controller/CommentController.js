@@ -1,6 +1,6 @@
 const CommentModel = require("../model/CommentModel");
 const PostModel = require("../model/PostModel");
-
+const CommentUpvoteModel = require("../model/CommentUpvoteModel")
 module.exports.createComment = async (req, res) => {
     const { content, postId, commenterUserId, commenterUsername } = req.body;
     const newComment = new CommentModel({
@@ -86,6 +86,70 @@ module.exports.editComment = async (req, res) => {
         res.status(200).json({ message: "Comment updated successfully", updatedComment });
     } catch (error) {
         console.error("Error editing comment:", error);
+        res.status(500).json(error);
+    }
+};
+module.exports.upvoteComment = async (req, res) => {
+    const { commentId, userId } = req.body;
+    try {
+        const existingUpvote = await CommentUpvoteModel.findOne({ commentId, upvoters: userId });
+
+        if (existingUpvote) {
+            return res.status(400).json({ message: "User has already upvoted this Comment" });
+        }
+
+        const updatedComment = await CommentModel.findByIdAndUpdate(
+            commentId,
+            { $inc: { upvotes: 1 } },
+            { new: true }
+        );
+
+        if (!updatedComment) {
+            return res.status(404).json({ message: "Comment not found" });
+        }
+
+        await CommentUpvoteModel.findOneAndUpdate(
+            { commentId },
+            { $push: { upvoters: userId } },
+            { upsert: true, new: true }
+        );
+
+        res.status(200).json({ message: "Comment upvoted successfully", updatedComment });
+    } catch (error) {
+        console.error("Error upvoting Comment:", error);
+        res.status(500).json(error);
+    }
+};
+
+
+
+module.exports.removeUpvoteFromComment = async (req, res) => {
+    const { commentId, userId } = req.body;
+    try {
+        const existingUpvote = await CommentUpvoteModel.findOne({ commentId, upvoters: userId });
+
+        if (!existingUpvote) {
+            return res.status(400).json({ message: "User has not upvoted this comment" });
+        }
+
+        const updatedComment = await CommentModel.findByIdAndUpdate(
+            commentId,
+            { $inc: { upvotes: -1 } },
+            { new: true }
+        );
+
+        if (!updatedComment) {
+            return res.status(404).json({ message: "Comment not found" });
+        }
+
+        await CommentUpvoteModel.findOneAndUpdate(
+            { commentId },
+            { $pull: { upvoters: userId } }
+        );
+
+        res.status(200).json({ message: "Upvote removed successfully", updatedComment });
+    } catch (error) {
+        console.error("Error removing upvote from comment:", error);
         res.status(500).json(error);
     }
 };
