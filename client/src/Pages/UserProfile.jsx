@@ -16,7 +16,7 @@ const UserProfile = () => {
     const [senderId, setSenderId] = useState(null);
     const [activeTab, setActiveTab] = useState("Posts");
     const [sortingOption, setSortingOption] = useState("latest");
-
+    const [verified, setVerified] = useState(false)
     const createChat = async () => {
         try {
             const response = await axios.post(
@@ -47,6 +47,9 @@ const UserProfile = () => {
                     {},
                     { withCredentials: true }
                 );
+                if(userData.data && userData.data.user.isVip==true){
+                    setVerified(true);
+                }
                 setUsername(userData.data.user.username);
                 setSenderId(userData.data.user._id);
                 if (id === userData.data.user.username) {
@@ -61,7 +64,7 @@ const UserProfile = () => {
 
         fetchData();
     }, [cookies.token, id, navigate, removeCookie]);
-
+    console.log(verified)
     useEffect(() => {
         const fetchReceiverId = async () => {
             try {
@@ -84,7 +87,7 @@ const UserProfile = () => {
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight username={id}/>
+                <ProfRight username={id} verified={verified}/>
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">

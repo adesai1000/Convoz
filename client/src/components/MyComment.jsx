@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import RiseLoader from "react-spinners/RiseLoader";
 import { format } from "timeago.js";
 import ReactMarkdown from "react-markdown";
@@ -157,11 +156,6 @@ const MyComment = ({ username, sortingOption }) => {
                 {comment.content}
               </ReactMarkdown>
             </Link>
-            <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
-              <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                <FaRegArrowAltCircleUp className="mr-2.5 " /> {comment.upvotes}
-              </button>
-            </div>
           </div>
         ))
       )}

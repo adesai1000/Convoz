@@ -12,29 +12,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { MdOutlineVerified } from "react-icons/md";
 
 const ProfRight = ({ username, verified}) => {
-    const [randomUsers, setRandomUsers] = useState([]);
-    const [randomisVip, setRandomisVip] = useState([]);
     const [cookies, removeCookie] = useCookies([]);
     const [loading, setLoading] = useState(true);
     const [userid, setUserid] = useState(null)
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchRandomUsers();
-    }, []);
     const id = localStorage.getItem('currentUser')
-    const fetchRandomUsers = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get('http://localhost:5000/random');
-            setRandomUsers(response.data.usernames);
-            setRandomisVip(response.data.isVip)
-        } catch (error) {
-            console.error('Error fetching random users:', error);
-        } finally {
-            setLoading(false); 
-        }
-    };
+
 
     const [posts, setPosts] = useState([]);
 
@@ -137,34 +121,7 @@ const ProfRight = ({ username, verified}) => {
                     <div className="text-2xl md:text-xl text-white font-bold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target=" _blank" className="text-[#1976D2] underline hover:text-[#1976d2e2]  font-semibold"> Repo!</a>
                     </div>
                 </div>
-                <div className="hidden mb-3 border-2 border-slate-600 p-3 rounded md:block">
-                    <div className="border-b-2 border-slate-600 flex justify-between">
-                        <div className="text-xl  p-2 mb-1 rounded text-white font-bold">Find Others</div>
-                        <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600 hover:animate-spin" onClick={fetchRandomUsers}/>
-                    </div>
-                    {loading ? (
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <RiseLoader color={"#1976D2"} loading={true} size={10} />
-                        </div>
-                    ) : (
-                        randomUsers.map((user, index) => (
-                            <div key={index} className="flex justify-between">
-                                <div className="relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
-                                    <img src={`https://robohash.org/${user}`} alt={`User-${index}`} />
-                                    <p className="ml-4 text-white justify-center text-xl font-bold">{user}</p>
-                                    {randomisVip[index] && (
-                                        <MdOutlineVerified className="absolute top-0 right-0 text-yellow-500 text-xl" />
-                                    )}
-                                </div>
-                                <Link to={`/user/${user}`}>
-                                    <p className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline mt-5 justify-center cursor-pointer text-xl font-bold">View</p>
-                                </Link>
-                            </div>
-                        ))
-                        
-                        
-                    )}
-                </div>
+                
             </div>
         </div>
     );
