@@ -10,18 +10,16 @@ const PostRoute = require("./routes/PostRoute");
 const CommentRoute = require("./routes/CommentRoute");
 const SearchRoute = require("./routes/SearchRoute");
 const User = require("./model/User");
-const axios = require("axios")
 const app = express();
 dotenv.config();
 
-// Set up CORS middleware
 app.use(cors({
   origin: ["http://localhost:5173", "https://c0nvoz.vercel.app", "http://192.168.29.61:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-// Handle pre-flight requests
 app.options('*', cors());
 
 mongoose.connect(process.env.MONGO_URL)
@@ -36,7 +34,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
   app.use(cookieParser({
-    sameSite: 'none' // or 'lax'
+    sameSite: 'none'
   }));
   
 app.use(express.json());
