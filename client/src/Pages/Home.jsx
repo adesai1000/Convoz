@@ -39,6 +39,7 @@ const Home = () => {
                 } else {
                     removeCookie("token");
                     navigate("/login");
+                    console.log("YOU ARE REMOVED")
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);

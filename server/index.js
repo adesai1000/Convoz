@@ -14,11 +14,15 @@ const axios = require("axios")
 const app = express();
 dotenv.config();
 
-app.options('*', cors({
+// Set up CORS middleware
+app.use(cors({
   origin: ["http://localhost:5173", "https://c0nvoz.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
+
+// Handle pre-flight requests
+app.options('*', cors());
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
@@ -30,12 +34,6 @@ mongoose.connect(process.env.MONGO_URL)
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
   });
-
-  app.use(cors({
-    origin: ["http://localhost:5173", "https://c0nvoz.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  }));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -94,6 +92,5 @@ app.post("/checkout", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
 
 module.exports = app;
