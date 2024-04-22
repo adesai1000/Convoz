@@ -16,7 +16,7 @@ dotenv.config();
 
 // Set up CORS middleware
 app.use(cors({
-  origin: ['*'],
+  origin: ["http://localhost:5173", "https://c0nvoz.vercel.app", "http://192.168.29.61:5173"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
@@ -36,7 +36,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
   app.use(cookieParser({
-    sameSite: 'lax' // or 'lax'
+    sameSite: 'none' // or 'lax'
   }));
   
 app.use(express.json());
