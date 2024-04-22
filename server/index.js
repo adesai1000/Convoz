@@ -16,7 +16,7 @@ dotenv.config();
 
 // Set up CORS middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://c0nvoz.vercel.app", "http://192.168.29.61:5173"],
+  origin: ["https://c0nvoz.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
