@@ -28,7 +28,7 @@ const Home = () => {
                     return;
                 }
                 const response = await axios.post(
-                    "https://convoz.onrender.com//",
+                    "https://convoz.onrender.com/",
                     {},
                     { withCredentials: true }
                 );
