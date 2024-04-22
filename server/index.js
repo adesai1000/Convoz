@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
 app.use(cors({
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "https://c0nvoz.vercel.app/"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
