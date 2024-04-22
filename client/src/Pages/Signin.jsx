@@ -21,7 +21,9 @@ export default function Signin() {
 
             if (response.data.success) {
                 toast.success("Signed in!");
-                navigate("/home");
+                setTimeout(() => {
+                    navigate("/home");
+                }, 2000); // 2-second delay
             } else {
                 toast.error(response.data.message);
             }
@@ -29,7 +31,6 @@ export default function Signin() {
             toast.error(error.message);
         }
     };
-
     return (
         <>
             <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-black text-white">
