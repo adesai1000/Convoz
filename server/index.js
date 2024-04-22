@@ -14,6 +14,8 @@ const axios = require("axios")
 const app = express();
 dotenv.config();
 
+app.options('*', cors());
+
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB");
@@ -25,11 +27,11 @@ mongoose.connect(process.env.MONGO_URL)
     console.error("Error connecting to MongoDB:", error);
   });
 
-app.use(cors({
-  origin: ["https://c0nvoz.vercel.app/"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-}));
+  app.use(cors({
+    origin: ["http://localhost:5173", "https://c0nvoz.vercel.app"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  }));
 
 app.use(cookieParser());
 app.use(express.json());
