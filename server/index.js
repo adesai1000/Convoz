@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://c0nvoz.vercel.app/"],
+  origin: ["https://c0nvoz.vercel.app/"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
@@ -71,8 +71,8 @@ app.post("/checkout", async (req, res) => {
           quantity: quantity,
         },
       ],
-      success_url: "http://localhost:5173/vip",
-      cancel_url: "http://localhost:5173/cancel",
+      success_url: "https://c0nvoz.vercel.app/vip",
+      cancel_url: "https://c0nvoz.vercel.app/cancel",
     });
 
     // Update the user to VIP
