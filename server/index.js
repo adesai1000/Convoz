@@ -35,7 +35,10 @@ mongoose.connect(process.env.MONGO_URL)
     console.error("Error connecting to MongoDB:", error);
   });
 
-app.use(cookieParser());
+  app.use(cookieParser({
+    sameSite: 'strict' // or 'lax'
+  }));
+  
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/chat", ChatRoute);
