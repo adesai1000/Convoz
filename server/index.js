@@ -14,7 +14,11 @@ const axios = require("axios")
 const app = express();
 dotenv.config();
 
-app.options('*', cors());
+app.options('*', cors({
+  origin: ["http://localhost:5173", "https://c0nvoz.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
