@@ -21,7 +21,7 @@ app.use(cors({
 }));
 
 app.options('*', cors());
-
+app.set("trust proxy", 1); 
 mongoose.connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB");
