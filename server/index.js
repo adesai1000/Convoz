@@ -36,7 +36,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
   app.use(cookieParser({
-    sameSite: 'strict' // or 'lax'
+    sameSite: 'none' // or 'lax'
   }));
   
 app.use(express.json());
