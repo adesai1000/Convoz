@@ -19,36 +19,36 @@ const Home = () => {
         navigate('/create');
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true);
-                if (!cookies.token) {
-                    navigate("/login");
-                    return;
-                }
-                const response = await axios.post(
-                    "https://convoz.onrender.com/",
-                    {},
-                    { withCredentials: true }
-                );
-                const { status, user } = response.data;
-                if (status) {
-                    setUsername(user.username);
-                    localStorage.setItem("currentUser", user._id)
-                } else {
-                    removeCookie("token");
-                    navigate("/login");
-                    console.log("YOU ARE REMOVED")
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, [cookies, navigate, removeCookie]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             setLoading(true);
+    //             if (!cookies.token) {
+    //                 navigate("/login");
+    //                 return;
+    //             }
+    //             const response = await axios.post(
+    //                 "https://convoz.onrender.com/",
+    //                 {},
+    //                 { withCredentials: true }
+    //             );
+    //             const { status, user } = response.data;
+    //             if (status) {
+    //                 setUsername(user.username);
+    //                 localStorage.setItem("currentUser", user._id)
+    //             } else {
+    //                 removeCookie("token");
+    //                 navigate("/login");
+    //                 console.log("YOU ARE REMOVED")
+    //             }
+    //         } catch (error) {
+    //             console.error("Error fetching data:", error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchData();
+    // }, [cookies, navigate, removeCookie]);
 
     return (
         <>
