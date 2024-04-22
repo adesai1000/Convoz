@@ -30,7 +30,7 @@ export default function Navbar({ username }) {
   const handleMessenger = () => {
     navigate("/messenger");
   };
-  const vip = () =>{
+  const vip = () => {
     navigate("/vip")
   }
   const handleProfile = () => {
@@ -108,7 +108,7 @@ export default function Navbar({ username }) {
                         )}
                         onClick={handleProfile}
                       >
-                        <CgProfile className="mr-2"/> Profile
+                        <CgProfile className="mr-2" /> Profile
                       </a>
                     )}
                   </Menu.Item>
@@ -121,7 +121,7 @@ export default function Navbar({ username }) {
                           "border-b-2 border-slate-600 px-4 py-2 text-xl font-bold  cursor-pointer flex flex-row items-center text-[#eab308]"
                         )}
                       >
-                         <RiVipCrownLine className="mr-2 text-[#eab308]" /> VIP <RiVipCrownLine className="ml-2 text-[#eab308]" />
+                        <RiVipCrownLine className="mr-2 text-[#eab308]" /> VIP <RiVipCrownLine className="ml-2 text-[#eab308]" />
                       </a>
                     )}
                   </Menu.Item>
@@ -134,7 +134,7 @@ export default function Navbar({ username }) {
                           "px-4 py-2 text-xl font-bold text-white cursor-pointer flex flex-row items-center"
                         )}
                       >
-                       <VscSignOut className="mr-2"/> Sign out
+                        <VscSignOut className="mr-2" /> Sign out
                       </a>
                     )}
                   </Menu.Item>
