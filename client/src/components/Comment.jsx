@@ -3,29 +3,29 @@ import axios from 'axios';
 import profaneWords from 'profane-words';
 import { toast } from 'react-toastify';
 
-const Comment = ({postId, currentUser, currentUserId}) => {
+const Comment = ({ postId, currentUser, currentUserId }) => {
     const [content, setContent] = useState("");
 
-    const handleSubmit = async() => {
-        try{
+    const handleSubmit = async () => {
+        try {
             const commenterUserId = currentUserId;
             const commenterUsername = currentUser;
             const filteredContent = filterProfanity(content);
 
             const response = await axios.post(
-                "http://localhost:5000/comment/create", {
+                "https://convoz.onrender.com/comment/create", {
                 content: filteredContent,
                 postId,
                 commenterUserId,
                 commenterUsername
-                }
+            }
             )
             toast.success("Comment Created!")
             setTimeout(() => {
                 location.reload();
-              }, 500);
+            }, 500);
         }
-        catch(error){
+        catch (error) {
             toast.error(error)
             console.error("Error Creating Comment:", error)
         }

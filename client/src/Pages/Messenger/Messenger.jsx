@@ -27,7 +27,7 @@ export default function Messenger() {
       }
       try {
         const { data } = await axios.post(
-          "http://localhost:5000",
+          "https://convoz.onrender.com/",
           {},
           { withCredentials: true }
         );
@@ -61,7 +61,7 @@ export default function Messenger() {
     const getMessages = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/message/${currentChat?._id}`
+          `https://convoz.onrender.com/message/${currentChat?._id}`
         );
         setMessages(res.data);
         scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -77,7 +77,7 @@ export default function Messenger() {
   }, [currentChat]);
 
   const userChats = async () => {
-    const API = axios.create({ baseURL: "http://localhost:5000" });
+    const API = axios.create({ baseURL: "https://convoz.onrender.com/" });
     return API.get(`/chat/${id}`);
   };
 
@@ -89,7 +89,7 @@ export default function Messenger() {
       text: newMessage,
     };
     try {
-      await axios.post(`http://localhost:5000/message`, message);
+      await axios.post(`https://convoz.onrender.com/message`, message);
       setNewMessage("");
     } catch (error) {
       console.log(error);

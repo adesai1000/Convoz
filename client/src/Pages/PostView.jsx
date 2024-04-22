@@ -20,7 +20,7 @@ const PostView = () => {
                 navigate("/login");
             }
             const { data } = await axios.post(
-                "http://localhost:5000",
+                "https://convoz.onrender.com/",
                 {},
                 { withCredentials: true }
             );
@@ -39,9 +39,9 @@ const PostView = () => {
             <Navbar username={username} />
             <div className=" bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
                 <div className="w-full md:w-1/2 ">
-                    <IndiPost id={id} currentUser={username}/>
-                    <Comment postId={id} currentUser={username} currentUserId={userId}/>
-                    <CommentView id={id} currentUser ={username}/>
+                    <IndiPost id={id} currentUser={username} />
+                    <Comment postId={id} currentUser={username} currentUserId={userId} />
+                    <CommentView id={id} currentUser={username} />
                 </div>
                 <RightSide />
             </div>

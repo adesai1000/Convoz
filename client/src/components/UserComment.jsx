@@ -15,7 +15,7 @@ const MyComment = ({ username, sortingOption }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/comment/all",
+        "https://convoz.onrender.com/comment/all",
         { username: username },
         { withCredentials: true }
       );

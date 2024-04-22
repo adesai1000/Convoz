@@ -19,7 +19,7 @@ const RightSide = () => {
     const fetchRandomUsers = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('http://localhost:5000/random');
+            const response = await axios.get('https://convoz.onrender.com/random');
             setRandomUsers(response.data);
         } catch (error) {
             console.error('Error fetching random users:', error);
@@ -53,17 +53,17 @@ const RightSide = () => {
                     randomUsers.map((user, index) => (
                         <div key={index} className="flex justify-between">
                             <div className=" relative flex rounded-full bg-[#E8E8E8] h-8 w-8 mt-5">
-                                <img src={`https://robohash.org/${user.username}`} alt={`user-${index}`}  />
+                                <img src={`https://robohash.org/${user.username}`} alt={`user-${index}`} />
                                 <p className="ml-4 text-white justify-center text-xl font-bold">{user.username}</p>
                                 <span>{user.isVip && <MdOutlineVerified className="text-yellow-500 ml-3 mt-1 text-xl" />}</span>
-                                
+
                             </div>
                             <Link to={`/user/${user.username}`}>
                                 <p className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline mt-5 justify-center cursor-pointer text-xl font-bold">View</p>
                             </Link>
                         </div>
                     ))
-                    
+
                 )}
             </div>
         </div>

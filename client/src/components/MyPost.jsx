@@ -21,7 +21,7 @@ const MyPost = ({ username, sortingOption }) => {
         const fetchPosts = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:5000/post/all');
+                const response = await axios.get('https://convoz.onrender.com/post/all');
                 const filteredPosts = response.data.filter(post => post.posterUsername === username);
 
                 let sortedPosts = [...filteredPosts];
@@ -48,7 +48,7 @@ const MyPost = ({ username, sortingOption }) => {
 
         fetchPosts();
     }, [username, sortingOption]);
-   
+
     const formatScore = (score) => {
         if (score >= 1000000) {
             return (score / 1000000).toFixed(1) + 'M';
@@ -66,7 +66,7 @@ const MyPost = ({ username, sortingOption }) => {
         }
         return content;
     };
-    
+
     return (
         <div className="mt-4 cursor-pointer">
             {loading ? (
@@ -95,14 +95,14 @@ const MyPost = ({ username, sortingOption }) => {
                             </div>
                             <a href='/profile'><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline  text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
 
-            {post.isVip &&(
-               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
-            )}
+                            {post.isVip && (
+                                <MdOutlineVerified className="ml-2 text-xl text-yellow-500" />
+                            )}
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                             {post.isEdited && (
                                 <span className="text-gray-500  text-lg font-bold ml-2">
-                            <TbEditCircle />
+                                    <TbEditCircle />
                                 </span>
                             )}
                         </div>
@@ -118,7 +118,7 @@ const MyPost = ({ username, sortingOption }) => {
                                 <button className="flex ml-5 items-center text-[#1976D2] hover:text-[#1976d2e2]">
                                     <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
                                 </button>
-                            </Link> 
+                            </Link>
                         </div>
                     </div>
                 ))

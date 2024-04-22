@@ -28,7 +28,7 @@ const Vip = () => {
           return;
         }
         const response = await axios.post(
-          "http://localhost:5000",
+          "https://convoz.onrender.com/",
           {},
           { withCredentials: true }
         );
@@ -68,45 +68,45 @@ const Vip = () => {
     };
   }, [cookies, navigate, removeCookie]);
 
-  const itemName="CONVOZ VIP"
-  const itemPrice=500;
-  const quantity=1;
+  const itemName = "CONVOZ VIP"
+  const itemPrice = 500;
+  const quantity = 1;
 
-const checkout = async () => {
-  try {
-    if (isNaN(quantity) || isNaN(itemPrice) || quantity <= 0 || itemPrice <= 0) {
-      console.error("Invalid quantity or price.");
-      return;
+  const checkout = async () => {
+    try {
+      if (isNaN(quantity) || isNaN(itemPrice) || quantity <= 0 || itemPrice <= 0) {
+        console.error("Invalid quantity or price.");
+        return;
+      }
+
+      const res = await fetch("https://convoz.onrender.com/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: JSON.stringify({
+          id: 1,
+          quantity: quantity,
+          price: itemPrice,
+          name: itemName,
+          userId: localStorage.getItem("currentUser"),
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.url) {
+        console.log("Redirecting to:", data.url);
+        window.location = data.url;
+      } else {
+        console.error("No URL found in the API response.");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const res = await fetch("http://localhost:5000/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({
-        id: 1,
-        quantity: quantity,
-        price: itemPrice,
-        name: itemName,
-        userId: localStorage.getItem("currentUser"),
-      }),
-    });
-    const data = await res.json();
-    console.log(data);
-    if (data.url) {
-      console.log("Redirecting to:", data.url);
-      window.location = data.url;
-    } else {
-      console.error("No URL found in the API response.");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-  
   return (
     <>
       <Navbar username={username} />

@@ -16,7 +16,7 @@ const TopPost = () => {
         const fetchPosts = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get('http://localhost:5000/post/all');
+                const response = await axios.get('https://convoz.onrender.com/post/all');
                 const sortedPosts = response.data.sort((a, b) => b.upvotes - a.upvotes);
                 const topThreePosts = sortedPosts.slice(0, 3);
                 setPosts(topThreePosts);
@@ -51,12 +51,12 @@ const TopPost = () => {
                     <div key={post.id} className="border-2 border-slate-600 p-4 rounded mb-4 hover:bg-[#0c0c0c]">
                         <div className="flex items-center mb-2 cursor-pointer">
                             <div className="overflow-hidden rounded-full h-8 w-8 bg-white mr-2">
-                            <Link to={`/user/${post.posterUsername}`}><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></Link>
+                                <Link to={`/user/${post.posterUsername}`}><img src={`https://robohash.org/${post.posterUsername}`} alt="User Avatar" /></Link>
                             </div>
                             <a><Link to={`/user/${post.posterUsername}`}><span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-xl font-bold md:text-lg">{post.posterUsername}</span></Link></a>
-                            {post.isVip &&(
-               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
-            )}
+                            {post.isVip && (
+                                <MdOutlineVerified className="ml-2 text-xl text-yellow-500" />
+                            )}
                             <span className="text-gray-500 mx-1">•</span>
                             <span className="text-gray-500 text-lg font-bold">{format(post.postedOn)}</span>
                         </div>
@@ -65,14 +65,14 @@ const TopPost = () => {
                         </Link>
                         <div className="flex items-center text-white mt-2 text-2xl md:text-xl">
                             <button className="flex items-center text-[#1976D2] hover:text-[#1976d2e2]">
-                                <LuMedal  className="mr-2.5 text-2xl " />
+                                <LuMedal className="mr-2.5 text-2xl " />
                             </button>
                             <a>{formatScore(post.upvotes)}</a>
                             <Link to={{ pathname: `/posts/${post._id}` }}>
                                 <button className="flex ml-5 mt-1 items-center text-[#1976D2] hover:text-[#1976d2e2]">
                                     <BiCommentMinus className="mr-2 mt-0.5" /> {post.totalComments}
                                 </button>
-                            </Link> 
+                            </Link>
                         </div>
                     </div>
                 ))

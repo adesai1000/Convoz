@@ -21,8 +21,8 @@ const EditPost = () => {
     const handleSubmit = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:5000/post/edit",
-                { postId,title, content },
+                "https://convoz.onrender.com/post/edit",
+                { postId, title, content },
                 { withCredentials: true }
             );
             history.go(-1)
@@ -42,7 +42,7 @@ const EditPost = () => {
                 navigate("/login");
             }
             const { data } = await axios.post(
-                "http://localhost:5000",
+                "https://convoz.onrender.com/",
                 {},
                 { withCredentials: true }
             );
@@ -54,7 +54,7 @@ const EditPost = () => {
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
-        
+
         const editPostId = localStorage.getItem("editPostId");
         const editPostTitle = localStorage.getItem("editPostTitle");
         const editContent = localStorage.getItem("editContent");
@@ -96,7 +96,7 @@ const EditPost = () => {
                             </div>
                         </div>
                         <div className="data w-full mt-5">
-                        <textarea
+                            <textarea
                                 placeholder="Title*"
                                 rows="1"
                                 className="bg-black w-full p-4 mb-4 rounded border-2 border-slate-600 focus:outline-none text-xl resize-none"

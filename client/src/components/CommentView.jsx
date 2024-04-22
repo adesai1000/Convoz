@@ -21,7 +21,7 @@ const CommentView = ({ id, currentUser }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/comment/fetch",
+        "https://convoz.onrender.com/comment/fetch",
         { postId: id },
         { withCredentials: true }
       );
@@ -57,7 +57,7 @@ const CommentView = ({ id, currentUser }) => {
             const deleteComment = async () => {
               try {
                 await axios.post(
-                  `http://localhost:5000/comment/delete`,
+                  `https://convoz.onrender.com/comment/delete`,
                   { commentId: commentId, commenterUsername: currentUser },
                   { withCredentials: true }
                 );
@@ -110,14 +110,14 @@ const CommentView = ({ id, currentUser }) => {
               </div>
               <Link to={`/user/${comment.commenterUsername}`}>
                 <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-2xl font-bold md:text-lg">
-                  {comment.commenterUsername}                 
+                  {comment.commenterUsername}
                 </span>
               </Link>
               <div className="">
-            {comment.isVip &&(
-               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
-            )}
-            </div>  
+                {comment.isVip && (
+                  <MdOutlineVerified className="ml-2 text-xl text-yellow-500" />
+                )}
+              </div>
               <span className="text-gray-500 mx-1">•</span>
               <span className="text-gray-500 text-sm md:text-lg font-bold">
                 {format(comment.postedOn)}

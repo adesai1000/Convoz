@@ -25,9 +25,9 @@ const Create = () => {
             const posterUsername = username;
             const filteredTitle = filterProfanity(title);
             const filteredContent = filterProfanity(content);
-    
+
             const response = await axios.post(
-                "http://localhost:5000/post/",
+                "https://convoz.onrender.com/post/",
                 { title: filteredTitle, content: filteredContent, posterUserId, posterUsername },
                 { withCredentials: true }
             );
@@ -39,7 +39,7 @@ const Create = () => {
             console.error("Error creating post:", error);
         }
     };
-    
+
 
     const filterProfanity = (text) => {
         const profaneRegex = new RegExp(`\\b(?:${profaneWords.join("|")})\\b`, "gi");
@@ -52,7 +52,7 @@ const Create = () => {
                 navigate("/login");
             }
             const { data } = await axios.post(
-                "http://localhost:5000",
+                "https://convoz.onrender.com/",
                 {},
                 { withCredentials: true }
             );

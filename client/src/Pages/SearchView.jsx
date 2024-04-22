@@ -29,7 +29,7 @@ const SearchView = () => {
           return;
         }
         const response = await axios.post(
-          "http://localhost:5000",
+          "https://convoz.onrender.com/",
           {},
           { withCredentials: true }
         );
@@ -53,7 +53,7 @@ const SearchView = () => {
     const fetchResults = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/search/?q=${query}`
+          `https://convoz.onrender.com/search/?q=${query}`
         );
         setResults(response.data);
       } catch (error) {

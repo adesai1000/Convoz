@@ -28,7 +28,7 @@ const Home = () => {
                     return;
                 }
                 const response = await axios.post(
-                    "http://localhost:5000",
+                    "https://convoz.onrender.com//",
                     {},
                     { withCredentials: true }
                 );
@@ -70,7 +70,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div block><RightMobile /></div>
-                    <div style={{textAlign:'center'}}>
+                    <div style={{ textAlign: 'center' }}>
                         {loading ? (
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '15vh' }}>
                                 <RiseLoader color={"#1976D2"} loading={true} size={20} />

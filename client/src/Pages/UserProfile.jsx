@@ -20,7 +20,7 @@ const UserProfile = () => {
     const createChat = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:5000/chat/",
+                "https://convoz.onrender.com/chat/",
                 {
                     senderId: senderId,
                     receiverId: receiverId,
@@ -43,11 +43,11 @@ const UserProfile = () => {
                     return;
                 }
                 const userData = await axios.post(
-                    "http://localhost:5000",
+                    "https://convoz.onrender.com/",
                     {},
                     { withCredentials: true }
                 );
-                if(userData.data && userData.data.user.isVip==true){
+                if (userData.data && userData.data.user.isVip == true) {
                     setVerified(true);
                 }
                 setUsername(userData.data.user.username);
@@ -69,7 +69,7 @@ const UserProfile = () => {
         const fetchReceiverId = async () => {
             try {
                 const response = await axios.post(
-                    "http://localhost:5000/chat/findrid",
+                    "https://convoz.onrender.com/chat/findrid",
                     { receiverUsername: id },
                     { withCredentials: true }
                 );
@@ -87,7 +87,7 @@ const UserProfile = () => {
         <>
             <Navbar username={username} />
             <div className="min-h-screen bg-black flex flex-col md:flex-row items-start justify-center border-slate-600">
-                <ProfRight username={id} verified={verified}/>
+                <ProfRight username={id} verified={verified} />
                 <div className="w-full md:w-1/2 p-4">
                     <div className="border-2 border-slate-600 p-4 mb-4 rounded flex flex-row md:flex-row items-center justify-between text-white">
                         <div className="flex items-center space-x-4 text-xl font-bold">
@@ -109,7 +109,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                     {activeTab === "Posts" && <MyPost username={id} sortingOption={sortingOption} />}
-                    {activeTab === "Comments" && <UserComment username={id} sortingOption={sortingOption}/>}
+                    {activeTab === "Comments" && <UserComment username={id} sortingOption={sortingOption} />}
                 </div>
             </div>
         </>

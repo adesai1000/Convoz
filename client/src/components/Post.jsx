@@ -33,7 +33,7 @@ const Post = ({ sortingOption }) => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("http://localhost:5000/post/all");
+        const response = await axios.get("https://convoz.onrender.com/post/all");
         let sortedPosts = response.data;
 
         if (sortingOption === "likes") {
@@ -106,7 +106,7 @@ const Post = ({ sortingOption }) => {
         return;
       }
 
-      await axios.post("http://localhost:5000/post/upvotepost", {
+      await axios.post("https://convoz.onrender.com/post/upvotepost", {
         postId,
         userId,
       });
@@ -130,7 +130,7 @@ const Post = ({ sortingOption }) => {
         return;
       }
 
-      await axios.post("http://localhost:5000/post/removeupvotepost", {
+      await axios.post("https://convoz.onrender.com/post/removeupvotepost", {
         postId,
         userId,
       });
@@ -172,7 +172,7 @@ const Post = ({ sortingOption }) => {
         }
 
         const response = await axios.post(
-          "http://localhost:5000/post/allupvotedposts",
+          "https://convoz.onrender.com/post/allupvotedposts",
           { userId: userId },
         );
         setUpvotedPosts(response.data);
@@ -204,12 +204,12 @@ const Post = ({ sortingOption }) => {
               <span className="text-[#1976D2] hover:text-[#1976d2e2] hover:underline text-xl font-bold md:text-lg">
                 {post.posterUsername}
               </span>
-              
+
             </Link>
-            {post.isVip &&(
-               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
+            {post.isVip && (
+              <MdOutlineVerified className="ml-2 text-xl text-yellow-500" />
             )}
-           
+
             <span className="text-gray-500 mx-1">•</span>
             <span className="text-gray-500 text-lg font-bold">
               {format(post.postedOn)}
@@ -243,9 +243,8 @@ const Post = ({ sortingOption }) => {
               </button>
             ) : (
               <button
-                className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${
-                  upvotedPosts.includes(post._id) ? "text-white" : ""
-                }`}
+                className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${upvotedPosts.includes(post._id) ? "text-white" : ""
+                  }`}
                 onClick={() => upvotePost(post._id)}
                 disabled={upvotedPosts.includes(post._id)}
               >

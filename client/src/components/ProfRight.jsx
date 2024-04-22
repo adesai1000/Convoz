@@ -11,7 +11,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { MdOutlineVerified } from "react-icons/md";
 
-const ProfRight = ({ username, verified}) => {
+const ProfRight = ({ username, verified }) => {
     const [cookies, removeCookie] = useCookies([]);
     const [loading, setLoading] = useState(true);
     const [userid, setUserid] = useState(null)
@@ -25,7 +25,7 @@ const ProfRight = ({ username, verified}) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/post/all'); 
+                const response = await axios.get('https://convoz.onrender.com/post/all');
                 const filteredPosts = response.data.filter(post => post.posterUsername === username);
                 setPosts(filteredPosts);
             } catch (error) {
@@ -40,7 +40,7 @@ const ProfRight = ({ username, verified}) => {
         const fetchUserUsername = async () => {
             try {
                 const response = await axios.post(
-                    "http://localhost:5000/chat/finduid",
+                    "https://convoz.onrender.com/chat/finduid",
                     { userUsername: username },
                     { withCredentials: true }
                 );
@@ -61,27 +61,27 @@ const ProfRight = ({ username, verified}) => {
                 {
                     label: 'No',
                     className: "buttonNo",
-                    onClick: () =>{
-                    //console.log("Clicked No")
+                    onClick: () => {
+                        //console.log("Clicked No")
                     }
                 },
                 {
                     label: 'Yes',
                     className: "buttonYes",
-                    onClick: () =>{
-                        const deleteUser = async()=>{
-                            try{
+                    onClick: () => {
+                        const deleteUser = async () => {
+                            try {
                                 await axios.post(
-                                    `http://localhost:5000/delete`,
-                                    { userId: id},
+                                    `https://convoz.onrender.com/delete`,
+                                    { userId: id },
                                     { withCredentials: true }
-                                    
+
                                 );
                                 removeCookie("token");
                                 localStorage.removeItem("currentUser");
                                 navigate("/login");
                             }
-                            catch(error){
+                            catch (error) {
                                 console.error("Error Deleting Profile:", error)
                             }
                         }
@@ -102,7 +102,7 @@ const ProfRight = ({ username, verified}) => {
                     />
                     <div className='flex flex-row justify-center items-center'>
                         <p className="mt-2 text-white text-2xl font-bold items-center justify-center">{username}</p>
-                        {verified &&(
+                        {verified && (
                             <MdOutlineVerified className='mt-2 ml-2 text-2xl text-yellow-500 items-center' />
                         )}
                     </div>
@@ -111,9 +111,9 @@ const ProfRight = ({ username, verified}) => {
                     </div>
                 </div>
                 {id === userid && (
-                <a onClick={deleteAccount}><MdOutlineDeleteForever className='text-red-600 text-3xl mb-1 hover:text-red-700'/></a>        
+                    <a onClick={deleteAccount}><MdOutlineDeleteForever className='text-red-600 text-3xl mb-1 hover:text-red-700' /></a>
                 )}
-                
+
             </div>
             <div className="md:block">
                 <div className="md:mb-4 border-2 border-slate-600 p-3 rounded flex gap-4">
@@ -121,7 +121,7 @@ const ProfRight = ({ username, verified}) => {
                     <div className="text-2xl md:text-xl text-white font-bold">Don't forget to star the <a href="https://github.com/adesai1000/Convoz" target=" _blank" className="text-[#1976D2] underline hover:text-[#1976d2e2]  font-semibold"> Repo!</a>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );

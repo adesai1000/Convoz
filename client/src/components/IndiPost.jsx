@@ -24,7 +24,7 @@ const IndiPost = ({ id, currentUser }) => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:5000/post/${id}`);
+        const response = await axios.get(`https://convoz.onrender.com/post/${id}`);
         setPost(response.data);
         checkIfUpvoted(response.data);
       } catch (error) {
@@ -86,7 +86,7 @@ const IndiPost = ({ id, currentUser }) => {
             const deletePost = async () => {
               try {
                 await axios.post(
-                  `http://localhost:5000/post/delete`,
+                  `https://convoz.onrender.com/post/delete`,
                   { postId: id, posterUserId: post.posterUserId },
                   { withCredentials: true }
                 );
@@ -115,7 +115,7 @@ const IndiPost = ({ id, currentUser }) => {
         return;
       }
 
-      await axios.post("http://localhost:5000/post/upvotepost", {
+      await axios.post("https://convoz.onrender.com/post/upvotepost", {
         postId: post._id,
         userId,
       });
@@ -140,7 +140,7 @@ const IndiPost = ({ id, currentUser }) => {
         return;
       }
 
-      await axios.post("http://localhost:5000/post/removeupvotepost", {
+      await axios.post("https://convoz.onrender.com/post/removeupvotepost", {
         postId: post._id,
         userId,
       });
@@ -232,9 +232,8 @@ const IndiPost = ({ id, currentUser }) => {
                 </button>
               ) : (
                 <button
-                  className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${
-                    upvoted ? "text-white" : ""
-                  }`}
+                  className={`flex items-center text-[#1976D2] hover:text-[#1976d2e2] ${upvoted ? "text-white" : ""
+                    }`}
                   onClick={upvotePost}
                 >
                   <FaRegArrowAltCircleUp className="mr-2.5 text-[#1976D2] hover:text-[#1976d2e2]" />{" "}

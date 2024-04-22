@@ -15,12 +15,12 @@ const UserRight = ({ username }) => {
     const fetchRandomUsers = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('http://localhost:5000/random');
+            const response = await axios.get('https://convoz.onrender.com/random');
             setRandomUsers(response.data.usernames);
         } catch (error) {
             console.error('Error fetching random users:', error);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -29,7 +29,7 @@ const UserRight = ({ username }) => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/post/all'); 
+                const response = await axios.get('https://convoz.onrender.com/post/all');
                 const filteredPosts = response.data.filter(post => post.posterUsername === username);
                 setPosts(filteredPosts);
             } catch (error) {
@@ -64,7 +64,7 @@ const UserRight = ({ username }) => {
                 <div className="hidden mb-3 border-2 border-slate-600 p-3 rounded md:block">
                     <div className="border-b-2 border-slate-600 flex justify-between">
                         <div className="text-xl  p-2 mb-1 rounded text-white font-bold">Find Others</div>
-                        <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600 hover:animate-spin" onClick={fetchRandomUsers}/>
+                        <SlReload className="mt-4 text-lg text-white max-h-90% cursor-pointer hover:text-slate-600 hover:animate-spin" onClick={fetchRandomUsers} />
                     </div>
                     {loading ? (
                         <div style={{ display: 'flex', justifyContent: 'center' }}>

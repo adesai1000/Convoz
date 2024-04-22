@@ -21,7 +21,7 @@ const MyComment = ({ username, sortingOption }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/comment/all",
+        "https://convoz.onrender.com/comment/all",
         { username: username },
         { withCredentials: true }
       );
@@ -74,7 +74,7 @@ const MyComment = ({ username, sortingOption }) => {
             const deleteComment = async () => {
               try {
                 await axios.post(
-                  `http://localhost:5000/comment/delete`,
+                  `https://convoz.onrender.com/comment/delete`,
                   { commentId: commentId, commenterUsername: username },
                   { withCredentials: true }
                 );
@@ -126,9 +126,9 @@ const MyComment = ({ username, sortingOption }) => {
                   {comment.commenterUsername}
                 </span>
               </Link>
-              {comment.isVip &&(
-               <MdOutlineVerified className="ml-2 text-xl text-yellow-500"/>
-            )}
+              {comment.isVip && (
+                <MdOutlineVerified className="ml-2 text-xl text-yellow-500" />
+              )}
               <span className="text-gray-500 mx-1">•</span>
               <span className="text-gray-500 text-sm md:text-lg font-bold">
                 {format(comment.postedOn)}

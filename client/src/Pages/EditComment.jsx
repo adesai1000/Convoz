@@ -20,7 +20,7 @@ const EditComment = () => {
     const handleSubmit = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:5000/comment/edit",
+                "https://convoz.onrender.com/comment/edit",
                 { commentId, content },
                 { withCredentials: true }
             );
@@ -40,7 +40,7 @@ const EditComment = () => {
                 navigate("/login");
             }
             const { data } = await axios.post(
-                "http://localhost:5000",
+                "https://convoz.onrender.com/",
                 {},
                 { withCredentials: true }
             );
@@ -52,7 +52,7 @@ const EditComment = () => {
                 : (removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
-        
+
         const editPostId = localStorage.getItem("editPostId");
         const editContent = localStorage.getItem("editContent");
         setCommentId(editPostId);
