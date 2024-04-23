@@ -167,8 +167,8 @@ const Post = ({ sortingOption }) => {
       try {
         const userId = localStorage.getItem("currentUser");
         if (!userId) {
-          console.error("User not logged in");
-          return;
+          //console.error("User not logged in");
+          //return;
         }
 
         const response = await axios.post(
