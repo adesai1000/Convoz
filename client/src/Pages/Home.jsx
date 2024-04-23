@@ -24,8 +24,8 @@ const Home = () => {
             try {
                 setLoading(true);
                 if (!cookies.token) {
-                    navigate("/login");
-                    return;
+                    // navigate("/login");
+                    // return;
                 }
                 const response = await axios.post(
                     "https://convoz.onrender.com/",
@@ -37,8 +37,8 @@ const Home = () => {
                     setUsername(user.username);
                     localStorage.setItem("currentUser", user._id)
                 } else {
-                    removeCookie("token");
-                    navigate("/login");
+                    // removeCookie("token");
+                    // navigate("/login");
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
