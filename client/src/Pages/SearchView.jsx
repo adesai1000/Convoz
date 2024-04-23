@@ -25,7 +25,7 @@ const SearchView = () => {
       try {
         setLoading(true);
         if (!cookies.token) {
-          navigate("/login");
+          //navigate("/login");
           return;
         }
         const response = await axios.post(
@@ -37,8 +37,8 @@ const SearchView = () => {
         if (status) {
           setUsername(user.username);
         } else {
-          removeCookie("token");
-          navigate("/login");
+          //removeCookie("token");
+          //navigate("/login");
         }
       } catch (error) {
         console.error("Error fetching data:", error);

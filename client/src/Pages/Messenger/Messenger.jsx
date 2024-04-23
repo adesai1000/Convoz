@@ -23,7 +23,7 @@ export default function Messenger() {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        // navigate("/login");
       }
       try {
         const { data } = await axios.post(
@@ -36,8 +36,8 @@ export default function Messenger() {
         setId(user._id);
       } catch (error) {
         console.error(error);
-        removeCookie("token");
-        navigate("/login");
+        // removeCookie("token");
+        // navigate("/login");
       }
     };
     verifyCookie();

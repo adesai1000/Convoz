@@ -23,7 +23,7 @@ const Profile = () => {
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
-                navigate("/login");
+                // navigate("/login");
             }
             const { data } = await axios.post(
                 "https://convoz.onrender.com/",
@@ -38,7 +38,7 @@ const Profile = () => {
             }
             return status
                 ? console.log("Logged in")
-                : (removeCookie("token"), navigate("/login"));
+                : console.log("Not Logged in") //(removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);

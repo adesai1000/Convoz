@@ -39,8 +39,8 @@ const UserProfile = () => {
         const fetchData = async () => {
             try {
                 if (!cookies.token) {
-                    navigate("/login");
-                    return;
+                    // navigate("/login");
+                    // return;
                 }
                 const userData = await axios.post(
                     "https://convoz.onrender.com/",
@@ -57,8 +57,8 @@ const UserProfile = () => {
                 }
             } catch (error) {
                 console.error("Error fetching user data:", error);
-                removeCookie("token");
-                navigate("/login");
+                // removeCookie("token");
+                // navigate("/login");
             }
         };
 

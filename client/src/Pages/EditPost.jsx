@@ -39,7 +39,7 @@ const EditPost = () => {
     useEffect(() => {
         const verifyCookie = async () => {
             if (!cookies.token) {
-                navigate("/login");
+                // navigate("/login");
             }
             const { data } = await axios.post(
                 "https://convoz.onrender.com/",
@@ -51,7 +51,7 @@ const EditPost = () => {
             setId(user._id);
             return status
                 ? console.log("Logged in")
-                : (removeCookie("token"), navigate("/login"));
+                : console.log("Not Logged in")//(removeCookie("token"), navigate("/login"));
         };
         verifyCookie();
 
