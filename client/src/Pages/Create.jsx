@@ -61,7 +61,7 @@ const Create = () => {
             setId(user._id);
             return status
                 ? console.log("Logged in")
-                : console.log("Not logged in")
+                : console.log("Not Logged in")
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
