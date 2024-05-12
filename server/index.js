@@ -57,10 +57,6 @@ app.post("/checkout", async (req, res) => {
   try {
     const { quantity, price, name, userId } = req.body;
 
-    if (!quantity || !price || !name || !userId) {
-      throw new Error("Missing required parameters in the request body");
-    }
-
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
@@ -71,7 +67,7 @@ app.post("/checkout", async (req, res) => {
             product_data: {
               name: name,
             },
-            unit_amount: price * 100, // Convert to paisa
+            unit_amount: price * 100,
           },
           quantity: quantity,
         },
@@ -80,16 +76,16 @@ app.post("/checkout", async (req, res) => {
       cancel_url: "https://c0nvoz.vercel.app/cancel",
     });
 
-    // Update the user to VIP
-    const user = await User.findByIdAndUpdate(userId, { isVip: true });
-
-    if (!user) {
-      throw new Error("User not found");
+    // Check if userId is provided in the request body
+    if (!userId) {
+      throw new Error("User ID is missing in the request body");
     }
+
+    // Update the user to VIP
+    await User.findByIdAndUpdate(userId, { isVip: true });
 
     res.json({ url: session.url });
   } catch (error) {
-    console.error("Error during checkout:", error);
     res.status(500).json({ error: error.message });
   }
 });
