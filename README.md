@@ -1,5 +1,9 @@
 # Convoz
-Convoz is a fully-featured social media web application, built with the MERN stack and Tailwind CSS.  
+Convoz is a full-fledged social media web application, built with the MERN stack and Tailwind CSS.  
+
+
+https://github.com/user-attachments/assets/d9768cc9-605e-4d72-be3b-b34b1ef484aa
+
 
 ## Features
 - Create, Read, Update, and Delete Posts
